@@ -1,0 +1,106 @@
+// todo - Fonts
+@use 'core/fonts';
+@use 'core/icon-fonts';
+
+// todo - Core
+@use 'sass:color';
+@use 'core/reset';
+@use 'core/mixins' as *;
+
+// todo - Assets
+@use 'assets/burger-button';
+@use 'assets/mobile-menu';
+
+// todo - Variables
+@use 'core/variables' as *;
+
+// todo - Layouts
+@use 'layouts/header';
+@use 'layouts/footer';
+@use 'layouts/page-header';
+@use 'layouts/bem-block';
+@use 'layouts/page';
+
+// todo - Sections
+@use 'sections/home/section-hero';
+@use 'sections/home/section-features';
+@use 'sections/home/section-services';
+@use 'sections/home/section-cases';
+@use 'sections/home/section-pricing';
+@use 'sections/home/section-contacts';
+@use 'sections/home/section-strip';
+
+// * ---------------------------------------------------------
+.wrapper {
+   display: flex;
+   flex-direction: column;
+
+   height: 100%;
+   min-height: 100vh;
+   margin: 0 auto;
+}
+
+[class*='container'] {
+   box-sizing: border-box;
+   width: 100%;
+   max-width: $maxWidthContainer;
+   margin: 0 auto;
+   padding: 0 2rem;
+
+   @include screen-490 {
+      padding: 0 10px;
+   }
+}
+
+[class*='icon-'] {
+   pointer-events: none;
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+}
+
+[class*=' _img'] {
+   display: block;
+   width: auto;
+   height: auto;
+
+   img {
+      width: 100%;
+      height: 100%;
+      vertical-align: middle;
+      object-fit: contain;
+   }
+}
+
+[class*='_ibg'] {
+   position: absolute;
+   top: 0;
+   left: 0;
+
+   width: 100%;
+   height: 100vh;
+
+   img {
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 100vh;
+
+      object-fit: cover;
+      object-position: center bottom;
+   }
+
+   svg {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+   }
+}

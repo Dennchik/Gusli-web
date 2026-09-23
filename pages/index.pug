@@ -1,0 +1,22 @@
+extends @/pug/layouts/app_layout.pug
+
+append link
+prepend script
+
+block title
+	- var text = 'Gusli Web'
+
+block main-content
+	section.main-content__section
+		include  @/pug/sections/home/section-hero
+		include  @/pug/sections/home/section-strip
+	section.main-content__section
+		include @/pug/sections/home/section-features
+	section.main-content__section
+		include @/pug/sections/home/section-services
+	section.main-content__section.slide-content
+		include @/pug/sections/home/section-cases
+	section.main-content__section
+		include @/pug/sections/home/section-pricing
+		section.main-content__section
+		include @/pug/sections/home/section-contacts

@@ -1,0 +1,19 @@
+header.header
+	.header__container.container
+		+homeLink(filename, 'header__logo logo')
+			i.logo__image
+			span.logo__text Gusli Web
+		nav.header__nav.nav(data-da="bp-1" data-da-position="0" data-da-resolution="620")
+			ul.nav__list
+				li.nav__item
+					a.nav__link.anchor-link(href="#services") Услуги
+				li.nav__item
+					a.nav__link.anchor-link(href="#cases") Кейсы
+				li.nav__item
+					a.nav__link.anchor-link(href="#pricing") Пакеты
+				li.nav__item
+					a(href=linkTo('contacts', filename)).nav__link.anchor-link Контакты
+					//a.nav__link.anchor-link(href="#contacts") Контакты
+		.header__burger-button
+			include ../../pug/assets/burger-button
+		button.header__button.button.button--primary Оставить заявку

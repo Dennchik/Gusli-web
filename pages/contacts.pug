@@ -1,0 +1,13 @@
+extends @/pug/layouts/app_layout.pug
+
+append link
+prepend script
+
+block title
+   - var text = 'Контакты — GUSLI WEB'
+
+block main-content
+   section.main-content__section
+      +page-header('Контакты', 'Отвечаем в течение рабочего дня — расскажите о задаче, и мы предложим лучшее решение.')
+   section.main-content__section
+      include @/pug/sections/home/section-contacts

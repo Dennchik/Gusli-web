@@ -1,0 +1,67 @@
+@use '../core/variables' as *;
+@use '../core/mixins' as *;
+
+//* Заголовок внутренних страниц (например /contacts/)
+.page-header {
+   padding: 12rem 0 4rem;
+
+   @include screen-490 {
+      padding: 9rem 0 3rem;
+   }
+
+   // .page-header__breadcrumbs
+   &__breadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1.6rem;
+
+      font-size: 1.4rem;
+   }
+
+   // .page-header__breadcrumb-link
+   &__breadcrumb-link {
+      color: $color-text-muted;
+      text-decoration: none;
+      transition: color $transition-linear-ease;
+
+      @include screen-hover {
+         &:hover {
+            color: $color-primary;
+         }
+      }
+   }
+
+   &__breadcrumb-sep {
+      color: $color-text-muted;
+   }
+
+   &__breadcrumb-current {
+      font-weight: 500;
+      color: $color-text;
+   }
+
+   // .page-header__title
+   &__title {
+      margin-bottom: 1.2rem;
+      font-family: $font-family-title;
+      font-size: 4rem;
+      font-weight: 600;
+      line-height: 1.2;
+
+      @include minmax-320-1920 {
+         font-size: calc(26px + (40 - 26) * ((100vw - 320px) / (1920 - 320)));
+      }
+
+      @include screen-320 {
+         font-size: 26px;
+      }
+   }
+
+   // .page-header__text
+   &__text {
+      max-width: 56rem;
+      font-size: 1.6rem;
+      color: $color-text-light;
+   }
+}

@@ -1,0 +1,38 @@
+// * Services
+@use '../../core/variables' as *;
+@use '../../core/mixins' as *;
+
+.services {
+   padding: 6rem 0;
+
+   &__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+
+      @include screen-992 {
+         grid-template-columns: repeat(2, 1fr);
+      }
+
+      @include screen-620 {
+         grid-template-columns: 1fr;
+      }
+   }
+}
+
+.service-card {
+   padding: 2.8rem;
+   border: 1px solid $border-color;
+   border-radius: $border-radius;
+   box-shadow: $box-shadow;
+
+   &__title {
+      margin-bottom: 12px;
+      font-size: 1.8rem;
+   }
+
+   &__text {
+      font-size: 1.4rem;
+      color: $color-text-light;
+   }
+}

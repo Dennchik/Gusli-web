@@ -1,0 +1,64 @@
+// * - [Variables] -
+$maxWidthContainer: 1440px;
+
+$radius: 2rem; // Скругление углов (как на референсе)
+$gap: 1.6rem; // Отступы между карточками
+$transition-linear-ease: 0.3s ease-in-out;
+$background: rgb(255 255 255);
+$background-dark: rgb(23 30 38);
+$background-transparent: rgb(28 35 43/ 45%);
+$border-radius: 6px;
+$border-color: rgb(85 85 255 / 70%);
+
+// * - [Font Variables] -
+$font-path: '../fonts';
+$font-family-default: 'Inter', sans-serif;
+$font-family-title: 'Manrope', sans-serif;
+$font-hand: 'cursive', sans-serif; // Шрифт для "Pf" (подключите рукописный)
+$font-weight-default: 400;
+$font-size: 1.6rem;
+
+$box-shadow: 0 0 7px -1px rgb(26 29 32 / 15%);
+$color-primary: rgb(85 85 255 / 70%);
+$color-primary-hover: rgb(85 85 255 / 50%);
+$color-accent: rgb(255 163 67);
+$color-text: rgb(11 19 42);
+$color-text-light: rgb(11 19 42 / 70%);
+$color-text-muted: rgb(145 156 185);
+$color-bg-light: rgb(227 227 227);
+$color-white: rgb(255 255 255);
+$blur: rgb(202 209 228 / 90%);
+$text-selection: rgb(116 151 248);
+
+:root {
+   --linear-in-out: 0.4s ease-in-out;
+}
+
+:root {
+   --paper: rgb(241 245 246);
+   --grid: rgb(154 139 255 / 5.5%);
+   --grid-2: rgb(154 139 255 / 9%);
+   --surface: rgb(255 255 255 / 76%);
+   --surface-solid: rgb(255 255 255);
+   --surface-2: rgb(228 236 238 / 72%);
+   --line: rgb(209 219 222);
+   --line-strong: rgb(166 183 188);
+   --text: rgb(10 26 32);
+   --muted: rgb(109 103 143 / 40%);
+   --pulse: rgb(85 85 255 / 70%);
+   --pulse-ink: rgb(80 72 133);
+   --pulse-soft: rgb(219 239 240);
+   --signal: rgb(169 80 15);
+   --signal-soft: rgb(251 234 219);
+   --ok: rgb(26 117 72);
+   --night: rgb(7 26 31);
+   --night-2: rgb(14 40 48);
+   --night-line: rgb(30 64 73);
+   --night-text: rgb(230 240 241);
+   --night-muted: rgb(143 169 176);
+   --night-signal: rgb(242 166 90);
+   --shadow: 0 1px 0 rgb(10 26 32 / 4%), 0 14px 34px -20px rgb(10 26 32 / 40%);
+   --border-radius: 6px;
+   --maxw: 1180px;
+   color-scheme: light;
+}

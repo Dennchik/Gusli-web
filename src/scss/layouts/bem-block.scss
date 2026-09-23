@@ -1,0 +1,193 @@
+@use '../core/variables' as *;
+@use '../core/mixins' as *;
+@use 'sass:color';
+
+.bg {
+   pointer-events: none;
+
+   position: fixed;
+   z-index: -1;
+   inset: 0;
+
+   overflow: hidden;
+
+   background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+      linear-gradient(var(--grid-2) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-2) 1px, transparent 1px);
+   background-position: center;
+   background-size:
+      34px 34px,
+      34px 34px,
+      170px 170px,
+      170px 170px;
+
+   // .bg__blob
+   &__blob {
+      position: absolute;
+
+      display: block;
+
+      width: 62vmax;
+      height: 62vmax;
+      border-radius: $border-radius;
+
+      opacity: 0.4;
+      filter: blur(90px);
+   }
+
+   // .bg__blob--a
+   &__blob--a {
+      top: -26vmax;
+      left: -16vmax;
+      background: radial-gradient(circle, var(--pulse) 0%, transparent 62%);
+      animation: driftA 52s ease-in-out infinite alternate;
+   }
+
+   // .bg__blob--b
+   &__blob--b {
+      right: -20vmax;
+      bottom: -30vmax;
+
+      opacity: 0.28;
+      background: radial-gradient(circle, var(--signal) 0%, transparent 62%);
+
+      animation: driftB 64s ease-in-out infinite alternate;
+   }
+}
+
+.header {
+   // .header__logo
+   &__logo {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+   }
+}
+
+.logo {
+   // .logo__image
+   &__image {
+      transform: skewX(-14deg);
+
+      display: block;
+
+      width: 9px;
+      height: 20px;
+
+      background: var(--pulse);
+   }
+
+   // .logo__text
+   &__text {
+      text-transform: uppercase;
+      white-space: nowrap;
+   }
+}
+
+.section-title {
+   margin-bottom: 40px;
+   font-size: 32px;
+   font-weight: 700;
+
+   @include minmax-320-1920 {
+      font-size: calc(22px + (32 - 22) * ((100vw - 320px) / (1920 - 320)));
+   }
+
+   @include screen-320 {
+      font-size: 22px;
+   }
+}
+
+.button {
+   cursor: pointer;
+
+   position: relative;
+
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+
+   padding: 1.2rem 2.4rem;
+   border: none;
+   border-radius: $border-radius;
+
+   font-size: 1.5rem;
+   font-weight: 500;
+
+   transition: all 0.2s ease;
+
+   &--primary {
+      color: $color-white;
+      background-color: var(--pulse);
+      transition: background-color 0.3s ease-in-out;
+
+      &::before {
+         content: '';
+
+         position: absolute;
+         z-index: -2;
+         inset: 0;
+
+         border: 1px solid $color-primary;
+         border-radius: calc($border-radius + 3px);
+
+         background: url('/img/primary-button-background.png') center left /
+            cover no-repeat;
+         background-size: 150% 150%;
+
+         transition: all 0.3s ease-in-out;
+         animation: 16s ease-in-out infinite move-background;
+      }
+
+      &::after {
+         content: '';
+
+         position: absolute;
+         z-index: -1;
+         inset: 0;
+
+         border-radius: $border-radius;
+
+         opacity: 0.8;
+         background: $color-primary;
+
+         transition: all 0.3s ease-in-out;
+      }
+
+      &:hover {
+         background-color: color.scale($color-primary-hover, $lightness: -30%);
+      }
+   }
+
+   &--secondary {
+      border: 1px solid $border-color;
+      color: $color-text;
+      background-color: transparent;
+
+      &:hover {
+         background-color: $color-bg-light;
+      }
+   }
+
+   &--accent {
+      color: $color-white;
+      background-color: $color-accent;
+
+      &:hover {
+         background-color: color.scale($color-accent, $lightness: -10%);
+      }
+   }
+}
+
+@keyframes move-background {
+   0%,
+   100% {
+      background-position: 20% 20%;
+   }
+
+   50% {
+      background-position: 80% 80%;
+   }
+}

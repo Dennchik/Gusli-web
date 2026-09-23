@@ -1,0 +1,43 @@
+include ../includes/mixins
+doctype html
+html(lang="ru").scroll-smooth
+	head
+		meta(charset="UTF-8")
+		meta(http-equiv="X-UA-Compatible" content="IE=edge")
+		meta(name="viewport" content="width=device-width, initial-scale=1.0")
+
+		block link
+			link(rel="icon" type="image/icon" href="/img/icons/logo.png")
+		block script
+			script(defer type="module" src="/src/js/app.js")
+			script(defer type="module" src="/src/js/main.js")
+		block title
+			- var text
+		title #{text}
+
+	block page
+		body
+			include ../utils/preloader
+			.wrapper
+				.page#top
+					.bg(aria-hidden="true")
+						span.bg__blob.bg__blob--a
+						span.bg__blob.bg__blob--b
+					block mobile-menu
+						include ../assets/mobile-menu
+					block header
+						header.page__header.offset-header
+							include ../layouts/header
+					block page-content
+						main.page__main-content
+							.main-content#wrapper
+								.main-content__content#content
+									block main-content
+									footer.page__footer#contacts
+										block footer
+											include footer
+					block cookies
+						//include @/pug/modules/cookies-accept
+					block aside-button
+//            include @/pug/assets/scroll-button
+

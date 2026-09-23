@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" width="320" height="60" fill="none">
+    <defs>
+        <!-- Фирменный градиент -->
+        <linearGradient id="gusli-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#5555FF"/>
+            <stop offset="100%" stop-color="#8B5CF6"/>
+        </linearGradient>
+    </defs>
+
+    <!-- Иконка / Знак (Буква G со стрелкой/нотой) -->
+    <g transform="translate(10, 5)">
+        <!-- Внешнее кольцо G -->
+        <path d="M 25 2
+             C 12 2, 2 12, 2 25
+             C 2 38, 12 48, 25 48
+             C 35 48, 44 41, 47 31
+             L 37 31
+             C 35 36, 30 40, 25 40
+             C 17 40, 10 33, 10 25
+             C 10 17, 17 10, 25 10
+             C 30 10, 35 13, 38 18
+             L 45 12
+             C 40 6, 33 2, 25 2 Z"
+              fill="url(#gusli-gradient)"/>
+
+        <!-- Внутренняя иконка/стрелка -->
+        <path d="M 22 17 L 34 25 L 22 33 Z" fill="url(#gusli-gradient)"/>
+    </g>
+
+    <!-- Текстовая часть "GUSLI MEDIA" -->
+    <text x="75" y="38"
+          fill="#0B132A"
+          font-family="Manrope, Inter, sans-serif"
+          font-size="24"
+          font-weight="800"
+          letter-spacing="1">GUSLI MEDIA
+    </text>
+</svg>

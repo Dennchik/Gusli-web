@@ -1,0 +1,106 @@
+// * Cases
+@use '../../core/variables' as *;
+@use '../../core/mixins' as *;
+@use 'sass:color';
+
+.cases {
+   padding: 6rem 0;
+
+   @include screen-490 {
+      padding: 4rem 0;
+   }
+
+   // .case__header
+   &__header {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      justify-content: space-between;
+
+      margin-bottom: 4rem;
+
+      @include screen-425 {
+         flex-direction: column;
+         align-items: stretch;
+      }
+
+      .section-title {
+         margin-bottom: 0;
+      }
+   }
+
+   // .case__link
+   &__link {
+      font-weight: 600;
+      color: $color-primary;
+      text-decoration: none;
+   }
+
+   // .case__grid
+   &__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.4rem;
+
+      @include screen-992 {
+         grid-template-columns: 1fr;
+      }
+   }
+}
+
+.case-card {
+   border-radius: $border-radius;
+   box-shadow: $box-shadow;
+
+   // .case-card__image-wrapper
+   &__image-wrapper {
+      overflow: hidden;
+      height: 24rem;
+
+      img {
+      }
+   }
+
+   // .case-card__image
+   &__image {
+      width: 100%;
+      height: 100%;
+      border-top-left-radius: $border-radius;
+      border-top-right-radius: $border-radius;
+
+      object-fit: cover;
+   }
+
+   // .case-card__info
+   &__info {
+      padding: 1.6rem;
+   }
+
+   // .case-card__title
+   &__title {
+      margin-bottom: 1.6rem;
+      font-size: 1.8rem;
+   }
+
+   // .case-card__tags
+   &__tags {
+      display: flex;
+      gap: 0.8rem;
+   }
+
+   // .case-card__tag
+   &__tag {
+      padding: 4px 12px;
+      border-radius: 12px;
+
+      font-size: 12px;
+      color: $color-text-light;
+
+      background-color: $color-bg-light;
+
+      &.tag--accent {
+         color: $color-text-light;
+         background-color: color.scale($color-primary, $lightness: 45%);
+      }
+   }
+}

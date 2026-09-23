@@ -1,0 +1,88 @@
+@use '../../core/variables' as *;
+@use '../../core/mixins' as *;
+
+.strip,
+.youneed,
+.track--pack,
+.pains,
+.steps,
+.addons__grid,
+form,
+.crit,
+.phases,
+.chan a {
+   backdrop-filter: blur(16px) saturate(1.15);
+}
+
+.strip {
+   padding: 0;
+   border-top: 1px solid var(--line);
+   border-bottom: 1px solid var(--line);
+   background: var(--surface);
+
+   // .strip__wrap
+   &__wrap {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+   }
+
+   // .strip__stat
+   &__stat {
+      padding: 22px 20px;
+      border-right: 1px solid var(--line);
+
+
+      &:last-child {
+         border-right: 0;
+      }
+
+      b {
+         display: block;
+
+         font-family: Archivo, serif;
+         font-size: clamp(23px, 3vw, 31px);
+         font-weight: 800;
+         font-variant-numeric: tabular-nums;
+         letter-spacing: -0.03em;
+      }
+
+      span {
+         font-size: 13px;
+         color: var(--muted);
+      }
+   }
+
+}
+
+@media (width <= 760px) {
+   .strip .wrap {
+      grid-template-columns: repeat(2, 1fr);
+   }
+}
+
+
+
+@media (width <= 760px) {
+   .stat:nth-child(2n) {
+      border-right: 0;
+   }
+
+   .stat:nth-child(-n + 2) {
+      border-bottom: 1px solid var(--line);
+   }
+}
+
+// .stat b {
+//   display: block;
+//
+//   font-family: Archivo;
+//   font-size: clamp(23px, 3vw, 31px);
+//   font-weight: 800;
+//   font-variant-numeric: tabular-nums;
+//   letter-spacing: -0.03em;
+// }
+//
+// .stat span {
+//   font-size: 13px;
+//   color: var(--muted);
+// }

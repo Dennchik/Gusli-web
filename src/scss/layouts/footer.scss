@@ -1,0 +1,309 @@
+@use '../core/variables' as *;
+@use '../core/mixins' as *;
+
+.footer {
+   position: relative;
+
+   padding-top: 6rem;
+   padding-bottom: 2rem;
+
+   font-family: $font-family-default;
+   color: $background;
+
+   background-color: $background-dark;
+
+   &__container {
+      max-width: $maxWidthContainer;
+      margin-inline: auto;
+      padding-inline: 2rem;
+   }
+
+   /* Основной блок с контактами и формой */
+   &__main {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 4rem;
+
+      @include min-960 {
+         grid-template-columns: 1fr 1fr;
+         gap: 6rem;
+         align-items: start;
+      }
+   }
+
+   /* Левая колонка: Инфо */
+   &__info {
+      position: relative;
+      z-index: 9;
+
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+
+      border-right: 1px solid $color-text-muted;
+   }
+
+   &__title {
+      margin: 0;
+
+      font-family: $font-family-title;
+      font-size: 3.2rem;
+      font-weight: 700;
+      line-height: 1.2;
+
+      @include screen-768 {
+         font-size: 2.6rem;
+      }
+
+      &-sub {
+         display: block;
+      }
+   }
+
+   &__contacts {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+
+      margin: 0;
+      padding: 0;
+
+      list-style: none;
+   }
+
+   &__contact-item {
+      display: flex;
+      gap: 1.6rem;
+      align-items: center;
+   }
+
+   &__contact-icon {
+      display: flex;
+      flex-shrink: 0;
+      align-items: center;
+      justify-content: center;
+
+      width: 4.4rem;
+      height: 4.4rem;
+      border-radius: 50%;
+
+      color: $color-primary;
+
+      background-color: rgb(238 238 255);
+   }
+
+   &__contact-text {
+      display: flex;
+      flex-direction: column;
+   }
+
+   &__contact-label {
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: $color-text-muted;
+   }
+
+   &__contact-value {
+      font-size: 1.6rem;
+      font-weight: 600;
+      font-style: normal;
+      text-decoration: none;
+
+      transition: color $transition-linear-ease;
+
+      @include screen-hover {
+         &:hover {
+            color: $color-primary;
+         }
+      }
+   }
+
+   &__brand-logo {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+   }
+
+   &__brand {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      &-desc {
+         max-width: 28rem;
+         margin: 0;
+         font-size: 1.3rem;
+         color: $color-text-muted;
+      }
+   }
+
+   &__form {
+      position: relative;
+      z-index: 9;
+      height: 100%;
+   }
+
+   &__socials {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+   }
+
+   &__social-link {
+      display: inline-flex;
+      gap: 0.8rem;
+      align-items: center;
+
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: $color-text-muted;
+      text-decoration: none;
+
+      //      transition: color 0.5s $transition-linear-ease;
+      transition: color $transition-linear-ease;
+
+      svg {
+         color: $color-white;
+         transition: color $transition-linear-ease;
+      }
+
+      @include screen-hover {
+         &:hover {
+            color: $color-primary;
+
+            svg {
+               color: $color-primary;
+            }
+         }
+      }
+   }
+
+   /* Нижняя секция */
+   &__bottom {
+      position: relative;
+      z-index: 2;
+
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      align-items: center;
+
+      margin-top: 6rem;
+      padding-top: 3rem;
+      border-top: 1px solid $color-text-muted;
+
+      text-align: center;
+
+      &-logo {
+         img {
+            display: block;
+            height: auto;
+         }
+      }
+   }
+
+   &__copyright {
+      margin: 0;
+      font-size: 1.3rem;
+      color: $color-text-muted;
+   }
+}
+
+/* Форма обратной связи */
+.form-card {
+   display: flex;
+   flex-direction: column;
+   gap: 1.6rem;
+
+   padding: 3rem;
+   border: 1px solid rgb(255 255 255 / 10%);
+   border-radius: $radius;
+
+   background-color: $background-transparent;
+
+   @include screen-490 {
+      padding: 2rem;
+   }
+
+   &__row {
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+
+      &--two-cols {
+         @include min-490 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+         }
+      }
+   }
+
+   &__field {
+      width: 100%;
+
+      &--textarea {
+         height: 100%;
+      }
+   }
+
+   &__input,
+   &__textarea {
+      width: 100%;
+      padding: 1.4rem 1.8rem;
+      border: 1px solid transparent;
+      border-radius: $border-radius;
+
+      font-family: inherit;
+      font-size: 1.4rem;
+      color: $color-text;
+
+      background-color: $background;
+
+      transition:
+         border-color $transition-linear-ease,
+         box-shadow $transition-linear-ease;
+
+      &::placeholder {
+         color: $color-text-muted;
+      }
+
+      &:focus {
+         border-color: $color-primary;
+         box-shadow: 0 0 0 3px rgb(85 85 255 / 15%);
+      }
+   }
+
+   &__textarea {
+      resize: vertical;
+      height: 100%;
+      min-height: 12rem;
+   }
+
+   &__button {
+      cursor: pointer;
+
+      width: 100%;
+      padding: 1.6rem 2.4rem;
+      border: none;
+      border-radius: $border-radius;
+
+      font-family: inherit;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: $color-white;
+
+      background-color: $color-primary;
+
+      transition: background-color $transition-linear-ease;
+
+      @include screen-hover {
+         &:hover {
+            background-color: $color-primary-hover;
+         }
+      }
+
+      &:active {
+         transform: translateY(1px);
+      }
+   }
+}

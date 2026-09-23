@@ -1,0 +1,41 @@
+// *  Features Grid
+@use '../../core/variables' as *;
+@use '../../core/mixins' as *;
+
+.features {
+   padding: 3rem 0 6rem;
+
+   &__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+
+      @include screen-992 {
+         grid-template-columns: repeat(2, 1fr);
+      }
+
+      @include screen-620 {
+         grid-template-columns: 1fr;
+      }
+   }
+}
+
+.feature-card {
+   padding: 2.4rem;
+   border: 1px solid $border-color;
+   border-radius: $border-radius;
+
+   background-color: $color-bg-light;
+   box-shadow: $box-shadow;
+
+   &__title {
+      margin-bottom: 0.8rem;
+      font-weight: 500;
+   }
+
+   &__text {
+      font-size: 1.4rem;
+      color: $color-text-light;
+      opacity: 0.9;
+   }
+}

@@ -1,0 +1,27 @@
+{
+   "extends": [
+      "stylelint-config-standard-scss",
+      "stylelint-config-clean-order"
+   ],
+   "plugins": ["stylelint-order"],
+   "customSyntax": "postcss-scss",
+   "rules": {
+      "order/order": ["custom-properties", "declarations"],
+      "scss/dollar-variable-empty-line-before": null,
+      "import-notation": "string",
+      "at-rule-no-unknown": null,
+      "block-no-empty": true,
+      "color-function-notation": "modern",
+      "declaration-empty-line-before": null,
+      "rule-empty-line-before": [
+         "always",
+         {
+            "except": ["first-nested", "after-single-line-comment"]
+         }
+      ],
+      "declaration-property-value-no-unknown": null,
+      "function-no-unknown": null,
+      "selector-class-pattern": null,
+      "no-descending-specificity": null
+   }
+}

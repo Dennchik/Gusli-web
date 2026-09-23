@@ -1,0 +1,60 @@
+@use '../core/variables' as *;
+@use '../core/mixins' as *;
+
+.header {
+   padding: 2rem 0;
+   border-bottom: 1px solid $border-color;
+
+   // .header__container
+   &__container {
+      display: grid;
+      grid-template-columns: min-content 1fr min-content;
+      gap: 4rem;
+      align-items: center;
+      justify-content: space-between;
+   }
+
+   // .header__logo
+   .logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      text-decoration: none;
+   }
+
+   // .header__burger-button
+   &__burger-button {
+      display: none;
+      justify-self: end;
+
+      @include screen-620 {
+         display: block;
+      }
+   }
+
+   // .header__button
+   &__button {
+      white-space: nowrap;
+   }
+
+   .nav {
+      // .nav__list
+      &__list {
+         display: flex;
+         gap: 3.2rem;
+         align-items: center;
+         justify-content: end;
+
+         list-style: none;
+      }
+
+      // .nav__link
+      &__link {
+         text-decoration: none;
+         transition: color 0.3s ease-in-out;
+
+         &:hover {
+            color: $color-primary;
+         }
+      }
+   }
+}

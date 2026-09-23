@@ -1,0 +1,135 @@
+// * Hero Section
+@use '../../core/variables' as *;
+@use '../../core/mixins' as *;
+
+.hero {
+   padding: 8rem 0;
+
+   // .hero__container
+   &__container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+
+      @include screen-992 {
+         grid-template-columns: 1fr;
+      }
+   }
+
+   // .hero__content
+   &__content {
+      display: flex;
+      flex-direction: column;
+      gap: 4rem;
+   }
+
+   // .hero__title
+   &__title {
+      margin-bottom: 2.4rem;
+
+      font-family: $font-family-title;
+      font-size: 4.8rem;
+      font-weight: 600;
+      line-height: 1.15;
+
+      @include minmax-320-1920 {
+         font-size: calc(25px + (48 - 25) * ((100vw - 320px) / (1920 - 320)));
+      }
+
+      @include screen-320 {
+         font-size: 25px;
+      }
+
+      span {
+         &:nth-child(1) {
+            margin-right: 0.8rem;
+         }
+      }
+
+      // .hero__title-accent
+      &-accent {
+         color: $color-primary;
+      }
+   }
+
+   // .hero__description
+   &__description {
+      margin-bottom: 3.2rem;
+      font-size: 1.8rem;
+      color: $color-text-light;
+   }
+
+   // .hero__actions
+   &__actions {
+      display: flex;
+      gap: 1.6rem;
+      margin-bottom: 4rem;
+
+      @include screen-375 {
+         flex-direction: column;
+      }
+   }
+
+   // .hero__badges
+   &__badges {
+      display: flex;
+      gap: 1.2rem;
+      list-style: none;
+
+      @include screen-620 {
+         flex-wrap: wrap;
+      }
+   }
+
+   // .hero__badge
+   &__badge {
+      position: relative;
+
+      display: flex;
+      align-items: center;
+
+      padding: 1rem;
+      border: 1px solid $border-color;
+      border-radius: $border-radius;
+
+      font-size: 13px;
+
+      background-color: var(--muted);
+      box-shadow: $box-shadow;
+
+      @include screen-425 {
+         width: 100%;
+      }
+
+      &::before {
+         content: '✓';
+
+         display: flex;
+         align-items: center;
+         justify-content: center;
+
+         width: 18px;
+         min-width: 18px;
+         height: 18px;
+         margin-right: 1rem;
+         border-radius: 100vw;
+
+         font-weight: bold;
+         color: $color-white;
+
+         background-color: $color-primary;
+      }
+   }
+
+   // .hero__preview
+   &__preview {
+      width: 100%;
+      height: auto;
+
+      img {
+         width: 100%;
+         height: auto;
+      }
+   }
+}

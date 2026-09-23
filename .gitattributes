@@ -1,2 +1,28 @@
-# Auto detect text files and perform LF normalization
+# Автоматически определять текстовые файлы и нормализовать их
 * text=auto
+
+# Принудительно использовать LF для всех типов файлов,
+# с которыми вы работаете (код, документация, скрипты)
+*.txt text eol=lf
+*.md text eol=lf
+*.py text eol=lf
+*.js text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.json text eol=lf
+*.yml text eol=lf
+*.sh text eol=lf
+
+# Если у вас есть файлы, которые должны оставаться в CRLF
+# (например, скрипты Windows), укажите их явно:
+# *.bat text eol=crlf
+# *.cmd text eol=crlf
+
+# Отметить бинарные файлы, чтобы Git их не трогал
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.zip binary
