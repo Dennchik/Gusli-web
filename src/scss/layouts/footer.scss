@@ -109,7 +109,7 @@
       font-style: normal;
       text-decoration: none;
 
-      transition: color $transition-linear-ease;
+      transition: color $transition-in-out;
 
       @include screen-hover {
          &:hover {
@@ -159,12 +159,11 @@
       color: $color-text-muted;
       text-decoration: none;
 
-      //      transition: color 0.5s $transition-linear-ease;
-      transition: color $transition-linear-ease;
+      transition: color $transition-in-out;
 
       svg {
          color: $color-white;
-         transition: color $transition-linear-ease;
+         transition: color $transition-in-out;
       }
 
       @include screen-hover {
@@ -217,7 +216,7 @@
 
    padding: 3rem;
    border: 1px solid rgb(255 255 255 / 10%);
-   border-radius: $radius;
+   border-radius: $border-radius;
 
    background-color: $background-transparent;
 
@@ -255,13 +254,13 @@
 
       font-family: inherit;
       font-size: 1.4rem;
-      color: $color-text;
+      color: var(--color-text);
 
       background-color: $background;
 
       transition:
-         border-color $transition-linear-ease,
-         box-shadow $transition-linear-ease;
+         border-color $transition-in-out,
+         box-shadow $transition-in-out;
 
       &::placeholder {
          color: $color-text-muted;
@@ -294,7 +293,7 @@
 
       background-color: $color-primary;
 
-      transition: background-color $transition-linear-ease;
+      transition: background-color $transition-in-out;
 
       @include screen-hover {
          &:hover {

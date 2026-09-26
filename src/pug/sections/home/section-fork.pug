@@ -1,0 +1,77 @@
+.section-fork#fork
+	.section-fork__body
+		.section-fork__container
+			.section-fork__header.sec-head.in
+				.section-fork__eye-brow
+					| Развилка ·
+					b шаг 1
+				h2 Два трека. Выбираете один — дальше всё предсказуемо
+				p Мы не продаём «разработку вообще». Сначала честно определяем, попадает ли задача в готовый пакет или
+					|  требует отдельной сметы.
+				p Это бесплатно и занимает один созвон.
+			figure.scheme.in
+				figcaption.scheme__cap
+					span Схема · путь от заявки до запуска
+					span развилка на шаге 2
+				svg(viewBox="0 0 1120 252", role="img", aria-label="Схема пути: заявка, бесплатная диагностика, затем развилка на два трека — пакет с фиксированной ценой или кастом со сметой по этапам; оба трека ведут к запуску, код и доступы остаются у клиента")
+					g.tick
+						path(d="M8 170v10M168 170v10M348 170v10M868 170v10M1108 170v10")
+					rect.node(x="8", y="108", width="126", height="46", rx="4")
+					text(x="71", y="128", text-anchor="middle") Заявка
+					text.sub(x="71", y="145", text-anchor="middle") бриф, 1 минута
+					path.wire(d="M134 131h34")
+					rect.node(x="168", y="108", width="180", height="46", rx="4")
+					text(x="258", y="128", text-anchor="middle") Диагностика
+					text.sub(x="258", y="145", text-anchor="middle") 40 минут · 0 ₽
+					path.wire-a(d="M348 131c30 0 30-69 60-69")
+					path.wire-b(d="M348 131c30 0 30 69 60 69")
+					text.lbl.lbl-a(x="408", y="28") ТРЕК A · ПАКЕТ · ФИКС-ЦЕНА
+					rect.node.node-a(x="408", y="40", width="250", height="44", rx="4")
+					text(x="533", y="59", text-anchor="middle") Смета и договор
+					text.sub(x="533", y="75", text-anchor="middle") цена и срок зафиксированы
+					path.wire-a(d="M658 62h40")
+					rect.node.node-a(x="698", y="40", width="170", height="44", rx="4")
+					text(x="783", y="59", text-anchor="middle") Производство
+					text.sub(x="783", y="75", text-anchor="middle") 7–45 дней
+					rect.node.node-b(x="408", y="176", width="250", height="44", rx="4")
+					text(x="533", y="195", text-anchor="middle") Аналитика и прототип
+					text.sub(x="533", y="211", text-anchor="middle") цена появляется здесь
+					path.wire-b(d="M658 198h40")
+					rect.node.node-b(x="698", y="176", width="170", height="44", rx="4")
+					text(x="783", y="195", text-anchor="middle") Этапы по смете
+					text.sub(x="783", y="211", text-anchor="middle") от 10 недель
+					text.lbl.lbl-b(x="408", y="240") ТРЕК B · КАСТОМ · СМЕТА ПО ЭТАПАМ
+					path.wire-a(d="M868 62c30 0 30 69 60 69")
+					path.wire-b(d="M868 198c30 0 30-69 60-69")
+					rect.node(x="928", y="108", width="180", height="46", rx="4")
+					text(x="1018", y="128", text-anchor="middle") Запуск
+					text.sub(x="1018", y="145", text-anchor="middle") код и доступы ваши
+			.fork-box.fork.in
+				.fork-box__track.track--pack
+					span.track__tag Трек A · пакет
+					h3 Готовое решение с фиксированной ценой
+					p.t-lead Когда бюджет ограничен и нужен предсказуемый результат в понятный срок.
+					ul
+						li Задача типовая: лендинг, сайт компании, каталог
+						li Бюджет до 300 000 ₽ и он утверждён
+						li Нужно стартовать в ближайшие 2–4 недели
+						li Данные живут на сайте, сложных интеграций нет
+					.fork-box__foot
+						.fork-box__from
+							small от 59 000 ₽
+						a.button.button--primary(href="#packages") Смотреть пакеты
+
+				.fork-box__track.track--custom
+					span.track__tag Трек B · кастом
+					h3 Проект под задачу, со сметой по этапам
+					p.t-lead Когда решения «из коробки» не существует и цену честно назвать до анализа нельзя.
+					ul
+						li Личный кабинет, расчёт, подбор, бронирование
+						li Обмен данными с 1С, CRM, складом, внешними API
+						li Высокая нагрузка или требования к безопасности
+						li Несколько ролей пользователей и своя бизнес-логика
+					.fork-box__foot
+						.fork-box__from
+							small от 450 000 ₽
+						a.button.button--accent(href="#custom")
+							span Как считаем кастом

@@ -1,0 +1,87 @@
+.modal-quiz#quiz
+	.modal-quiz__container
+		.modal-quiz__body
+			.modal-quiz__header.sec-head.in
+				.section-calculation__eye-brow
+					| Подбор ·
+					b 3 вопроса
+				h2 Какой трек ваш
+				p Ответьте на три вопроса — покажем формат, вилку бюджета и срок. Ответы подставятся в заявку, повторно
+					|  вводить не нужно.
+			.quiz.in
+				.quiz__bar
+					span#qLabel Шаг 1 из 3
+					.quiz__steps(aria-hidden="true")
+						i.on
+						i
+						i
+				.quiz__body#quizBody
+					.quiz__step.qstep.on(data-step="1")
+						h3 Что нужно сделать?
+						p Выберите самое близкое.
+						.quiz__opts.opts
+							button.opt(data-q="task" data-v="Лендинг под одну услугу" data-score="1")
+								b Лендинг под одну услугу
+								small Проверить спрос, запустить рекламу
+							button.opt(data-q="task" data-v="Сайт компании с админкой" data-score="2")
+								b Сайт компании с админкой
+								small Несколько услуг, страницы, поиск
+							button.opt(data-q="task" data-v="Каталог, магазин или запись" data-score="3")
+								b Каталог, магазин или запись
+								small Товары, фильтры, оплата, CRM
+							button.opt(data-q="task" data-v="Сервис с кабинетом и интеграциями" data-score="6")
+								b Сервис с кабинетом
+								small Своя логика, роли, 1С или API
+					.quiz__step.qstep(data-step="2")
+						h3 Бюджет на проект
+						p Без этого вопроса подбор бессмысленный — говорим прямо.
+						.quiz__opts.opts
+							button.opt(data-q="budget" data-v="до 100 000 ₽" data-score="1")
+								b до 100 000 ₽
+								small Ограниченный, нужен максимум за фикс
+							button.opt(data-q="budget" data-v="100–200 000 ₽" data-score="2")
+								b 100–200 000 ₽
+								small Сайт с админкой и SEO-базой
+							button.opt(data-q="budget" data-v="200–450 000 ₽" data-score="3")
+								b 200–450 000 ₽
+								small Каталог, магазин, интеграции
+							button.opt(data-q="budget" data-v="от 450 000 ₽ или пока не определён" data-score="6")
+								b от 450 000 ₽ / не определён
+								small Готовы считать по этапам
+					.quiz__step.qstep(data-step="3")
+						h3 Когда нужен результат?
+						p От срока зависит, что реально успеть сделать качественно.
+						.quiz__opts.opts
+							button.opt(data-q="term" data-v="за 1–2 недели" data-score="1")
+								b Вчера — за 1–2 недели
+								small Есть дедлайн: событие, сезон, запуск
+							button.opt(data-q="term" data-v="за месяц" data-score="2")
+								b В течение месяца
+								small Комфортный темп
+							button.opt(data-q="term" data-v="1–2 месяца" data-score="3")
+								b 1–2 месяца
+								small Можно проработать и протестировать
+							button.opt(data-q="term" data-v="срок не критичен" data-score="6")
+								b Срок не критичен
+								small Важнее архитектура и качество
+					.quiz__nav
+						button#qBack.button.button--secondary(disabled="")
+							span Назад
+						span#qHint.mono Выберите вариант
+				.result#qResult
+					.result__main
+						span#rTrack.mono ТРЕК A · ПАКЕТ
+						h3#rName Сайт
+						p#rDesc Сайт до 10 страниц с админкой, SEO-базой и формами заявок.
+						.result__nums
+							.result__item
+								span Бюджет
+								b.result__price#rPrice 149 000 ₽
+							.result__item
+								span Срок
+								b.result__term#rTerm 3–4 недели
+					.result__why
+						h4 Почему так
+						ul#rWhy
+						a.button.button--primary.btn--wide(href="#brief") Отправить заявку с этими данными
+						button#qReset.button.button--secondary.btn--wide(style="margin-top: 10px") Пройти заново

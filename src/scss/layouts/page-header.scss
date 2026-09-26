@@ -1,19 +1,14 @@
 @use '../core/variables' as *;
 @use '../core/mixins' as *;
 
-//* Заголовок внутренних страниц (например /contacts/)
+// * Заголовок внутренних страниц (например /contacts/)
 .page-header {
-   padding: 12rem 0 4rem;
-
-   @include screen-490 {
-      padding: 9rem 0 3rem;
-   }
-
    // .page-header__breadcrumbs
    &__breadcrumbs {
       display: flex;
-      align-items: center;
       gap: 0.8rem;
+      align-items: center;
+
       margin-bottom: 1.6rem;
 
       font-size: 1.4rem;
@@ -23,7 +18,7 @@
    &__breadcrumb-link {
       color: $color-text-muted;
       text-decoration: none;
-      transition: color $transition-linear-ease;
+      transition: color $transition-in-out;
 
       @include screen-hover {
          &:hover {
@@ -38,12 +33,12 @@
 
    &__breadcrumb-current {
       font-weight: 500;
-      color: $color-text;
    }
 
    // .page-header__title
    &__title {
       margin-bottom: 1.2rem;
+
       font-family: $font-family-title;
       font-size: 4rem;
       font-weight: 600;
@@ -62,6 +57,6 @@
    &__text {
       max-width: 56rem;
       font-size: 1.6rem;
-      color: $color-text-light;
+      color: var(--color-text-default);
    }
 }

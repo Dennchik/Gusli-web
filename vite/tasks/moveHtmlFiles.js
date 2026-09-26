@@ -15,7 +15,7 @@ export function moveHtmlFiles() {
          // ✅ защита: папки может не быть на промежуточных билдах
          if (!fs.existsSync(buildDir)) {
             this.warn(
-               `[move-html-files] Папка ${buildDir} не найдена, пропускаем`
+               `[move-html-files] Папка ${buildDir} не найдена, пропускаем`,
             );
             return;
          }
@@ -41,13 +41,13 @@ export function moveHtmlFiles() {
 
                   html = html.replace(
                      /(\shref|\ssrc)=["'](\.\.\/)+/g,
-                     `$1="${newPrefix}`
+                     `$1="${newPrefix}`,
                   );
 
                   const newPath = path.join(
                      buildDir,
                      path.dirname(parentDirRelative),
-                     `${parentDirName}.html`
+                     `${parentDirName}.html`,
                   );
 
                   fs.writeFileSync(newPath, html, 'utf8');

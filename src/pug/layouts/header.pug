@@ -6,14 +6,14 @@ header.header
 		nav.header__nav.nav(data-da="bp-1" data-da-position="0" data-da-resolution="620")
 			ul.nav__list
 				li.nav__item
-					a.nav__link.anchor-link(href="#services") Услуги
+					a.nav__link.anchor-link(href="#fork") Услуги
 				li.nav__item
 					a.nav__link.anchor-link(href="#cases") Кейсы
 				li.nav__item
-					a.nav__link.anchor-link(href="#pricing") Пакеты
+					a.nav__link.anchor-link(href="#packages") Пакеты
 				li.nav__item
 					a(href=linkTo('contacts', filename)).nav__link.anchor-link Контакты
 					//a.nav__link.anchor-link(href="#contacts") Контакты
 		.header__burger-button
 			include ../../pug/assets/burger-button
-		button.header__button.button.button--primary Оставить заявку
+		button.header__button.button.button--primary(type="button" data-modal-open) Подобрать решение

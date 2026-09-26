@@ -1,12 +1,11 @@
 // * - [Variables] -
 $maxWidthContainer: 1440px;
 
-$radius: 2rem; // Скругление углов (как на референсе)
-$gap: 1.6rem; // Отступы между карточками
-$transition-linear-ease: 0.3s ease-in-out;
+$transition-in-out: 0.3s ease-in-out;
 $background: rgb(255 255 255);
 $background-dark: rgb(23 30 38);
-$background-transparent: rgb(28 35 43/ 45%);
+$background-gray: rgb(87 85 83);
+$background-transparent: rgb(28 35 43 / 75%);
 $border-radius: 6px;
 $border-color: rgb(85 85 255 / 70%);
 
@@ -14,19 +13,22 @@ $border-color: rgb(85 85 255 / 70%);
 $font-path: '../fonts';
 $font-family-default: 'Inter', sans-serif;
 $font-family-title: 'Manrope', sans-serif;
+$font-family-secondary: 'Archivo', 'IBM Plex Sans', system-ui, sans-serif;
 $font-hand: 'cursive', sans-serif; // Шрифт для "Pf" (подключите рукописный)
 $font-weight-default: 400;
 $font-size: 1.6rem;
 
-$box-shadow: 0 0 7px -1px rgb(26 29 32 / 15%);
+$box-shadow: 0 0 7px -1px rgb(26 29 32 / 35%);
 $color-primary: rgb(85 85 255 / 70%);
 $color-primary-hover: rgb(85 85 255 / 50%);
-$color-accent: rgb(255 163 67);
-$color-text: rgb(11 19 42);
-$color-text-light: rgb(11 19 42 / 70%);
+$color-accent: rgb(251 96 30);
+$color-brown: rgb(97 97 97);
+$color-black: rgb(23 30 38);
+$color-text-dark: rgb(1 6 23 / 70%);
+$color-text-white: rgb(230 240 241);
 $color-text-muted: rgb(145 156 185);
 $color-bg-light: rgb(227 227 227);
-$color-white: rgb(255 255 255);
+$color-white: rgb(231 235 255);
 $blur: rgb(202 209 228 / 90%);
 $text-selection: rgb(116 151 248);
 
@@ -35,30 +37,64 @@ $text-selection: rgb(116 151 248);
 }
 
 :root {
-   --paper: rgb(241 245 246);
-   --grid: rgb(154 139 255 / 5.5%);
-   --grid-2: rgb(154 139 255 / 9%);
+   --grid: rgb(150 205 215 / 5%);
+   --grid-2: rgb(150 205 215 / 8.5%);
    --surface: rgb(255 255 255 / 76%);
    --surface-solid: rgb(255 255 255);
    --surface-2: rgb(228 236 238 / 72%);
    --line: rgb(209 219 222);
    --line-strong: rgb(166 183 188);
    --text: rgb(10 26 32);
-   --muted: rgb(109 103 143 / 40%);
-   --pulse: rgb(85 85 255 / 70%);
+   --muted: rgb(209 203 230 / 70%);
+   --pulse: #{$color-primary};
    --pulse-ink: rgb(80 72 133);
-   --pulse-soft: rgb(219 239 240);
-   --signal: rgb(169 80 15);
-   --signal-soft: rgb(251 234 219);
-   --ok: rgb(26 117 72);
-   --night: rgb(7 26 31);
+   --pulse-soft: #{$background-transparent};
+   --signal: #{$color-accent};
+   --signal-soft: rgb(42 28 14);
+   --ok: rgb(85 85 255);
+   --night: #{$background-dark};
    --night-2: rgb(14 40 48);
    --night-line: rgb(30 64 73);
-   --night-text: rgb(230 240 241);
+   --night-text: #{$color-text-white};
    --night-muted: rgb(143 169 176);
    --night-signal: rgb(242 166 90);
+   --light-background: #{$background};
    --shadow: 0 1px 0 rgb(10 26 32 / 4%), 0 14px 34px -20px rgb(10 26 32 / 40%);
    --border-radius: 6px;
-   --maxw: 1180px;
+
+   // * -----------------------------------------
+   --color-primary-night: #{$color-bg-light}; 
+   --color-text: #{$color-black};
+   --color-text-light: #{$color-text-white};
+   --color-text-accent: #{$color-white};
+   --color-text-default: #{$color-text-dark};
+   --color-text-muted: #{$color-text-muted};
+   --background-section: #{$background-dark};
+   --background-dark: rgb(68 68 68);
    color-scheme: light;
 }
+
+// @media (prefers-color-scheme: dark) {
+//   :root:not([data-theme=light]) {
+//      --paper: rgb(5, 20, 26);
+//      --grid: rgba(150, 205, 215, 0.05);
+//      --grid-2: rgba(150, 205, 215, 0.085);
+//      --surface: rgba(12, 32, 40, 0.7);
+//      --surface-solid: rgb(12, 32, 40);
+//      --surface-2: rgba(18, 43, 52, 0.66);
+//      --line: rgb(28, 60, 70);
+//      --line-strong: rgb(46, 90, 102);
+//      --text: rgb(228, 239, 241);
+//      --muted: rgb(140, 166, 173);
+//      --pulse: rgb(63, 198, 207);
+//      --pulse-ink: rgb(116, 222, 228);
+//      --pulse-soft: rgb(11, 46, 51);
+//      --signal: rgb(242, 166, 90);
+//      --signal-soft: rgb(42, 28, 14);
+//      --ok: rgb(70, 200, 138);
+//      --night: rgb(3, 16, 22);
+//      --night-2: rgb(10, 33, 40);
+//      --shadow: 0 1px 0 rgba(0, 0, 0, 0.25), 0 18px 42px -26px rgba(0, 0, 0, 0.9);
+//      color-scheme: dark;
+//   }
+// }

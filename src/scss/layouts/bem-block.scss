@@ -2,6 +2,19 @@
 @use '../core/mixins' as *;
 @use 'sass:color';
 
+body.reveal [data-rv] {
+   transform: translateY(16px);
+   opacity: 0;
+}
+
+body.reveal [data-rv].in {
+   transform: none;
+   opacity: 1;
+   transition:
+      opacity 0.6s ease,
+      transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
 .bg {
    pointer-events: none;
 
@@ -55,6 +68,47 @@
 
       animation: driftB 64s ease-in-out infinite alternate;
    }
+}
+
+.eye-brow {
+   display: flex;
+   gap: 1rem;
+   align-items: center;
+
+   font-family: 'IBM Plex Mono', monospace;
+   font-size: 1.4rem;
+   color: var(--muted);
+   text-transform: uppercase;
+   letter-spacing: 0.16em;
+}
+
+input,
+select,
+textarea {
+   width: 100%;
+   padding: 11px 13px;
+   border: 1px solid var(--night-line);
+   border-radius: 4px;
+
+   font-family: 'IBM Plex Sans', sans-serif;
+   font-size: 15px;
+   color: var(--night-text);
+   text-transform: none;
+   letter-spacing: 0;
+
+   background: var(--night);
+}
+
+label {
+   display: flex;
+   flex-direction: column;
+   gap: 6px;
+
+   font-family: 'IBM Plex Mono', monospace;
+   font-size: 1.4rem;
+   color: var(--night-muted);
+   text-transform: uppercase;
+   letter-spacing: 0.08em;
 }
 
 .header {
@@ -116,8 +170,6 @@
    font-size: 1.5rem;
    font-weight: 500;
 
-   transition: all 0.2s ease;
-
    &--primary {
       color: $color-white;
       background-color: var(--pulse);
@@ -131,7 +183,7 @@
          inset: 0;
 
          border: 1px solid $color-primary;
-         border-radius: calc($border-radius + 3px);
+         border-radius: calc($border-radius + 0px);
 
          background: url('/img/primary-button-background.png') center left /
             cover no-repeat;
@@ -163,17 +215,26 @@
 
    &--secondary {
       border: 1px solid $border-color;
-      color: $color-text;
       background-color: transparent;
+      transition: border 0.4s ease-in-out;
+
+      span {
+         color: $color-text-white;
+      }
 
       &:hover {
-         background-color: $color-bg-light;
+         border: 1px solid $color-accent;
       }
    }
 
    &--accent {
       color: $color-white;
       background-color: $color-accent;
+      transition: background-color 0.4s ease-in-out;
+
+      span {
+         color: $color-text-white;
+      }
 
       &:hover {
          background-color: color.scale($color-accent, $lightness: -10%);
@@ -189,5 +250,59 @@
 
    50% {
       background-position: 80% 80%;
+   }
+}
+
+@keyframes ping {
+   0% {
+      transform: scale(0.7);
+      opacity: 0.7;
+   }
+
+   70% {
+      transform: scale(2.2);
+      opacity: 0;
+   }
+
+   100% {
+      opacity: 0;
+   }
+}
+
+@keyframes rise {
+   from {
+      transform: translateY(16px);
+      opacity: 0;
+   }
+
+   to {
+      transform: none;
+      opacity: 1;
+   }
+}
+
+@keyframes driftA {
+   from {
+      transform: translate3d(0, 0, 0) scale(1);
+   }
+
+   to {
+      transform: translate3d(8vw, 5vh, 0) scale(1.12);
+   }
+}
+
+@keyframes driftB {
+   from {
+      transform: translate3d(0, 0, 0) scale(1.08);
+   }
+
+   to {
+      transform: translate3d(-7vw, -6vh, 0) scale(1);
+   }
+}
+
+@keyframes flow {
+   to {
+      stroke-dashoffset: -28;
    }
 }

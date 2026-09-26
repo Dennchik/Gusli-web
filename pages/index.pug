@@ -1,4 +1,4 @@
-extends @/pug/layouts/app_layout.pug
+extends ../src/pug/layouts/app_layout.pug
 
 append link
 prepend script
@@ -7,16 +7,22 @@ block title
 	- var text = 'Gusli Web'
 
 block main-content
+	section.main-content__section.top
+		include  ../src/pug/sections/home/section-hero
+		include  ../src/pug/sections/home/section-strip
 	section.main-content__section
-		include  @/pug/sections/home/section-hero
-		include  @/pug/sections/home/section-strip
+		include  ../src/pug/sections/home/section-reasons
 	section.main-content__section
-		include @/pug/sections/home/section-features
+		include  ../src/pug/sections/home/section-fork
 	section.main-content__section
-		include @/pug/sections/home/section-services
-	section.main-content__section.slide-content
-		include @/pug/sections/home/section-cases
+		include ../src/pug/sections/home/section-bundle
 	section.main-content__section
-		include @/pug/sections/home/section-pricing
-		section.main-content__section
-		include @/pug/sections/home/section-contacts
+		include ../src/pug/sections/home/section-calculation
+	section.main-content__section
+		include ../src/pug/sections/home/section-cases
+	section.main-content__section
+		include ../src/pug/sections/home/section-work
+	section.main-content__section
+		include ../src/pug/sections/home/section-questions
+	section.main-content__section
+		include ../src/pug/sections/home/section-brief

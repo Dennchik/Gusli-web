@@ -10,6 +10,13 @@
 // todo - Assets
 @use 'assets/burger-button';
 @use 'assets/mobile-menu';
+@use 'assets/modal';
+
+// todo - Components
+@use 'components/modal-quiz';
+
+// todo - Utils
+@use 'utils/preloader';
 
 // todo - Variables
 @use 'core/variables' as *;
@@ -24,11 +31,15 @@
 // todo - Sections
 @use 'sections/home/section-hero';
 @use 'sections/home/section-features';
-@use 'sections/home/section-services';
 @use 'sections/home/section-cases';
-@use 'sections/home/section-pricing';
-@use 'sections/home/section-contacts';
 @use 'sections/home/section-strip';
+@use 'sections/home/section-fork';
+@use 'sections/home/section-reasons';
+@use 'sections/home/section-bundle';
+@use 'sections/home/section-calculation';
+@use 'sections/home/section-work';
+@use 'sections/home/section-questions';
+@use 'sections/home/section-brief';
 
 // * ---------------------------------------------------------
 .wrapper {

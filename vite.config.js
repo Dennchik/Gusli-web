@@ -45,12 +45,6 @@ export default defineConfig(({ command }) => {
          // 🔹 ключевой плагин для переименования HTML
          moveHtmlFiles(), // 👈 ключевой плагин для переименования HTML
          // 🔹 Добавляем анализатор только в продакшн-сборке
-         /*  visualizer({
-          filename: 'build/stats.html',
-          open: true,
-          gzipSize: true,
-          brotliSize: true,
-          }), */
       ],
       server: {
          open: true,

@@ -26,8 +26,6 @@
 
    // .hero__title
    &__title {
-      margin-bottom: 2.4rem;
-
       font-family: $font-family-title;
       font-size: 4.8rem;
       font-weight: 600;
@@ -55,16 +53,17 @@
 
    // .hero__description
    &__description {
-      margin-bottom: 3.2rem;
+      margin-bottom: 0.5rem;
       font-size: 1.8rem;
-      color: $color-text-light;
+      color: var(--color-text-default);
    }
 
    // .hero__actions
    &__actions {
       display: flex;
       gap: 1.6rem;
-      margin-bottom: 4rem;
+      padding-bottom: 4rem;
+      border-bottom: 1px solid var(--muted);
 
       @include screen-375 {
          flex-direction: column;
@@ -90,12 +89,12 @@
       align-items: center;
 
       padding: 1rem;
-      border: 1px solid $border-color;
       border-radius: $border-radius;
 
-      font-size: 13px;
+      font-size: 1.4rem;
+      color: var(--color-text-accent);
 
-      background-color: var(--muted);
+      background: linear-gradient(350deg, $color-primary, $color-black);
       box-shadow: $box-shadow;
 
       @include screen-425 {
@@ -119,6 +118,38 @@
          color: $color-white;
 
          background-color: $color-primary;
+      }
+   }
+
+   // .hero__note
+   &__note {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      font-size: 1.4rem;
+   }
+
+   // .hero__dot
+   &__dot {
+      position: relative;
+
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+
+      background: var(--ok);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--ok) 20%, transparent);
+
+      &::after {
+         content: '';
+
+         position: absolute;
+         inset: -3px;
+
+         border: 1px solid var(--ok);
+         border-radius: 50%;
+
+         animation: ping 2.8s ease-out infinite;
       }
    }
 

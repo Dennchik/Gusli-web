@@ -17,7 +17,8 @@ html(lang="ru").scroll-smooth
 
 	block page
 		body
-			include ../utils/preloader
+			include @/pug/utils/preloader
+			include @/pug/includes/mixins
 			.wrapper
 				.page#top
 					.bg(aria-hidden="true")
@@ -35,7 +36,9 @@ html(lang="ru").scroll-smooth
 									block main-content
 									footer.page__footer#contacts
 										block footer
-											include footer
+											//include footer
+					block modal
+						include @/pug/assets/modal
 					block cookies
 						//include @/pug/modules/cookies-accept
 					block aside-button

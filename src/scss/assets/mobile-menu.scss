@@ -43,6 +43,12 @@
       padding: 2rem 2.4rem;
       border-bottom: 1px solid $color-text-muted;
 
+      background: linear-gradient(
+         150deg,
+         rgb(23 30 38 / 80%),
+         rgb(87 85 83 / 80%)
+      );
+
       .burger-button {
          border: 1px solid $color-text-muted;
 
@@ -95,7 +101,6 @@
    }
 
    .header__icon-text {
-      color: $color-text;
       background-color: $color-white;
    }
 

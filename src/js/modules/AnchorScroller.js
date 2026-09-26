@@ -95,7 +95,7 @@ export default class AnchorScroller {
                // Опционально: можно диспатчить событие, чтобы GraphitiNavigator знал
                // (но в вашем коде активация уже происходит в GraphitiNavigator через document click)
             },
-            { passive: false }
+            { passive: false },
          );
       });
 
@@ -107,7 +107,7 @@ export default class AnchorScroller {
       const sidebar = this.findSidebar();
       // Дополнительно: если есть кнопка закрытия, можно триггерить
       const closeBtn = document.querySelector(
-         '.sidebar-close, .burger-button, [data-close-sidebar]'
+         '.sidebar-close, .burger-button, [data-close-sidebar]',
       );
       if (this.onCloseSidebar && sidebar) {
          this.onCloseSidebar(sidebar);

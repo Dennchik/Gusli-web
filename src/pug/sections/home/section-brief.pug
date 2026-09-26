@@ -1,0 +1,66 @@
+.section-brief#brief.cta
+	.section-brief__body
+		.section-brief__container
+			.section-brief__line
+				.section-brief__eye-brow Заявка
+				h2 Начнём с диагностики — она бесплатная
+				p.section-brief__lead Заполните бриф за минуту. На созвоне разберём задачу, назовём трек и вилку. Если поймём, что не наша
+					|  история — подскажем, к кому идти.
+				.section-brief__chan.chan.in(data-rv="")
+					a(href="#brief")
+						| Telegram · быстрее всего
+						span @gusli_web
+					a(href="#brief")
+						| WhatsApp
+						span +7 ··· ··· ·· ··
+					a(href="#brief")
+						| Почта
+						span hello@gusli.web
+				p.section-brief__note(style="margin-top: 18px") Не звоним без предупреждения и не добавляем в рассылки.
+			.section-brief__line
+				form#briefForm.section-brief__form.in(novalidate="" data-rv="")
+					.section-brief__row
+						label(for="user-name")
+							| Имя
+							input(id="user-name" type="text" name="user-name" placeholder="Как к вам обращаться")
+						label(for="user-phone")
+							| Телефон или Telegram
+							input.phone(id="user-phone" type="tel" name="contact" placeholder="+7 900 000-00-00 / @nick *" required)
+					label Задача
+						select(name="task")
+							option Лендинг под одну услугу
+							option(selected="") Сайт компании с админкой
+							option Каталог, магазин или запись
+							option Сервис с кабинетом и интеграциями
+							option Доработать существующий сайт
+					.section-brief__row
+						label Бюджет
+							select(name="budget")
+								option до 100 000 ₽
+								option(selected="") 100–200 000 ₽
+								option 200–450 000 ₽
+								option от 450 000 ₽ или пока не определён
+						label Срок
+							select.section-brief__select(name="term")
+								option за 1–2 недели
+								option(selected="") за месяц
+								option 1–2 месяца
+								option срок не критичен
+					label Коротко о проекте
+						textarea(name="about" placeholder="Что за бизнес, есть ли сайт, какие системы используете")
+					label.section-brief__consent
+						input(type="checkbox" name="ok")
+						span Согласен на обработку персональных данных и на ответ в мессенджере
+					button.button.button--primary(type="submit") Отправить бриф
+					p#formErr.section-brief__note(style="color: var(--night-signal); display: none") Заполните имя, контакт и отметьте согласие.
+					p.section-brief__note Ответим в течение рабочего дня. Диагностика — 40 минут,
+						|  бесплатно.
+				#sentBox.section-brief__sent
+					h3 Бриф собран
+					p.section-brief__note Демо-страница не отправляет данные на сервер. Скопируйте бриф и пришлите в Telegram — либо
+						|  подключите свой обработчик формы.
+					pre#sentText
+					div(style="display: flex; gap: 10px; flex-wrap: wrap")
+						button#copyBtn.button.button--primary Скопировать бриф
+						button#againBtn.button.button--accent(style="color: var(--night-text); border-color: var(--night-line);")
+							span Изменить

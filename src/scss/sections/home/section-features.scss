@@ -3,7 +3,8 @@
 @use '../../core/mixins' as *;
 
 .features {
-   padding: 3rem 0 6rem;
+   padding-block: 4rem;
+   background-color: $color-bg-light;
 
    &__grid {
       display: grid;
@@ -22,10 +23,10 @@
 
 .feature-card {
    padding: 2.4rem;
-   border: 1px solid $border-color;
    border-radius: $border-radius;
+   background: linear-gradient(150deg, rgb(239 222 210), $color-bg-light);
 
-   background-color: $color-bg-light;
+   //   background-color: $color-bg-light;
    box-shadow: $box-shadow;
 
    &__title {
@@ -35,7 +36,7 @@
 
    &__text {
       font-size: 1.4rem;
-      color: $color-text-light;
+      color: var(--color-text-default);
       opacity: 0.9;
    }
 }

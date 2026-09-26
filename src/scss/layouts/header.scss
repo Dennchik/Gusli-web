@@ -2,9 +2,6 @@
 @use '../core/mixins' as *;
 
 .header {
-   padding: 2rem 0;
-   border-bottom: 1px solid $border-color;
-
    // .header__container
    &__container {
       display: grid;

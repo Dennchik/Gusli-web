@@ -1,0 +1,90 @@
+@use '../core/variables' as *;
+@use '../core/mixins' as *;
+
+.modal {
+   position: fixed;
+   z-index: 50;
+   inset: 0;
+
+   display: flex;
+   align-items: center;
+   justify-content: center;
+
+   padding: 4rem 0;
+
+   visibility: hidden;
+   opacity: 0;
+   background: rgb(10 26 32 / 60%);
+   backdrop-filter: blur(10px);
+
+   transition:
+      opacity var(--linear-in-out),
+      visibility var(--linear-in-out);
+
+   @include screen-768 {
+      padding: 1.6rem 0;
+   }
+
+   // * Специфичность .modal .modal-container — чтобы перебить глобальное
+   // * правило [class*='container'] из main.scss (max-width: 1440px)
+   .modal-container {
+      position: relative;
+      transform: translateY(2.4rem) scale(0.98);
+
+      overflow-y: auto;
+      overscroll-behavior: contain;
+
+      width: 100%;
+      max-width: 100rem;
+      max-height: 100%;
+      padding: 0;
+      border-radius: var(--border-radius);
+
+      background: var(--night);
+      box-shadow: var(--shadow);
+
+      transition:
+         transform var(--linear-in-out),
+         opacity var(--linear-in-out),
+         visibility var(--linear-in-out);
+   }
+
+   &._show {
+      visibility: visible;
+      opacity: 1;
+
+      .modal-container {
+         transform: none;
+      }
+   }
+
+   &__close {
+      cursor: pointer;
+
+      position: absolute;
+      z-index: 2;
+      top: 1.2rem;
+      right: 1.2rem;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 3.6rem;
+      height: 3.6rem;
+      border: 0;
+      border-radius: var(--border-radius);
+
+      font-size: 2.4rem;
+      line-height: 1;
+      color: var(--night-text);
+
+      background: transparent;
+
+      transition: background-color var(--linear-in-out);
+
+      &:hover {
+         background: rgb(255 255 255 / 10%);
+      }
+   }
+}

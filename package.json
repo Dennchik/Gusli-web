@@ -9,12 +9,14 @@
       "preview": "vite preview"
    },
    "devDependencies": {
+      "@eslint/js": "^10.0.1",
       "@mish.dev/vite-convert-pug-in-html": "^2.0.1",
       "@vituum/vite-plugin-pug": "^2.0.1",
       "autoprefixer": "^10.5.4",
       "esbuild": "^0.28.2",
       "eslint": "^10.9.0",
       "fast-glob": "^3.3.3",
+      "glob": "^13.0.6",
       "globals": "^17.11.0",
       "postcss": "^8.5.26",
       "postcss-media-minmax": "^5.0.0",

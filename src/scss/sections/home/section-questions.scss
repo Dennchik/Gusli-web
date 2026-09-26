@@ -1,0 +1,127 @@
+@use '../../core/variables' as *;
+@use '../../core/mixins' as *;
+
+.section-questions {
+   background: linear-gradient(
+      90deg,
+      rgb(176 166 156 / 22%),
+      rgb(214 199 184 / 55%),
+      #c2b5a8
+   );
+
+   // .section-questions__body
+   &__body {
+      max-width: 900px;
+      margin: 0 auto;
+      padding-block: clamp(4rem, 6.5vw, 8rem);
+   }
+
+   // .section-questions__container
+   &__container {
+   }
+
+   // .section-questions__header
+   &__header {
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+
+      max-width: 64ch;
+      margin-bottom: clamp(2.4rem, 4vw, 4rem);
+
+      h2 {
+         font-size: clamp(2.4rem, 3.3vw, 4rem);
+         line-height: 105%;
+      }
+   }
+
+   // .section-questions__eye-brow
+   &__eye-brow {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 1.4rem;
+      color: var(--signal-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+   }
+
+   // .section-questions__fag
+   &__fag {
+      overflow: hidden;
+
+      max-width: 900px;
+      border: 1px solid var(--line);
+      border-radius: $border-radius;
+
+      background: linear-gradient(135deg, rgb(23 30 38), rgb(87 85 83));
+      backdrop-filter: blur(18px);
+   }
+
+   // .section-questions__text
+   &__text {
+      user-select: none;
+
+      overflow: hidden;
+
+      min-height: 0;
+      padding: 0 2rem;
+      border-right: 2px solid $color-accent;
+      border-left: 2px solid $color-accent;
+      border-radius: $border-radius;
+
+      font-size: 1.4rem;
+      color: var(--muted);
+   }
+}
+
+.faq {
+   details[open] summary::after {
+      content: '–';
+   }
+
+   .details {
+      border-bottom: 1px solid $color-brown;
+
+      // .details__wrapper
+      &__wrapper {
+         display: grid;
+         grid-template-rows: 0fr;
+         transition: grid-template-rows 0.4s ease-in-out;
+      }
+
+      &.is-active {
+         .details__wrapper {
+            grid-template-rows: 1fr;
+            padding: 0 0 2rem;
+         }
+      }
+   }
+
+   summary {
+      cursor: pointer;
+
+      display: flex;
+      gap: 14px;
+
+      padding: 1.6rem 2rem;
+
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--color-text-light);
+      list-style: none;
+
+      &::after {
+         content: '+';
+
+         margin-left: auto;
+
+         font-family: 'IBM Plex Mono', monospace;
+         font-size: 18px;
+         line-height: 1;
+         color: $color-accent;
+      }
+   }
+}

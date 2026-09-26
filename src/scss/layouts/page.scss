@@ -1,5 +1,40 @@
 @use '../core/variables' as *;
 
+/* ---------- стекло ---------- */
+.anchor,
+.quiz,
+.tier,
+.addons,
+.scheme,
+.faq,
+.tablewrap,
+.case,
+.cross,
+.strip,
+.you-need,
+.track--pack,
+.pains,
+.steps,
+.addons__grid,
+form,
+.crit,
+.phases,
+.chan a {
+   backdrop-filter: blur(16px) saturate(1.15);
+}
+
+.tier,
+.case,
+.chan a,
+.opt,
+.cross {
+   transition:
+      transform 0.22s cubic-bezier(0.2, 0.7, 0.2, 1),
+      border-color 0.18s,
+      background 0.18s,
+      box-shadow 0.22s;
+}
+
 .page {
    // .page__header
    &__header {
@@ -9,12 +44,19 @@
       left: 0;
 
       width: 100%;
+      padding: 2rem 0;
+
+      //      background: linear-gradient(150deg, $background-dark, $background-gray);
 
       transition: all 0.3s ease;
 
       &.with-shadow {
          color: $color-white;
-         background: $background-dark;
+         background: linear-gradient(
+            150deg,
+            $background-dark,
+            $background-gray
+         );
          box-shadow: 0 0 9px $box-shadow;
 
          .burger-button {
@@ -32,6 +74,8 @@
 .main-content {
    // .main-content__section
    &__section {
-      padding-block: 4rem;
+      &.top {
+         padding-block: 8rem 0;
+      }
    }
 }

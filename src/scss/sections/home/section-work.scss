@@ -1,0 +1,129 @@
+@use '../../core/variables' as *;
+@use '../../core/mixins' as *;
+
+.section-work {
+   // .section-work__body
+   &__body {
+      padding-block: clamp(4rem, 6.5vw, 80px);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+
+      background: linear-gradient(135deg, rgb(23 30 38), rgb(87 85 83));
+      backdrop-filter: blur(18px);
+   }
+
+   // .section-work__container
+   &__container {
+   }
+
+   // .section-work__header
+   &__header {
+      transform: none;
+
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+
+      max-width: 64ch;
+      margin-bottom: clamp(26px, 4vw, 42px);
+
+      opacity: 1;
+
+      transition:
+         opacity 0.6s ease,
+         transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+
+      h2 {
+         font-size: clamp(2.4rem, 3.3vw, 4rem);
+         line-height: 105%;
+         color: var(--color-text-light);
+      }
+
+      p {
+         font-size: clamp(13px, 1.5vw, 1.5rem);
+         line-height: 130%;
+         color: var(--muted);
+      }
+   }
+
+   // .section-work__steps
+   &__steps {
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 1px;
+
+      border: 1px solid $background-gray;
+      border-radius: $border-radius;
+
+      background: var(--pulse-soft);
+
+      @include screen-1140 {
+         grid-template-columns: repeat(3, 1fr);
+      }
+
+      @include screen-690 {
+         grid-template-columns: repeat(2, 1fr);
+      }
+
+      @include screen-490 {
+         grid-template-columns: 1fr;
+      }
+   }
+}
+
+.in {
+}
+
+.step {
+   display: flex;
+   flex-direction: column;
+   gap: 9px;
+
+   padding: 2rem 1.8rem;
+
+   background: var(--pulse-soft);
+
+   // .step__n
+   &__n {
+      color: $color-accent;
+   }
+
+   h3 {
+      margin: 0;
+
+      font-family: $font-family-secondary;
+      font-weight: 600;
+      line-height: 1.06;
+      color: var(--color-text-light);
+      text-wrap: balance;
+      letter-spacing: -0.024em;
+   }
+
+   p {
+      font-size: 1.4rem;
+      color: var(--muted);
+   }
+
+   // .step__t
+   &__t {
+      color: var(--muted);
+   }
+}
+
+.you-need {
+   margin-top: 1.8rem;
+   padding: 1.6rem 2rem;
+   border: 1px solid $background-gray;
+   border-left: 2px solid var(--signal);
+   border-radius: $border-radius;
+
+   font-size: 14px;
+   color: var(--muted);
+
+   background: var(--pulse-soft);
+
+   b {
+      color: var(--color-text-light);
+   }
+}

@@ -13,7 +13,7 @@ export default function DynamicAdaptive() {
             ? daElement.getAttribute('data-da-position')
             : 'last';
          const daResolutionBreakpoint = daElement.hasAttribute(
-            'data-da-resolution'
+            'data-da-resolution',
          )
             ? daElement.getAttribute('data-da-resolution')
             : 768;
@@ -42,7 +42,7 @@ export default function DynamicAdaptive() {
          const daType = 'max'; // Для MobileFirst поменять на min
 
          const mediaQuery = window.matchMedia(
-            `(${daType}-width: ${daBreakpoint}px)`
+            `(${daType}-width: ${daBreakpoint}px)`,
          );
          daMatchMedia.push(mediaQuery);
 
@@ -75,7 +75,7 @@ export default function DynamicAdaptive() {
                }
                daDestination.insertBefore(
                   daElement,
-                  daDestination.children[actualIndex]
+                  daDestination.children[actualIndex],
                );
                daElement.classList.add(daClassname);
             }

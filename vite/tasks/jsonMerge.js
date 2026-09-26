@@ -3,41 +3,41 @@ import fs from 'fs';
 import path from 'path';
 
 export function mergeJsonData() {
-  const dataDir = path.resolve('src/data');
-  const outputFile = path.join(dataDir, 'data.json');
+   const dataDir = path.resolve('src/data');
+   const outputFile = path.join(dataDir, 'data.json');
 
-  const files = fs
-    .readdirSync(dataDir)
-    .filter((file) => file.endsWith('.json') && file !== 'data.json');
+   const files = fs
+      .readdirSync(dataDir)
+      .filter((file) => file.endsWith('.json') && file !== 'data.json');
 
-  const merged = {};
+   const merged = {};
 
-  for (const file of files) {
-    const filePath = path.join(dataDir, file);
-    const jsonData = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-    const key = path.basename(file, '.json');
-    merged[key] = jsonData;
-  }
+   for (const file of files) {
+      const filePath = path.join(dataDir, file);
+      const jsonData = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+      const key = path.basename(file, '.json');
+      merged[key] = jsonData;
+   }
 
-  fs.writeFileSync(outputFile, JSON.stringify(merged, null, 2), 'utf8');
-  console.log(`✅ data.json обновлён (${files.length} файлов объединено)`);
+   fs.writeFileSync(outputFile, JSON.stringify(merged, null, 2), 'utf8');
+   console.log(`✅ data.json обновлён (${files.length} файлов объединено)`);
 }
 
 // 👇 Плагин для автоматической пересборки и перезагрузки Pug
 export function jsonMergePlugin() {
-  return {
-    name: 'json-merge-plugin',
-    buildStart() {
-      mergeJsonData();
-    },
-    handleHotUpdate({ file, server }) {
-      if (file.endsWith('.json') && !file.endsWith('data.json')) {
-        mergeJsonData();
+   return {
+      name: 'json-merge-plugin',
+      buildStart() {
+         mergeJsonData();
+      },
+      handleHotUpdate({ file, server }) {
+         if (file.endsWith('.json') && !file.endsWith('data.json')) {
+            mergeJsonData();
 
-        // 👇 Явно говорим Vite пересобрать HTML
-        server.moduleGraph.invalidateAll(); // сбрасываем кэш модулей
-        server.ws.send({ type: 'full-reload' });
-      }
-    },
-  };
+            // 👇 Явно говорим Vite пересобрать HTML
+            server.moduleGraph.invalidateAll(); // сбрасываем кэш модулей
+            server.ws.send({ type: 'full-reload' });
+         }
+      },
+   };
 }

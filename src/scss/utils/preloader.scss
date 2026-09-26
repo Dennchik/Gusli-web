@@ -1,0 +1,85 @@
+@use '../core/variables' as *;
+
+.preloader {
+   position: fixed;
+   z-index: 999;
+   inset: 0;
+
+   display: flex;
+   align-items: center;
+
+   background-color: hsl(0deg 0% 6% / 100%);
+   background-image:
+      radial-gradient(at 91% 91%, hsl(134deg 0% 6% / 100%) 0, transparent 50%),
+      radial-gradient(at 88% 19%, hsl(0deg 0% 33% / 22%) 0, transparent 50%),
+      radial-gradient(at 1% 98%, hsl(0deg 0% 20% / 30%) 0, transparent 50%),
+      radial-gradient(at 8% 15%, hsl(358deg 100% 67% / 7%) 0, transparent 50%);
+
+   &.preloader-remove {
+      display: none;
+   }
+}
+
+.preloader-5 {
+   position: relative;
+
+   display: block;
+
+   width: 150px;
+   height: 150px;
+   margin: 30px auto;
+   border: 3px solid transparent;
+   border-top-color: $color-accent;
+   border-radius: 50%;
+
+   animation: preloader-5-spin 2s linear infinite;
+
+   span {
+      content: '';
+
+      position: absolute;
+      inset: 25px;
+
+      border: 3px solid transparent;
+      border-top-color: rgb(253 50 50);
+      border-radius: 50%;
+
+      animation: preloader-5-spin 4s linear infinite;
+   }
+}
+
+.preloader-5::before {
+   content: '';
+
+   position: absolute;
+   inset: 5px;
+
+   border: 3px solid transparent;
+   border-top-color: rgb(255 30 30);
+   border-radius: 50%;
+
+   animation: preloader-5-spin 3s linear infinite;
+}
+
+.preloader-5::after {
+   content: '';
+
+   position: absolute;
+   inset: 15px;
+
+   border: 3px solid transparent;
+   border-top-color: rgb(253 50 50);
+   border-radius: 50%;
+
+   animation: preloader-5-spin 1.5s linear infinite;
+}
+
+@keyframes preloader-5-spin {
+   0% {
+      transform: rotate(0deg);
+   }
+
+   100% {
+      transform: rotate(360deg);
+   }
+}
