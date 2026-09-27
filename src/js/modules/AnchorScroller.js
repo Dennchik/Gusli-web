@@ -4,8 +4,8 @@
  * Перехватывает клики по якорным ссылкам (.anchor-link),
  * выполняет плавный скролл с учётом высоты фиксированного header'а.
  *
- * На десктопе (с ScrollSmoother) использует smoother.scrollTo( target, true, `top ${offset}px` )
- * Это КЛЮЧЕВОЙ момент для учёта отступов.
+ * На десктопе (с ScrollSmoother) использует smoother.scrollTo(target, true,
+ * `top ${offset}px`) Это КЛЮЧЕВОЙ момент для учёта отступов.
  *
  * На мобильных / без smoother — использует window.scrollTo с расчётом offset.
  */
@@ -18,7 +18,7 @@ export default class AnchorScroller {
       this.onCloseSidebar = params.onCloseSidebar ?? null;
       this.onCloseButton = params.onCloseButton ?? null;
 
-      // Можно передать селектор сайдбара, если нужно
+      //* Можно передать селектор сайдбара, если нужно
       this.sidebarSelector =
          params.sidebarSelector ?? '.sidebar, .mobile-menu, [data-sidebar]';
 
@@ -27,7 +27,8 @@ export default class AnchorScroller {
 
    getOffset() {
       const header = document.querySelector(this.headerSelector);
-      return header ? header.offsetHeight : 80; // fallback 80px если header не найден
+      //* fallback 80px если header не найден
+      return header ? header.offsetHeight : 80;
    }
 
    findSidebar() {
@@ -38,18 +39,19 @@ export default class AnchorScroller {
       if (!target) return;
 
       if (this.smoother && typeof this.smoother.scrollTo === 'function') {
-         // === ГЛАВНЫЙ ФИКС ДЛЯ ПК ===
-         // Третий параметр — позиция выравнивания.
-         // "top ${offset}px" означает: верх таргета должен оказаться на offset пикселей от верха вьюпорта.
-         // Это учитывает фиксированный header.
+         /* === ГЛАВНЫЙ ФИКС ДЛЯ ПК ===
+         Третий параметр — позиция выравнивания. "Значение top ${offset}px"
+         означает: верх таргета должен оказаться на offset пикселей от верха
+         вьюпорта. Это учитывает фиксированный header. */
          this.smoother.scrollTo(target, true, `top ${offset}px`);
 
-         // Альтернатива (если нужно точно числовое значение):
-         // const scrollPos = this.smoother.offset(target, `top ${offset}px`);
-         // const maxScroll = ScrollTrigger.maxScroll(window); // нужно импортировать если не глобально
-         // this.smoother.scrollTo(Math.min(scrollPos, maxScroll), false);
+         /* Альтернатива (если нужно точно числовое значение):
+         const scrollPos = this.smoother.offset(target, `top ${offset}px`);
+         const maxScroll = ScrollTrigger.maxScroll(window);
+         нужно импортировать если не глобально
+         this.smoother.scrollTo(Math.min(scrollPos, maxScroll), false); */
       } else {
-         // Нативный скролл (мобильные)
+         //* Нативный скролл (мобильные)
          const rect = target.getBoundingClientRect();
          const targetTop = rect.top + window.pageYOffset;
          const scrollToY = targetTop - offset;
@@ -62,7 +64,7 @@ export default class AnchorScroller {
    }
 
    init() {
-      // Слушаем клики на все якорные ссылки по селектору
+      //* Слушаем клики на все якорные ссылки по селектору
       const links = document.querySelectorAll(this.selector);
 
       links.forEach((link) => {
@@ -77,7 +79,7 @@ export default class AnchorScroller {
 
                const target = document.getElementById(targetId);
                if (!target) {
-                  // Если секции нет — всё равно закрываем сайдбар
+                  //* Если секции нет — всё равно закрываем сайдбар
                   this.closeSidebars();
                   return;
                }
@@ -86,26 +88,29 @@ export default class AnchorScroller {
 
                const offset = this.getOffset();
 
-               // Выполняем скролл с учётом отступа
+               //* Выполняем скролл с учётом отступа
                this.scrollToTarget(target, offset);
 
-               // Закрываем сайдбар/меню (если переданы коллбеки)
+               //* Закрываем сайдбар/меню (если переданы callbacks)
                this.closeSidebars();
 
-               // Опционально: можно диспатчить событие, чтобы GraphitiNavigator знал
-               // (но в вашем коде активация уже происходит в GraphitiNavigator через document click)
+               /* Опционально: можно dispatch событие, чтобы GraphitiNavigator знал
+               (но в вашем коде активация уже происходит в GraphitiNavigator
+               через document click) */
             },
             { passive: false },
          );
       });
 
-      // Дополнительно: можно слушать все a[href^="#"] глобально, если нужно
-      // Но лучше не дублировать, т.к. GraphitiNavigator уже ловит для активации.
+      /*  Дополнительно: можно слушать все ссылки [href^="#"] глобально, если
+      нужно Но лучше не дублировать, т.к. GraphitiNavigator уже ловит для
+      активации.
+      */
    }
 
    closeSidebars() {
       const sidebar = this.findSidebar();
-      // Дополнительно: если есть кнопка закрытия, можно триггерить
+      //* Дополнительно: если есть кнопка закрытия, можно триггерить
       const closeBtn = document.querySelector(
          '.sidebar-close, .burger-button, [data-close-sidebar]',
       );

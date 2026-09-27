@@ -16,10 +16,6 @@
       padding-block: clamp(4rem, 6.5vw, 8rem);
    }
 
-   // .section-questions__container
-   &__container {
-   }
-
    // .section-questions__header
    &__header {
       display: flex;
@@ -74,14 +70,16 @@
 
       font-size: 1.4rem;
       color: var(--muted);
+
+      background: var(--pulse-soft);
+
+      p {
+         padding: 2rem 0;
+      }
    }
 }
 
 .faq {
-   details[open] summary::after {
-      content: '–';
-   }
-
    .details {
       border-bottom: 1px solid $color-brown;
 
@@ -95,7 +93,10 @@
       &.is-active {
          .details__wrapper {
             grid-template-rows: 1fr;
-            padding: 0 0 2rem;
+         }
+
+         summary::after {
+            content: '–';
          }
       }
    }
@@ -119,9 +120,11 @@
          margin-left: auto;
 
          font-family: 'IBM Plex Mono', monospace;
-         font-size: 18px;
+         font-size: 22px;
          line-height: 1;
          color: $color-accent;
+
+         transition: all 0.4s ease-in-out;
       }
    }
 }

@@ -1,0 +1,11 @@
+extends ../src/pug/layouts/app_layout.pug
+
+append link
+prepend script
+
+block title
+	- var text = 'Кейсы — GUSLI WEB'
+
+block main-content
+	section.main-content__section.top
+		include ../src/pug/sections/section-cases

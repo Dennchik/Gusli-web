@@ -7,10 +7,12 @@ import {
    initCalculator,
    initQuiz,
    initBriefForm,
+   initFooterForm,
    initRevealAnimations,
 } from './layouts/layouts.js';
 
 initCalculator();
 initQuiz();
 initBriefForm();
+initFooterForm();
 initRevealAnimations();

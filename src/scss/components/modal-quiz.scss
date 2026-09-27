@@ -111,6 +111,7 @@
 
       &.on {
          display: block;
+         animation: quiz-slide-in var(--linear-in-out) both;
       }
 
       h3 {
@@ -194,6 +195,7 @@
 
    &.on {
       display: grid;
+      animation: quiz-slide-in var(--linear-in-out) both;
    }
 
    // .result__main
@@ -282,5 +284,25 @@
    &__term {
       font-size: 1.9rem;
       color: var(--color-text-light);
+   }
+}
+
+// * Смена шага квиза: новый контент плавно въезжает справа налево
+@keyframes quiz-slide-in {
+   from {
+      transform: translateX(40px);
+      opacity: 0;
+   }
+
+   to {
+      transform: none;
+      opacity: 1;
+   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+   .quiz__step.on,
+   .result.on {
+      animation: none;
    }
 }

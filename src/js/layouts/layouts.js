@@ -348,6 +348,24 @@ export function initBriefForm() {
    });
 }
 
+//* ✅ - [ Форма в футере: демо-отправка без бэкенда ]
+//* Делегирование: 'submit' на документе с проверкой id формы; сервера нет —
+//* показываем подтверждение и сбрасываем поля
+export function initFooterForm() {
+   const form = document.getElementById('footerForm');
+   if (!form) return;
+
+   const ok = form.querySelector('.form-card__ok');
+
+   document.addEventListener('submit', (e) => {
+      if (e.target !== form) return;
+      e.preventDefault();
+
+      form.reset();
+      ok.hidden = false;
+   });
+}
+
 //* ✅ - [ Появление блоков при скролле и анимация счётчиков ]
 //* IntersectionObserver: блоки из списка получают data-rv и класс in, когда
 //* оказываются во вьюпорте; цифры .stat b анимируются countUp-ом.

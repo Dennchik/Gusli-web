@@ -3,13 +3,8 @@
 
 .footer {
    position: relative;
-
-   padding-top: 6rem;
-   padding-bottom: 2rem;
-
    font-family: $font-family-default;
    color: $background;
-
    background-color: $background-dark;
 
    &__container {
@@ -18,16 +13,35 @@
       padding-inline: 2rem;
    }
 
+   // .footer__body
+   &__body {
+      position: relative;
+      z-index: 99;
+
+      padding-top: 6rem;
+      padding-bottom: 2rem;
+
+      background: rgb(23 30 38 / 87%);
+   }
+
+   .contact__box-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 100%;
+   }
+
    /* Основной блок с контактами и формой */
    &__main {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 4rem;
+      grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+      gap: clamp(26px, 4vw, 52px);
+      align-items: start;
 
-      @include min-960 {
-         grid-template-columns: 1fr 1fr;
-         gap: 6rem;
-         align-items: start;
+      @include screen-690 {
+         grid-template-columns: 1fr;
       }
    }
 
@@ -39,8 +53,6 @@
       display: flex;
       flex-direction: column;
       gap: 3rem;
-
-      border-right: 1px solid $color-text-muted;
    }
 
    &__title {
@@ -177,26 +189,47 @@
       }
    }
 
-   /* Нижняя секция */
+   /* Нижняя секция: черта-разделитель, копирайт и правовые ссылки */
    &__bottom {
       position: relative;
       z-index: 2;
 
       display: flex;
-      flex-direction: column;
-      gap: 2rem;
+      flex-wrap: wrap;
+      gap: 1.6rem 3rem;
       align-items: center;
+      justify-content: space-between;
 
       margin-top: 6rem;
       padding-top: 3rem;
       border-top: 1px solid $color-text-muted;
 
-      text-align: center;
+      @include screen-768 {
+         flex-direction: column;
+         justify-content: flex-start;
+         text-align: center;
+      }
+   }
 
-      &-logo {
-         img {
-            display: block;
-            height: auto;
+   &__links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem 2.4rem;
+
+      @include screen-768 {
+         justify-content: center;
+      }
+   }
+
+   &__link {
+      font-size: 1.3rem;
+      color: $color-text-muted;
+      text-decoration: none;
+      transition: color $transition-in-out;
+
+      @include screen-hover {
+         &:hover {
+            color: $color-primary;
          }
       }
    }
@@ -215,7 +248,9 @@
    gap: 1.6rem;
 
    padding: 3rem;
-   border: 1px solid rgb(255 255 255 / 10%);
+
+   //   border: 1px solid rgb(255 255 255 / 10%);
+   border: 1px solid var(--night-line);
    border-radius: $border-radius;
 
    background-color: $background-transparent;
@@ -249,14 +284,14 @@
    &__textarea {
       width: 100%;
       padding: 1.4rem 1.8rem;
-      border: 1px solid transparent;
+      border: 1px solid var(--night-line);
       border-radius: $border-radius;
 
       font-family: inherit;
       font-size: 1.4rem;
-      color: var(--color-text);
+      color: var(--color-text-light);
 
-      background-color: $background;
+      background: var(--pulse-soft);
 
       transition:
          border-color $transition-in-out,
@@ -303,6 +338,17 @@
 
       &:active {
          transform: translateY(1px);
+      }
+   }
+
+   &__ok {
+      margin: 0;
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--color-text-light);
+
+      &[hidden] {
+         display: none;
       }
    }
 }

@@ -10,12 +10,7 @@
    // .section-brief__body
    &__body {
       padding-block: clamp(4rem, 6.5vw, 8rem);
-      background-image:
-         linear-gradient(rgb(143 169 176 / 7.5%) 1px, transparent 1px),
-         linear-gradient(90deg, rgb(143 169 176 / 7.5%) 1px, transparent 1px);
-      background-size:
-         34px 34px,
-         34px 34px;
+      background: linear-gradient(135deg, rgb(23 30 38), rgb(87 85 83));
    }
 
    // .section-brief__container

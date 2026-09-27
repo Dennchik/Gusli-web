@@ -31,7 +31,7 @@
 // todo - Sections
 @use 'sections/home/section-hero';
 @use 'sections/home/section-features';
-@use 'sections/home/section-cases';
+@use 'sections/home/section-case';
 @use 'sections/home/section-strip';
 @use 'sections/home/section-fork';
 @use 'sections/home/section-reasons';
@@ -40,6 +40,9 @@
 @use 'sections/home/section-work';
 @use 'sections/home/section-questions';
 @use 'sections/home/section-brief';
+@use 'sections/section-contacts';
+
+@use 'sections/section-cases';
 
 // * ---------------------------------------------------------
 .wrapper {
@@ -97,7 +100,7 @@
       left: 0;
 
       width: 100%;
-      height: 100vh;
+      height: 100%;
 
       object-fit: cover;
       object-position: center bottom;
