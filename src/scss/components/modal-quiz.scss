@@ -95,7 +95,7 @@
          transition: background 0.2s;
 
          &.on {
-            background: var(--pulse);
+            background: var(--color-primary);
          }
       }
    }
@@ -201,7 +201,7 @@
    // .result__main
    &__main {
       padding: 22px;
-      border: 1px solid var(--pulse);
+      border: 1px solid var(--color-primary);
       border-radius: $border-radius;
       background: var(--pulse-soft);
 
@@ -230,7 +230,8 @@
       display: flex;
       gap: 24px;
       padding-top: 16px;
-      border-top: 1px solid color-mix(in srgb, var(--pulse) 32%, transparent);
+      border-top: 1px solid
+         color-mix(in srgb, var(--color-primary) 32%, transparent);
    }
 
    // .result__why
@@ -252,7 +253,7 @@
 
          padding: 8px 0 8px 20px;
          border-bottom: 1px solid
-            color-mix(in srgb, var(--pulse) 32%, transparent);
+            color-mix(in srgb, var(--color-primary) 32%, transparent);
 
          font-size: 1.4rem;
          color: var(--muted);

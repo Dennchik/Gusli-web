@@ -5,6 +5,7 @@ import { shadowScrollHeader } from './layouts/layouts.js';
 import AnchorScroller from './modules/AnchorScroller.js';
 import DynamicAdaptive from './modules/DynamicAdaptive.js';
 import { maskPhone } from './utils/mask-phone.js';
+import { select } from './assets/select.js';
 import loaded from './utils/preloader.js';
 
 // import { returnToSavedPosition } from './assets/returnToSavedPosition.js';
@@ -12,6 +13,7 @@ function onDomReady() {
    DynamicAdaptive();
    shadowScrollHeader();
    maskPhone('.phone');
+   select();
    modalLayout();
    // returnToSavedPosition();
    // cookiesAccept('.cookies-accept', '.cookies-accept__button');

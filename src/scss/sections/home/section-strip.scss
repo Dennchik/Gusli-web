@@ -71,9 +71,3 @@
       }
    }
 }
-
-@media (width <= 760px) {
-   .stat:nth-child(-n + 2) {
-      border-bottom: 1px solid var(--line);
-   }
-}

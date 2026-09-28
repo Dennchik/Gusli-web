@@ -4,22 +4,22 @@
 
 // todo - Core
 @use 'sass:color';
+@use 'core/extend' as *;
 @use 'core/reset';
 @use 'core/mixins' as *;
+@use 'core/variables' as *;
 
 // todo - Assets
 @use 'assets/burger-button';
 @use 'assets/mobile-menu';
 @use 'assets/modal';
+@use 'assets/select';
 
 // todo - Components
 @use 'components/modal-quiz';
 
 // todo - Utils
 @use 'utils/preloader';
-
-// todo - Variables
-@use 'core/variables' as *;
 
 // todo - Layouts
 @use 'layouts/header';
@@ -40,9 +40,11 @@
 @use 'sections/home/section-work';
 @use 'sections/home/section-questions';
 @use 'sections/home/section-brief';
+@use 'sections/home/section-tasks';
+@use 'sections/home/section-compare';
 @use 'sections/section-contacts';
-
 @use 'sections/section-cases';
+@use 'templates/templates-1';
 
 // * ---------------------------------------------------------
 .wrapper {

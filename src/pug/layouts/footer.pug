@@ -35,16 +35,17 @@ footer.footer
 							i.logo__image
 							span.logo__text GUSLI WEB
 						p.footer__brand-desc Работаем удалённо по всей России и СНГ — переписка, созвоны и документы онлайн.
-				form#footerForm.footer__form.form-card(action="#", method="POST" novalidate="")
+				form#footerForm.footer__form.form-card(action="#", method="POST" novalidate="" autocomplete="off")
 					.form-card__row.form-card__row--two-cols
 						.form-card__field
-							input.form-card__input(type="text", name="name", placeholder="Имя", required="")
+							input.form-card__input(type="text", name="contact-name", placeholder="Имя", autocomplete="off" required)
 						.form-card__field
-							input.form-card__input.phone(type="tel", name="phone", placeholder="Телефон", required="")
+							input.form-card__input.phone(type="tel", name="contact-phone", placeholder="Телефон",
+								autocomplete="off" required)
 					.form-card__field
-						input.form-card__input(type="email", name="email", placeholder="E-mail", required="")
+						input.form-card__input(type="email", name="contact-email", placeholder="E-mail", autocomplete="off" required)
 					.form-card__field.form-card__field--textarea
-						textarea.form-card__textarea(name="message", placeholder="Сообщение", rows="4")
+						textarea.form-card__textarea(name="message", placeholder="Сообщение", rows="4" autocomplete="off")
 					button.button--primary.button(type="submit") Отправить
 					p.form-card__ok(hidden="") Спасибо! Заявка собрана — ответим в течение рабочего дня.
 			.footer__bottom

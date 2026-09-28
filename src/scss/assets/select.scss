@@ -1,0 +1,117 @@
+@use '../core/variables' as *;
+@use '../core/mixins' as *;
+
+// * Кастомный селект (select.js + ItcCollapse):
+// * .select__button — закрытое состояние (в стиле input из _reset),
+// * .select__list._collapse — выпадающий список, высоту анимирует ItcCollapse
+.select {
+   position: relative;
+}
+
+// * Подпись поля — в стиле глобальных label из bem-block.scss
+.select__caption {
+   display: block;
+   margin-bottom: 6px;
+
+   font-family: 'IBM Plex Mono', monospace;
+   font-size: 1.4rem;
+   color: var(--night-muted);
+   text-transform: uppercase;
+   letter-spacing: 0.08em;
+}
+
+.select__button {
+   cursor: pointer;
+
+   position: relative;
+
+   width: 100%;
+   padding: 11px 40px 11px 13px;
+   border: 1px solid var(--night-line);
+   border-radius: 4px;
+
+   font-family: 'IBM Plex Sans', sans-serif;
+   font-size: 15px;
+   color: var(--night-text);
+   text-align: left;
+   text-transform: none;
+   letter-spacing: 0;
+
+   background: var(--night);
+
+   transition: border-color $transition-in-out;
+
+   // * Стрелка-индикатор: раскрывается при ._active-collapse на .select
+   &::after {
+      content: '';
+
+      position: absolute;
+      top: 50%;
+      right: 14px;
+      transform: translateY(-70%) rotate(45deg);
+
+      width: 8px;
+      height: 8px;
+      border-right: 1.5px solid var(--night-muted);
+      border-bottom: 1.5px solid var(--night-muted);
+
+      transition: transform $transition-in-out;
+   }
+
+   .select._active-collapse &::after {
+      transform: translateY(-30%) rotate(225deg);
+   }
+}
+
+.select__list {
+   position: absolute;
+   z-index: 30;
+   top: calc(100% + 6px);
+   right: 0;
+   left: 0;
+
+   overflow-y: auto;
+
+   max-height: 240px;
+   margin: 0;
+   padding: 6px;
+   border: 1px solid var(--night-line);
+   border-radius: 4px;
+
+   list-style: none;
+
+   background: var(--night);
+   box-shadow: var(--shadow);
+
+   // * Состояния ItcCollapse: список скрыт, анимируется или открыт
+   &._collapse {
+      display: none;
+   }
+
+   &.collapsing,
+   &._show {
+      display: block;
+   }
+}
+
+.select__list-item {
+   cursor: pointer;
+
+   padding: 10px 12px;
+   border-radius: 4px;
+
+   font-family: 'IBM Plex Sans', sans-serif;
+   font-size: 14.5px;
+   color: var(--night-text);
+
+   transition: background-color $transition-in-out;
+
+   &:hover {
+      background: rgb(255 255 255 / 6%);
+   }
+
+   &._selected {
+      color: var(--color-text-light);
+      background: rgb(85 85 255 / 18%);
+   }
+}

@@ -17,10 +17,10 @@
    &__container {
       display: grid;
       grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-      gap: clamp(26px, 4vw, 52px);
+      gap: clamp(1rem, 4vw, 4rem);
       align-items: start;
 
-      @include screen-690 {
+      @include screen-768 {
          grid-template-columns: 1fr;
       }
    }
@@ -114,6 +114,25 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 13px;
+
+      input,
+      textarea {
+         transition: all 0.4s ease-in-out;
+
+         &:focus {
+            border-color: $color-primary;
+            box-shadow: 0 0 0 3px rgb(85 85 255 / 15%);
+         }
+      }
+
+      textarea {
+         transition: all 0.4s ease-in-out;
+
+         &:active {
+            border: 1px solid $color-primary;
+            box-shadow: 0 0 0 3px rgb(85 85 255 / 15%);
+         }
+      }
    }
 
    // .section-brief__consent
@@ -191,7 +210,4 @@
          background: var(--night);
       }
    }
-}
-
-.in {
 }

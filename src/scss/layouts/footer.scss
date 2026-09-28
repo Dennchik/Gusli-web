@@ -16,7 +16,7 @@
    // .footer__body
    &__body {
       position: relative;
-      z-index: 99;
+      z-index: 9;
 
       padding-top: 6rem;
       padding-bottom: 2rem;
@@ -40,7 +40,7 @@
       gap: clamp(26px, 4vw, 52px);
       align-items: start;
 
-      @include screen-690 {
+      @include screen-768 {
          grid-template-columns: 1fr;
       }
    }
@@ -81,6 +81,10 @@
       padding: 0;
 
       list-style: none;
+
+      @include screen-768 {
+         flex-flow: row wrap;
+      }
    }
 
    &__contact-item {
@@ -107,6 +111,7 @@
    &__contact-text {
       display: flex;
       flex-direction: column;
+      white-space: nowrap;
    }
 
    &__contact-label {
@@ -253,7 +258,7 @@
    border: 1px solid var(--night-line);
    border-radius: $border-radius;
 
-   background-color: $background-transparent;
+   background-color: var(--pulse-soft);
 
    @include screen-490 {
       padding: 2rem;
@@ -282,16 +287,14 @@
 
    &__input,
    &__textarea {
-      width: 100%;
       padding: 1.4rem 1.8rem;
-      border: 1px solid var(--night-line);
       border-radius: $border-radius;
 
       font-family: inherit;
       font-size: 1.4rem;
       color: var(--color-text-light);
 
-      background: var(--pulse-soft);
+      background: var(--night);
 
       transition:
          border-color $transition-in-out,

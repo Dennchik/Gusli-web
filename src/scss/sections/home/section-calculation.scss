@@ -92,7 +92,7 @@
          position: relative;
 
          padding: 9px 0 9px 26px;
-         border-bottom: 1px solid $color-brown;
+         border-bottom: 1px solid var(--night-line-dark);
 
          font-size: 1.4rem;
          color: var(--muted);
@@ -114,7 +114,6 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      gap: 1px;
 
       border: 1px solid var(--night-line);
       border-radius: $border-radius;
@@ -154,17 +153,32 @@
    align-items: baseline;
 
    padding: 17px 20px;
+   border-bottom: 1px solid var(--night-line-dark);
 
    background: var(--pulse-soft);
 
-   -ms-flex-align: baseline;
+   @include screen-490 {
+      grid-template-columns: 1fr 1fr;
+   }
 
-   // .phase__n
-   &__n {
+   // .phase__text
+   &__text {
+      @include screen-490 {
+         grid-column: 1 / 3;
+         grid-row: 2 / 3;
+      }
+   }
+
+   // .phase__num
+   &__num {
       font-family: 'IBM Plex Mono', monospace;
       font-size: 1.4rem;
       color: $color-accent;
       letter-spacing: 0.06em;
+
+      @include screen-490 {
+         grid-column: 1 / 2;
+      }
    }
 
    // .phase__price
@@ -172,6 +186,11 @@
       font-family: 'IBM Plex Mono', monospace;
       font-size: 1.6rem;
       white-space: nowrap;
+
+      @include screen-490 {
+         grid-column: 2 / 3;
+         text-align: right;
+      }
 
       span {
          color: var(--color-text-light);

@@ -166,16 +166,29 @@ export function initQuiz() {
          : 'Выберите вариант';
    };
 
-   //* Подставить ответ квиза в select брифа; если такого option нет — добавить
-   const setSelect = (sel, value) => {
-      const found = Array.from(sel.options).some(
-         (o) => o.value === value || o.text === value,
-      );
-      if (!found) {
-         sel.add(new Option(value, value, true, true));
-      } else {
-         sel.value = value;
+   //* Подставить ответ квиза в кастомный селект брифа: переносим _selected
+   //* на нужный пункт и обновляем текст кнопки и скрытое поле формы.
+   //* Если пункта с таким ответом нет — просто показываем его в кнопке
+   const setSelect = (name, value) => {
+      const group = document.querySelector(`[data-select="${name}"]`);
+      if (!group) return;
+
+      const btn = group.querySelector('.select__button');
+      const input = group.querySelector('input[type="hidden"]');
+      const items = group.querySelectorAll('.select__list-item');
+
+      let matched = false;
+      items.forEach((item) => {
+         const isMatch = !matched && item.textContent.trim() === value;
+         item.classList.toggle('_selected', isMatch);
+         if (isMatch) matched = true;
+      });
+
+      if (btn) {
+         btn.textContent = value;
+         btn.value = value;
       }
+      if (input) input.value = value;
    };
 
    //* Итог подбора: сумма баллов решает пакет; пишет результат в панель,
@@ -225,10 +238,9 @@ export function initQuiz() {
          selectTier(name, BASE_PRICES[name]);
       }
 
-      const f = document.getElementById('briefForm');
-      if (answers.task) setSelect(f.task, answers.task);
-      if (answers.budget) setSelect(f.budget, answers.budget);
-      if (answers.term) setSelect(f.term, answers.term);
+      if (answers.task) setSelect('task', answers.task);
+      if (answers.budget) setSelect('budget', answers.budget);
+      if (answers.term) setSelect('term', answers.term);
    };
 
    document.addEventListener('click', (e) => {
@@ -291,12 +303,18 @@ export function initBriefForm() {
       if (e.target !== form) return;
       e.preventDefault();
 
+      // Синхронизируем скрытые поля кастомных селектов с текущим выбором
+      form.querySelectorAll('[data-select]').forEach((group) => {
+         const input = group.querySelector('input[type="hidden"]');
+         const btn = group.querySelector('.select__button');
+         if (input && btn) {
+            input.value = btn.value || btn.textContent.trim();
+         }
+      });
+
       const d = new FormData(form);
-      if (
-         !String(d.get('name') || '').trim() ||
-         !String(d.get('contact') || '').trim() ||
-         !d.get('ok')
-      ) {
+      const userName = String(d.get('user-name') || d.get('name') || '').trim();
+      if (!userName || !String(d.get('contact') || '').trim() || !d.get('ok')) {
          formErr.style.display = 'block';
          return;
       }
@@ -305,7 +323,7 @@ export function initBriefForm() {
       sentText.textContent = [
          'ЗАЯВКА — GUSLI WEB',
          '—————————————',
-         'Имя:      ' + d.get('name'),
+         'Имя:      ' + userName,
          'Контакт:  ' + d.get('contact'),
          'Задача:   ' + d.get('task'),
          'Бюджет:   ' + d.get('budget'),
@@ -363,6 +381,61 @@ export function initFooterForm() {
 
       form.reset();
       ok.hidden = false;
+   });
+}
+
+//* ✅ - [ Кейсы: подгрузка карточек кнопкой «Посмотреть ещё» / «Свернуть» ]
+//* Делегирование: 'click' на документе для [data-cases-more].
+//* Дополнительные карточки лежат в той же сетке с атрибутом hidden — клик
+//* раскрывает следующую партию. Когда скрытых не остаётся, кнопка становится
+//* «Свернуть» и возвращает сетку к изначальному состоянию
+export function initCasesMore() {
+   const BATCH_SIZE = 3;
+   const TEXT_MORE = 'Посмотреть ещё';
+   const TEXT_COLLAPSE = 'Свернуть';
+
+   document.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-cases-more]');
+      if (!btn) return;
+
+      //* Режим «Свернуть»: прячем подгруженные карточки и возвращаем текст
+      if (btn.dataset.mode === 'collapse') {
+         document
+            .querySelectorAll('.section-cases__card.is-revealed')
+            .forEach((card) => {
+               card.hidden = true;
+               card.classList.remove('is-revealed');
+            });
+         delete btn.dataset.mode;
+         btn.textContent = TEXT_MORE;
+
+         // Возвращаем пользователя к началу сетки с учётом липкой шапки
+         const grid = document.querySelector('.section-cases__grid');
+         const header = document.querySelector('.offset-header');
+         if (grid) {
+            const top =
+               grid.getBoundingClientRect().top +
+               window.scrollY -
+               (header?.offsetHeight || 0);
+            window.scrollTo({ top, behavior: 'smooth' });
+         }
+         return;
+      }
+
+      //* Режим «Посмотреть ещё»: раскрываем следующую партию
+      const hiddenCards = document.querySelectorAll(
+         '.section-cases__card[hidden]',
+      );
+      [...hiddenCards].slice(0, BATCH_SIZE).forEach((card) => {
+         card.hidden = false;
+         card.classList.add('is-revealed');
+      });
+
+      // Всё показано — переключаем кнопку в режим «Свернуть»
+      if (hiddenCards.length <= BATCH_SIZE) {
+         btn.dataset.mode = 'collapse';
+         btn.textContent = TEXT_COLLAPSE;
+      }
    });
 }
 

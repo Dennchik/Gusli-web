@@ -54,7 +54,11 @@ body.reveal [data-rv].in {
    &__blob--a {
       top: -26vmax;
       left: -16vmax;
-      background: radial-gradient(circle, var(--pulse) 0%, transparent 62%);
+      background: radial-gradient(
+         circle,
+         var(--color-primary) 0%,
+         transparent 62%
+      );
       animation: driftA 52s ease-in-out infinite alternate;
    }
 
@@ -80,23 +84,6 @@ body.reveal [data-rv].in {
    color: var(--muted);
    text-transform: uppercase;
    letter-spacing: 0.16em;
-}
-
-input,
-select,
-textarea {
-   width: 100%;
-   padding: 11px 13px;
-   border: 1px solid var(--night-line);
-   border-radius: 4px;
-
-   font-family: 'IBM Plex Sans', sans-serif;
-   font-size: 15px;
-   color: var(--night-text);
-   text-transform: none;
-   letter-spacing: 0;
-
-   background: var(--night);
 }
 
 label {
@@ -130,7 +117,7 @@ label {
       width: 9px;
       height: 20px;
 
-      background: var(--pulse);
+      background: var(--color-primary);
    }
 
    // .logo__text
@@ -170,9 +157,13 @@ label {
    font-size: 1.5rem;
    font-weight: 500;
 
+   span {
+      white-space: nowrap;
+   }
+
    &--primary {
       color: $color-white;
-      background-color: var(--pulse);
+      background-color: var(--color-primary);
       transition: background-color 0.3s ease-in-out;
 
       &::before {

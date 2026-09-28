@@ -1,0 +1,116 @@
+@use '../../core/variables' as *;
+@use '../../core/mixins' as *;
+
+.section-compare {
+   // .section-compare__body
+   &__body {
+      padding-block: clamp(4rem, 6.5vw, 8rem);
+      backdrop-filter: blur(18px);
+   }
+
+   // .section-compare__container
+   &__container {
+      overflow: hidden;
+
+      padding-block: 3rem !important;
+      border: 1px solid var(--night-line);
+      border-radius: $border-radius;
+
+      background: linear-gradient(135deg, rgb(23 30 38), rgb(87 85 83));
+      backdrop-filter: blur(18px);
+   }
+
+   // .section-compare__sec-head
+   &__sec-head {
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+
+      max-width: 64ch;
+      margin-bottom: clamp(26px, 4vw, 42px);
+
+      h2 {
+         font-size: clamp(2.4rem, 3.3vw, 4rem);
+         line-height: 105%;
+         color: var(--color-text-light);
+      }
+   }
+
+   // .section-compare__eye-brow
+   &__eye-brow {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+   }
+
+   // .section-compare__table-wrap
+   &__table-wrap {
+      //      scrollbar-width: thin;
+      overflow-x: auto;
+      border: 1px solid var(--night-line);
+      border-radius: $border-radius;
+
+      table {
+         border-collapse: collapse;
+
+         width: 100%;
+         min-width: 780px;
+
+         font-size: 14px;
+
+         background: var(--pulse-soft);
+
+         td {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13.2px;
+            font-variant-numeric: tabular-nums;
+         }
+
+         th,
+         td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--night-line-dark);
+
+            color: var(--line-strong);
+            text-align: left;
+            white-space: nowrap;
+         }
+      }
+
+      thead {
+         font-size: 1.4rem;
+         font-weight: 700;
+         background: var(--pulse-soft);
+
+         th {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--color-text-light);
+         }
+      }
+
+      tbody {
+         th {
+            font-weight: 400;
+            color: var(--muted);
+         }
+      }
+   }
+
+   // .section-compare__n
+   &__n {
+      color: var(--muted) !important;
+   }
+
+   // .section-compare__y
+   &__y {
+      color: var(--color-accent) !important;
+   }
+}

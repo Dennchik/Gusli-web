@@ -115,6 +115,15 @@
    }
 }
 
+@mixin screen-860 {
+   @media screen and (width < 860px) {
+      :root {
+         --mq-header-size: big;
+      }
+      @content;
+   }
+}
+
 @mixin screen-820 {
    @media screen and (width < 820px) {
       :root {

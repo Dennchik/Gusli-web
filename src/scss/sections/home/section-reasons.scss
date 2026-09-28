@@ -7,10 +7,6 @@
       padding-block: clamp(4rem, 6.5vw, 8rem);
    }
 
-   // .section-reasons__container
-   &__container {
-   }
-
    // .section-reasons__header
    &__header {
       display: flex;
@@ -51,6 +47,10 @@
       border-radius: $border-radius;
 
       background: var(--line);
+
+      @include screen-690 {
+         grid-template-columns: 1fr;
+      }
    }
 
    // .section-reasons__pain

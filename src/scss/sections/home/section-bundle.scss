@@ -90,7 +90,7 @@
 
       &.selected {
          z-index: 9;
-         border: 3px solid var(--pulse);
+         border: 3px solid var(--color-primary);
          box-shadow: 0 0 17px #000;
       }
 
@@ -237,7 +237,7 @@
 
          font-size: 1.4rem;
          font-weight: 700;
-         color: var(--ok);
+         color: var(--color-primary);
       }
    }
 }
@@ -314,7 +314,7 @@
          height: 1.6rem;
          margin: 3px;
 
-         accent-color: var(--pulse);
+         accent-color: var(--color-primary);
       }
 
       small {

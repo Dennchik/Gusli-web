@@ -52,6 +52,11 @@
    border-radius: $border-radius;
    box-shadow: $box-shadow;
 
+   // .case-card__link
+   &__link {
+      cursor: pointer;
+   }
+
    // .case-card__image-wrapper
    &__image-wrapper {
       overflow: hidden;

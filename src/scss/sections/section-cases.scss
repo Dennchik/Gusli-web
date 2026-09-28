@@ -50,6 +50,15 @@
 
       background: var(--surface-solid);
 
+      // display:flex перебивает UA-стиль [hidden] — скрывание объявляем явно
+      &[hidden] {
+         display: none;
+      }
+
+      &.is-revealed {
+         animation: cases-card-in var(--linear-in-out) both;
+      }
+
       transition:
          box-shadow var(--linear-in-out),
          transform var(--linear-in-out);
@@ -117,6 +126,25 @@
       display: flex;
       justify-content: center;
       margin-top: 4rem;
+   }
+}
+
+// * Появление подгруженных карточек: плавный выезд снизу
+@keyframes cases-card-in {
+   from {
+      transform: translateY(2rem);
+      opacity: 0;
+   }
+
+   to {
+      transform: none;
+      opacity: 1;
+   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+   .section-cases__card.is-revealed {
+      animation: none;
    }
 }
 

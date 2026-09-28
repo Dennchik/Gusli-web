@@ -56,7 +56,7 @@
       border: 1px solid $background-gray;
       border-radius: $border-radius;
 
-      background: var(--pulse-soft);
+      background: $background-gray;
 
       @include screen-1140 {
          grid-template-columns: repeat(3, 1fr);
@@ -115,15 +115,17 @@
    margin-top: 1.8rem;
    padding: 1.6rem 2rem;
    border: 1px solid $background-gray;
-   border-left: 2px solid var(--signal);
+   border-left: 2px solid var(--color-accent);
    border-radius: $border-radius;
 
-   font-size: 14px;
+   font-size: 1.4rem;
    color: var(--muted);
 
    background: var(--pulse-soft);
 
    b {
+      margin-right: 0.8rem;
+      font-size: 1.6rem;
       color: var(--color-text-light);
    }
 }

@@ -31,6 +31,8 @@ body {
 
    background: var(--light-background);
 
+   -webkit-font-smoothing: antialiased;
+
    &.no-scroll {
       overflow: hidden;
    }
@@ -93,6 +95,10 @@ input[type='submit'] {
    box-shadow: none;
 }
 
+textarea {
+   resize: vertical;
+}
+
 input,
 textarea,
 button,
@@ -108,7 +114,7 @@ select,
 textarea {
    width: 100%;
    padding: 11px 13px;
-   border: 1px solid var(--night-line);
+   border: 1px solid var(--night-line-dark);
    border-radius: 4px;
 
    font-family: 'IBM Plex Sans', sans-serif;
@@ -194,7 +200,7 @@ h4 {
 ::-webkit-scrollbar-thumb {
    border: 0 solid transparent;
    border-radius: 2px;
-   background-color: var(--pulse);
+   background-color: var(--color-primary);
 }
 
 ::-webkit-scrollbar-thumb:hover {

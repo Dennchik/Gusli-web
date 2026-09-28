@@ -1,0 +1,1556 @@
+@use '../core/variables' as *;
+@use '../core/mixins' as *;
+
+@use '../assets/select';
+
+// * Автономная демо-страница ресторана: тёмный «люкс», золото, serif.
+// * Страница не подключает main.scss, поэтому несёт собственный мини-ресет,
+// * шапку, футер, кнопки и формы. Всё скоупится под .tmpl1
+
+// * ─────────────────── Мини-ресет ───────────────────
+html {
+   counter-reset: heading;
+   scroll-behavior: smooth;
+   height: 100%;
+
+   font: {
+      size: 62.5%;
+
+      family: $font-family-default;
+      style: normal;
+      weight: $font-weight-default;
+   }
+
+   @include screen-1440 {
+      font-size: 50%;
+   }
+}
+
+body {
+   overscroll-behavior: none;
+
+   font: 1.6rem/1.6rem $font-family-default;
+   font-weight: $font-weight-default;
+   line-height: 1.3;
+   color: var(--color-text-default);
+
+   background: var(--light-background);
+
+   -webkit-font-smoothing: antialiased;
+
+   &.no-scroll {
+      overflow: hidden;
+   }
+}
+
+// * Тёмный фон и отступы body — для этой демо-страницы
+body.tmpl1 {
+   margin: 0;
+   font-family: Inter, system-ui, sans-serif;
+   color: var(--t1-text);
+   background: var(--t1-bg);
+}
+
+* {
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+   border: none;
+}
+
+.tmpl1 {
+   --t1-bg: rgb(10 10 10);
+   --t1-bg-soft: rgb(26 26 26);
+   --t1-gold: #c9a45f;
+   --t1-gold-soft: rgb(201 164 95 / 14%);
+   --t1-text: #efe6d6;
+   --t1-muted: #a2906f;
+   --t1-line: rgb(201 164 95 / 25%);
+
+   *,
+   *::before,
+   *::after {
+      box-sizing: border-box;
+   }
+
+   h1,
+   h2,
+   h3,
+   p,
+   ul {
+      margin: 0;
+   }
+
+   ul {
+      padding: 0;
+      list-style: none;
+   }
+
+   img {
+      display: block;
+      max-width: 100%;
+   }
+
+   a {
+      color: inherit;
+      text-decoration: none;
+   }
+
+   .container {
+      width: 100%;
+      max-width: 1280px;
+      margin-inline: auto;
+      padding-inline: 2rem;
+
+      @include screen-620 {
+         padding-inline: 1.2rem;
+      }
+   }
+
+   h1,
+   h2,
+   h3,
+   .tmpl1__quote,
+   .tmpl1-header__logo,
+   .tmpl1-footer__logo {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-weight: 400;
+   }
+
+   h2 {
+      font-size: clamp(2.8rem, 4vw, 4rem);
+      color: var(--t1-gold);
+   }
+
+   // * Тонкая золотая линия-орнамент перед заголовками
+   .tmpl1__heading {
+      margin: 0 0 1.6rem;
+
+      &::before {
+         content: '';
+
+         display: block;
+
+         width: 5.6rem;
+         height: 1px;
+         margin-bottom: 1.6rem;
+
+         background: var(--t1-gold);
+      }
+
+      &--center::before {
+         margin-inline: auto;
+      }
+   }
+
+   // * ─────────────────── Кнопки ───────────────────
+   .tmpl1-btn {
+      cursor: pointer;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 1.2rem 2.8rem;
+      border: 1px solid var(--t1-gold);
+      border-radius: 0.3rem;
+
+      font-size: 1.3rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+
+      transition:
+         background-color $transition-in-out,
+         color $transition-in-out;
+
+      &--solid {
+         color: var(--t1-bg);
+         background: var(--t1-gold);
+
+         &:hover {
+            color: var(--t1-gold);
+            background: transparent;
+         }
+      }
+
+      &--ghost {
+         color: var(--t1-gold);
+         background: transparent;
+
+         &:hover {
+            color: var(--t1-bg);
+            background: var(--t1-gold);
+         }
+      }
+
+      &--wide {
+         width: 100%;
+      }
+   }
+
+   // * ─────────────────── Шапка ───────────────────
+   .tmpl1-header {
+      position: fixed;
+      z-index: 50;
+      top: 0;
+      right: 0;
+      left: 0;
+
+      background: transparent;
+
+      transition:
+         background-color $transition-in-out,
+         box-shadow $transition-in-out;
+
+      // * После скролла — плотный тёмный фон
+      &.is-scrolled {
+         background: rgb(14 10 6 / 92%);
+         box-shadow: 0 1px 0 var(--t1-line);
+      }
+
+      &__inner {
+         display: flex;
+         gap: 2.4rem;
+         align-items: center;
+         padding-block: 1.6rem;
+      }
+
+      &__logo {
+         margin-right: auto;
+         font-size: 2.4rem;
+         color: var(--t1-gold);
+         letter-spacing: 0.22em;
+      }
+
+      &__nav {
+         display: flex;
+         gap: 2.8rem;
+         align-items: center;
+      }
+
+      &__link {
+         font-size: 1.3rem;
+         color: var(--t1-text);
+         text-transform: uppercase;
+         letter-spacing: 0.14em;
+         white-space: nowrap;
+
+         transition: color $transition-in-out;
+
+         &:hover {
+            color: var(--t1-gold);
+         }
+      }
+
+      &__cta {
+         padding: 1rem 2rem;
+         color: #000;
+         background: var(--t1-gold);
+      }
+   }
+
+   // * Бургер: три линии, превращаются в крест
+   .tmpl1-burger {
+      cursor: pointer;
+
+      position: relative;
+
+      display: none;
+
+      width: 4rem;
+      height: 4rem;
+      border: 0;
+
+      background: transparent;
+
+      span {
+         position: absolute;
+         right: 0.6rem;
+         left: 0.6rem;
+
+         height: 2px;
+
+         background: var(--t1-gold);
+
+         transition:
+            transform $transition-in-out,
+            opacity $transition-in-out;
+
+         &:nth-child(1) {
+            top: 1.2rem;
+         }
+
+         &:nth-child(2) {
+            top: 1.9rem;
+         }
+
+         &:nth-child(3) {
+            top: 2.6rem;
+         }
+      }
+
+      @include screen-860 {
+         display: block;
+      }
+   }
+
+   // * Мобильная навигация
+   @include screen-860 {
+      .tmpl1-header__nav {
+         position: fixed;
+         inset: 0;
+
+         display: none;
+         flex-direction: column;
+         gap: 3.2rem;
+         align-items: center;
+         justify-content: center;
+
+         background: rgb(14 10 6 / 96%);
+
+         &._open {
+            display: flex;
+         }
+      }
+
+      .tmpl1-header.nav-open .tmpl1-burger {
+         span {
+            &:nth-child(1) {
+               transform: translateY(0.7rem) rotate(45deg);
+            }
+
+            &:nth-child(2) {
+               opacity: 0;
+            }
+
+            &:nth-child(3) {
+               transform: translateY(-0.7rem) rotate(-45deg);
+            }
+         }
+      }
+
+      .tmpl1-header__cta {
+         display: none;
+      }
+   }
+
+   // * ─────────────────── Hero ───────────────────
+   .tmpl1__hero {
+      position: relative;
+
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+
+      height: 100vh;
+      padding: clamp(14rem, 20vw, 20rem) 0 clamp(9rem, 14vw, 14rem);
+
+      text-align: center;
+
+      background: var(--t1-bg);
+
+      @include screen-960 {
+         height: 100%;
+      }
+   }
+
+   .tmpl1__hero-bg {
+      position: absolute;
+      inset: 0;
+
+      width: 100%;
+      height: 100%;
+
+      opacity: 0.4;
+      object-fit: cover;
+      filter: saturate(0.7) brightness(0.55);
+   }
+
+   .tmpl1__hero-inner {
+      position: relative;
+      z-index: 2;
+   }
+
+   .tmpl1__over-title {
+      font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+      font-size: 1.4rem;
+      color: var(--t1-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.32em;
+   }
+
+   .tmpl1__title {
+      margin: 1.6rem 0;
+      font-size: clamp(5.6rem, 11vw, 11rem);
+      color: var(--t1-gold);
+      letter-spacing: 0.12em;
+   }
+
+   .tmpl1__lead {
+      max-width: 52rem;
+      margin-inline: auto;
+
+      font-size: clamp(1.6rem, 2vw, 2rem);
+      line-height: 1.6;
+      color: var(--t1-text);
+   }
+
+   .tmpl1__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.6rem;
+      justify-content: center;
+
+      margin-top: 3.2rem;
+   }
+
+   .tmpl1__note {
+      margin-top: 2.4rem;
+
+      font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+      font-size: 1.8rem;
+      color: var(--t1-muted);
+      letter-spacing: 0.08em;
+   }
+
+   // * ─────────────────── О ресторане ───────────────────
+   .tmpl1__about {
+      padding-block: clamp(6rem, 10vw, 10rem);
+      background: var(--t1-bg-soft);
+   }
+
+   .tmpl1__grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: clamp(2.4rem, 5vw, 6rem);
+      align-items: center;
+
+      @include screen-992 {
+         grid-template-columns: 1fr;
+      }
+   }
+
+   .tmpl1__about-text,
+   .tmpl1__reserve-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+   }
+
+   .tmpl1__about-text p,
+   .tmpl1__reserve-info p {
+      font-size: 1.6rem;
+      line-height: 1.7;
+      color: var(--t1-text);
+   }
+
+   .tmpl1__about-media {
+      overflow: hidden;
+      border: 1px solid var(--t1-line);
+      border-radius: 4px;
+
+      img {
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+         filter: saturate(0.85);
+      }
+   }
+
+   // * ─────────────────── Меню ───────────────────
+   .menu-preview {
+      padding-block: clamp(6rem, 10vw, 10rem);
+      background: var(--t1-bg-soft);
+   }
+
+   .section-subtitle {
+      margin-bottom: 1.2rem;
+
+      font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+      font-size: 1.3rem;
+      color: var(--t1-gold);
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+   }
+
+   .section-title {
+      margin-bottom: 4.8rem;
+      font-size: clamp(3.2rem, 5vw, 5.2rem);
+      color: var(--t1-text);
+      text-align: center;
+   }
+
+   .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.6rem 4.8rem;
+
+      @include screen-992 {
+         grid-template-columns: 1fr;
+      }
+   }
+
+   .menu-category-title {
+      display: flex;
+      gap: 1.6rem;
+      align-items: center;
+
+      margin-bottom: 1.2rem;
+
+      font-size: clamp(2rem, 2.4vw, 2.4rem);
+      color: var(--t1-gold);
+
+      &::after {
+         content: '';
+         flex: 1;
+         height: 1px;
+         background: var(--t1-line);
+      }
+   }
+
+   .menu-item {
+      display: flex;
+      gap: 2rem;
+      align-items: baseline;
+      justify-content: space-between;
+
+      padding-block: 1.6rem;
+      border-bottom: 1px solid var(--t1-line);
+   }
+
+   .menu-item-info {
+      h4 {
+         display: flex;
+         flex-wrap: wrap;
+         gap: 1rem;
+
+         font-family: Georgia, 'Times New Roman', serif;
+         font-size: clamp(1.9rem, 2vw, 2.1rem);
+         font-weight: 400;
+         color: var(--t1-text);
+      }
+
+      p {
+         margin-top: 0.6rem;
+         font-size: 1.4rem;
+         font-style: italic;
+         color: var(--t1-muted);
+      }
+   }
+
+   .menu-badge {
+      margin-left: 1.6rem;
+      padding: 0.4rem 1.2rem;
+      border: 1px solid var(--t1-gold);
+      border-radius: 2px;
+
+      font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+      font-size: 1.1rem;
+      color: var(--t1-gold);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+
+      background: transparent;
+   }
+
+   .menu-item-price {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.8rem;
+      font-style: italic;
+      color: var(--t1-gold);
+      white-space: nowrap;
+   }
+
+   .btn-outline {
+      cursor: pointer;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 1.2rem 2.8rem;
+      border: 1px solid var(--t1-gold);
+      border-radius: 0.3rem;
+
+      font-size: 1.3rem;
+      color: var(--t1-gold);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+
+      transition:
+         background-color $transition-in-out,
+         color $transition-in-out;
+
+      &:hover {
+         color: var(--t1-bg);
+         background: var(--t1-gold);
+      }
+   }
+
+   .text-center {
+      text-align: center;
+   }
+
+   .mt-5 {
+      margin-top: 4.8rem;
+   }
+
+   // * ─────────────────── Галерея ───────────────────
+   .tmpl1-gallery {
+      padding-block: clamp(6rem, 10vw, 10rem);
+      background: var(--t1-bg-soft);
+   }
+
+   .tmpl1-gallery .section-title {
+      margin-bottom: 1.2rem;
+
+      &::after {
+         content: '';
+
+         display: block;
+
+         width: 6rem;
+         height: 1px;
+         margin: 1.6rem auto 0;
+
+         background: var(--t1-gold);
+      }
+   }
+
+   .tmpl1-gallery__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.6rem;
+
+      @include screen-992 {
+         grid-template-columns: repeat(2, 1fr);
+      }
+
+      @include screen-620 {
+         grid-template-columns: 1fr;
+      }
+
+      img {
+         aspect-ratio: 4 / 3;
+         width: 100%;
+         border: 1px solid var(--t1-line);
+         border-radius: 0.8rem;
+
+         object-fit: cover;
+         filter: saturate(0.85);
+
+         transition: transform $transition-in-out;
+
+         &:hover {
+            transform: scale(1.03);
+         }
+      }
+   }
+
+   // * ─────────────────── Дегустационное меню ───────────────────
+   .tmpl1-tasting {
+      overflow: hidden;
+      padding-block: clamp(6rem, 10vw, 10rem);
+      background: var(--t1-bg);
+   }
+
+   .tmpl1-tasting__title {
+      margin-bottom: 2rem;
+   }
+
+   .tmpl1-tasting__desc {
+      max-width: 64rem;
+      margin-bottom: 2.4rem;
+      margin-inline: auto;
+
+      font-size: 1.5rem;
+      line-height: 1.7;
+      color: var(--t1-muted);
+      text-align: center;
+   }
+
+   .tmpl1-tasting__meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem 3.2rem;
+      justify-content: center;
+
+      margin-bottom: 4.8rem;
+
+      li {
+         display: flex;
+         gap: 0.8rem;
+         align-items: center;
+
+         font-size: 1.4rem;
+         color: var(--t1-text);
+
+         svg {
+            color: var(--t1-gold);
+         }
+      }
+   }
+
+   // * Лента карточек: на всю ширину вьюпорта, тянется мышью и пальцем
+   .tmpl1-tasting__track {
+      cursor: grab;
+      scrollbar-width: none;
+
+      overflow-x: auto;
+      display: flex;
+      gap: 1.6rem;
+
+      padding-inline: max(2rem, calc((100% - 1280px) / 2 + 2rem));
+
+      &::-webkit-scrollbar {
+         display: none;
+      }
+
+      &:active {
+         cursor: grabbing;
+      }
+   }
+
+   .tmpl1-course {
+      user-select: none;
+      flex: 0 0 32rem;
+      border: 1px solid var(--t1-line);
+      background: var(--t1-bg);
+
+      @include screen-620 {
+         flex-basis: 26rem;
+      }
+
+      img {
+         pointer-events: none;
+      }
+   }
+
+   .tmpl1-course__media {
+      position: relative;
+
+      img {
+         width: 100%;
+         height: 21rem;
+         object-fit: cover;
+         filter: saturate(0.85);
+      }
+   }
+
+   .tmpl1-course__numeral {
+      position: absolute;
+      top: 1.2rem;
+      left: 1.2rem;
+
+      display: grid;
+      place-items: center;
+
+      width: 3.6rem;
+      height: 3.6rem;
+      border: 1px solid var(--t1-gold);
+
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.6rem;
+      color: var(--t1-gold);
+
+      background: rgb(10 10 10 / 70%);
+   }
+
+   .tmpl1-course__body {
+      padding: 2rem;
+   }
+
+   .tmpl1-course__label {
+      display: block;
+
+      font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+      font-size: 1.2rem;
+      color: var(--t1-gold);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+   }
+
+   .tmpl1-course__name {
+      margin: 1rem 0 1.2rem;
+      font-size: 2.2rem;
+      color: var(--t1-text);
+   }
+
+   .tmpl1-course__desc {
+      margin-bottom: 2rem;
+      font-size: 1.4rem;
+      line-height: 1.6;
+      color: var(--t1-muted);
+   }
+
+   .tmpl1-course__pairing {
+      padding-top: 1.4rem;
+      border-top: 1px solid var(--t1-line);
+
+      span {
+         display: block;
+
+         margin-bottom: 0.4rem;
+
+         font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+         font-size: 1.1rem;
+         color: var(--t1-muted);
+         text-transform: uppercase;
+         letter-spacing: 0.12em;
+      }
+
+      b {
+         font-family: Georgia, 'Times New Roman', serif;
+         font-size: 1.5rem;
+         font-weight: 400;
+         font-style: italic;
+         color: var(--t1-text);
+      }
+   }
+
+   .tmpl1-tasting__progress {
+      overflow: hidden;
+      height: 2px;
+      margin-top: 4.8rem;
+      background: var(--t1-line);
+
+      span {
+         display: block;
+
+         width: 20%;
+         height: 100%;
+
+         background: var(--t1-gold);
+
+         transition: width 0.2s ease-out;
+      }
+   }
+
+   .tmpl1-tasting__hint {
+      margin-top: 1.6rem;
+
+      font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+      font-size: 1.2rem;
+      color: var(--t1-muted);
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+   }
+
+   .tmpl1-tasting__caption {
+      margin-top: 4.8rem;
+
+      font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+      font-size: 1.2rem;
+      color: var(--t1-muted);
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+   }
+
+   // * ─────────────────── Специальности ───────────────────
+   .tmpl1-specialties {
+      padding-block: clamp(6rem, 10vw, 10rem);
+      background: var(--t1-bg);
+   }
+
+   .tmpl1-specialties .section-title {
+      margin-bottom: 1.2rem;
+
+      &::after {
+         content: '';
+
+         display: block;
+
+         width: 6rem;
+         height: 1px;
+         margin: 1.6rem auto 0;
+
+         background: var(--t1-gold);
+      }
+   }
+
+   .tmpl1-spec__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.4rem;
+
+      @include screen-992 {
+         grid-template-columns: 1fr;
+      }
+   }
+
+   .tmpl1-spec__card {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--t1-line);
+
+      img {
+         aspect-ratio: 1 / 1;
+         width: 100%;
+         object-fit: cover;
+         transition: transform $transition-in-out;
+      }
+
+      @include screen-hover {
+         &:hover img {
+            transform: scale(1.05);
+         }
+      }
+   }
+
+   .tmpl1-spec__overlay {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+
+      padding: 4rem 2rem 1.8rem;
+
+      background: linear-gradient(transparent, rgb(10 10 10 / 85%));
+   }
+
+   .tmpl1-spec__label {
+      font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+      font-size: 1.2rem;
+      color: var(--t1-gold);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+   }
+
+   .tmpl1-spec__name {
+      font-size: 2.4rem;
+      color: var(--t1-text);
+   }
+
+   // * ─────────────────── Бронирование ───────────────────
+   .tmpl1__reserve {
+      padding-block: clamp(6rem, 10vw, 10rem);
+      background: var(--t1-bg-soft);
+   }
+
+   .section-subtitle--left {
+      text-align: left;
+   }
+
+   .tmpl1__reserve-title {
+      margin: 0 0 1.6rem;
+      font-size: clamp(3.2rem, 4.4vw, 4.6rem);
+      color: var(--t1-text);
+
+      &::after {
+         content: '';
+
+         display: block;
+
+         width: 6rem;
+         height: 1px;
+         margin-top: 1.6rem;
+
+         background: var(--t1-gold);
+      }
+   }
+
+   .tmpl1__reserve-text {
+      font-size: 1.5rem;
+      line-height: 1.7;
+      color: var(--t1-muted);
+   }
+
+   .tmpl1__hours-title {
+      margin-top: 1.6rem;
+      font-size: 1.5rem;
+      color: var(--t1-gold);
+   }
+
+   .tmpl1__hours {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+
+      li {
+         font-size: 1.4rem;
+         color: var(--t1-muted);
+      }
+
+      b {
+         color: var(--t1-text);
+      }
+   }
+
+   .tmpl1-reserve__frame {
+      padding: 10px;
+      border: 1px solid var(--t1-line);
+   }
+
+   .tmpl1__reserve-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: clamp(2.4rem, 5vw, 6rem);
+      align-items: start;
+
+      @include screen-992 {
+         grid-template-columns: 1fr;
+      }
+   }
+
+   .tmpl1__contacts {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      li {
+         display: flex;
+         gap: 1rem;
+         align-items: center;
+
+         font-size: 1.5rem;
+         color: var(--t1-muted);
+
+         svg {
+            color: var(--t1-gold);
+         }
+      }
+
+      a {
+         color: var(--t1-text);
+         transition: color $transition-in-out;
+
+         &:hover {
+            color: var(--t1-gold);
+         }
+      }
+   }
+
+   .tmpl1__reserve-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.6rem;
+
+      padding: clamp(2rem, 3vw, 3.2rem);
+      border: 1px solid var(--t1-line);
+      border-radius: 4px;
+
+      background: rgb(255 255 255 / 2%);
+
+      @include screen-620 {
+         grid-template-columns: 1fr;
+      }
+
+      .tmpl1__field--wide,
+      .tmpl1__form-ok,
+      .tmpl1-btn--wide {
+         grid-column: 1 / -1;
+      }
+
+      textarea {
+         resize: vertical;
+         min-height: 12rem;
+      }
+
+      label.tmpl1__field,
+      [data-select] {
+         display: flex;
+         flex-direction: column;
+         gap: 6px;
+      }
+
+      .tmpl1__field-label,
+      .tmpl1__field span {
+         font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+         font-size: 12px;
+         color: var(--t1-muted);
+         text-transform: uppercase;
+         letter-spacing: 0.08em;
+      }
+
+      input,
+      textarea {
+         width: 100%;
+         padding: 1.2rem 1.4rem;
+         border: 1px solid var(--t1-line);
+         border-radius: 4px;
+
+         font-family: inherit;
+         font-size: 1.5rem;
+         color: var(--t1-text);
+
+         background: var(--t1-bg);
+
+         transition: border-color $transition-in-out;
+
+         &::placeholder {
+            color: var(--t1-muted);
+         }
+
+         &:focus {
+            border-color: var(--t1-gold);
+         }
+      }
+
+      .select__button {
+         min-height: 46px;
+         border-color: var(--t1-line);
+         background: var(--t1-bg);
+      }
+
+      .select__list {
+         border-color: var(--t1-line);
+         background: var(--t1-bg-soft);
+      }
+
+      .select__list-item._selected {
+         color: var(--t1-gold);
+         background: var(--t1-gold-soft);
+      }
+
+      .tmpl1__form-ok[hidden] {
+         display: none;
+      }
+   }
+
+   // * ─────────────────── Блог ───────────────────
+   .tmpl1-blog {
+      padding-block: clamp(6rem, 10vw, 10rem);
+      background: var(--t1-bg);
+   }
+
+   .tmpl1-blog .section-title {
+      margin-bottom: 1.2rem;
+
+      &::after {
+         content: '';
+
+         display: block;
+
+         width: 6rem;
+         height: 1px;
+         margin: 1.6rem auto 0;
+
+         background: var(--t1-gold);
+      }
+   }
+
+   .tmpl1-blog__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.4rem;
+
+      @include screen-992 {
+         grid-template-columns: 1fr;
+      }
+   }
+
+   .tmpl1-post {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--t1-line);
+      background: rgb(255 255 255 / 2%);
+   }
+
+   .tmpl1-post__media {
+      position: relative;
+      display: block;
+
+      img {
+         aspect-ratio: 16 / 10;
+         width: 100%;
+         object-fit: cover;
+         transition: transform $transition-in-out;
+      }
+
+      &:hover img {
+         transform: scale(1.04);
+      }
+   }
+
+   .tmpl1-post__date {
+      position: absolute;
+      top: 1.2rem;
+      left: 1.2rem;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      padding: 0.8rem 1.2rem;
+
+      font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+      font-size: 1.1rem;
+      color: var(--t1-bg);
+      text-transform: uppercase;
+
+      background: var(--t1-gold);
+
+      b {
+         font-size: 1.8rem;
+      }
+   }
+
+   .tmpl1-post__body {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      gap: 1rem;
+
+      padding: 2.4rem;
+   }
+
+   .tmpl1-post__label {
+      font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+      font-size: 1.2rem;
+      color: var(--t1-gold);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+   }
+
+   .tmpl1-post__name {
+      font-size: 2.1rem;
+      color: var(--t1-text);
+   }
+
+   .tmpl1-post__desc {
+      margin-bottom: 1.2rem;
+      font-size: 1.4rem;
+      line-height: 1.6;
+      color: var(--t1-muted);
+   }
+
+   .tmpl1-post__more {
+      margin-top: auto;
+
+      font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+      font-size: 1.2rem;
+      color: var(--t1-gold);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+
+      transition: color $transition-in-out;
+
+      &:hover {
+         color: var(--t1-text);
+      }
+   }
+
+   // * ─────────────────── Footer ───────────────────
+   .tmpl1-footer {
+      border-top: 1px solid var(--t1-line);
+      border-bottom: 1px solid var(--t1-line);
+      background: var(--t1-bg);
+
+      &__grid {
+         display: grid;
+         grid-template-columns: 1.4fr 1fr 1fr 1fr;
+         gap: 3.2rem;
+         padding-block: clamp(4rem, 7vw, 7rem);
+
+         @include screen-860 {
+            grid-template-columns: 1fr 1fr;
+         }
+
+         @include screen-620 {
+            grid-template-columns: 1fr;
+         }
+      }
+
+      &__logo {
+         margin-bottom: 1.6rem;
+         font-size: 2.4rem;
+         color: var(--t1-gold);
+         letter-spacing: 0.22em;
+      }
+
+      &__title {
+         margin-bottom: 1.6rem;
+
+         font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+         font-size: 1.3rem;
+         color: var(--t1-gold);
+         text-transform: uppercase;
+         letter-spacing: 0.14em;
+      }
+
+      &__col {
+         display: flex;
+         flex-direction: column;
+         gap: 1rem;
+         align-items: flex-start;
+      }
+
+      &__desc {
+         font-size: 1.4rem;
+         line-height: 1.6;
+         color: var(--t1-muted);
+      }
+
+      &__link {
+         font-size: 1.4rem;
+         color: var(--t1-text);
+         transition: color $transition-in-out;
+
+         &:hover {
+            color: var(--t1-gold);
+         }
+      }
+
+      &__bottom {
+         display: flex;
+         flex-wrap: wrap;
+         gap: 1.2rem 3rem;
+         align-items: center;
+         justify-content: space-between;
+
+         padding-block: 2.4rem;
+      }
+
+      &__copy {
+         font-size: 1.3rem;
+         color: var(--t1-muted);
+      }
+   }
+
+   // * ─────────────────── Отзывы ───────────────────
+   .tmpl1-testimonials {
+      padding-block: clamp(6rem, 10vw, 10rem);
+      background: var(--t1-bg);
+   }
+
+   .tmpl1-testi__title {
+      margin-bottom: 1.2rem;
+
+      &::after {
+         content: '';
+
+         display: block;
+
+         width: 6rem;
+         height: 1px;
+         margin: 1.6rem auto 0;
+
+         background: var(--t1-gold);
+      }
+   }
+
+   .tmpl1-testi__wrap {
+      position: relative;
+      margin-top: 4.8rem;
+   }
+
+   .tmpl1-testi__viewport {
+      scrollbar-width: none;
+      overflow-x: auto;
+
+      &::-webkit-scrollbar {
+         display: none;
+      }
+   }
+
+   .tmpl1-testi__track {
+      cursor: grab;
+
+      display: grid;
+      grid-auto-columns: calc((100% - 4.8rem) / 3);
+      grid-auto-flow: column;
+      gap: 2.4rem;
+
+      &:active {
+         cursor: grabbing;
+      }
+
+      @include screen-992 {
+         grid-auto-columns: calc((100% - 2.4rem) / 2);
+      }
+
+      @include screen-620 {
+         grid-auto-columns: 100%;
+      }
+   }
+
+   .tmpl1-testi__card {
+      cursor: grab;
+      user-select: none;
+      scroll-snap-align: start;
+
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+
+      padding: 3.2rem 2.8rem;
+      border: 1px solid var(--t1-line);
+      border-radius: 0.8rem;
+
+      text-align: center;
+
+      background: rgb(255 255 255 / 2%);
+
+      &:active {
+         cursor: grabbing;
+      }
+   }
+
+   .tmpl1-testi__quote {
+      margin: 0;
+
+      font-size: 1.5rem;
+      font-style: italic;
+      line-height: 1.7;
+      color: var(--t1-text);
+
+      &::before {
+         content: '\201C';
+
+         display: block;
+
+         font-family: Georgia, 'Times New Roman', serif;
+         font-size: 4.8rem;
+         line-height: 0.6;
+         color: var(--t1-gold);
+      }
+   }
+
+   .tmpl1-testi__author {
+      margin-top: auto;
+
+      b {
+         display: block;
+
+         font-family: Georgia, 'Times New Roman', serif;
+         font-size: 1.8rem;
+         font-weight: 400;
+         color: var(--t1-gold);
+      }
+
+      span {
+         display: block;
+
+         margin-top: 0.4rem;
+
+         font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+         font-size: 1.2rem;
+         color: var(--t1-muted);
+         text-transform: uppercase;
+         letter-spacing: 0.1em;
+      }
+   }
+
+   .tmpl1-testi__arrow {
+      cursor: pointer;
+
+      position: absolute;
+      z-index: 2;
+      top: 50%;
+      transform: translateY(-50%);
+
+      display: grid;
+      place-items: center;
+
+      width: 4.4rem;
+      height: 4.4rem;
+      border: 1px solid var(--t1-gold);
+
+      font-size: 2rem;
+      color: var(--t1-gold);
+
+      background: var(--t1-bg);
+
+      transition:
+         background-color $transition-in-out,
+         color $transition-in-out;
+
+      &:hover {
+         color: var(--t1-bg);
+         background: var(--t1-gold);
+      }
+
+      &--prev {
+         left: 0.5rem;
+      }
+
+      &--next {
+         right: 0.5rem;
+      }
+
+      // * На границах слайдера стрелка гаснет
+      &:disabled {
+         cursor: default;
+         color: var(--t1-gold);
+         opacity: 0.35;
+         background: var(--t1-bg);
+      }
+   }
+
+   .tmpl1-testi__dots {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2.4rem;
+   }
+
+   .tmpl1-testi__dot {
+      cursor: pointer;
+
+      width: 1rem;
+      height: 1rem;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+
+      background: var(--t1-line);
+
+      transition: background-color $transition-in-out;
+
+      &._active {
+         background: var(--t1-gold);
+      }
+   }
+
+   // * ─────────────────── Появление блоков ───────────────────
+   [data-anim] {
+      transform: translateY(2.4rem);
+      opacity: 0;
+      transition:
+         opacity 0.6s ease-out,
+         transform 0.6s ease-out;
+
+      // * Варианты направления: излево направо и справа налево
+      &[data-anim='right'] {
+         transform: translateX(-2.4rem);
+      }
+
+      &[data-anim='left'] {
+         transform: translateX(2.4rem);
+      }
+
+      &.in {
+         transform: none;
+         opacity: 1;
+      }
+   }
+}
+
+// * Изменить стиль полосы прокрутки (scrollbar)
+::-webkit-scrollbar {
+   position: fixed;
+   width: 0.4rem;
+   height: 0.4rem;
+   padding: 0.031em;
+}
+
+::-webkit-scrollbar-track {
+   background-color: var(--pulse-soft);
+}
+
+::-webkit-scrollbar-thumb {
+   border: 0 solid transparent;
+   border-radius: 2px;
+   background-color: rgb(23 17 10);
+}
+
+::-webkit-scrollbar-thumb:hover {
+   background-color: rgb(23 17 10);
+}

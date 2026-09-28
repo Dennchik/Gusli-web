@@ -8,6 +8,7 @@ import {
    initQuiz,
    initBriefForm,
    initFooterForm,
+   initCasesMore,
    initRevealAnimations,
 } from './layouts/layouts.js';
 
@@ -15,4 +16,5 @@ initCalculator();
 initQuiz();
 initBriefForm();
 initFooterForm();
+initCasesMore();
 initRevealAnimations();
