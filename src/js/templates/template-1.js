@@ -98,6 +98,35 @@ function initReveal() {
    items.forEach((el) => io.observe(el));
 }
 
+//* Параллакс фона hero: картинка уезжает медленнее контента.
+//* Пишем в независимое свойство translate, чтобы не конфликтовать
+//* с CSS-анимацией масштаба (Ken Burns). Уважает reduced-motion
+function initHeroParallax() {
+   const bg = document.querySelector('.tmpl1__hero-bg');
+   if (!bg) return;
+   if (
+      window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+   ) {
+      return;
+   }
+
+   let ticking = false;
+
+   const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+         const shift = Math.min(window.scrollY * 0.25, 140);
+         bg.style.translate = `0 ${shift}px`;
+         ticking = false;
+      });
+   };
+
+   window.addEventListener('scroll', onScroll, { passive: true });
+   onScroll();
+}
+
 //* Лента дегустационного меню: перетаскивание мышью и золотой
 //* прогресс-бар, отражающий позицию прокрутки
 function initTasting() {
@@ -142,14 +171,14 @@ function initTasting() {
 //* Отзывы: слайдер — стрелки листают по одной карточке, точки прыгают
 //* на позицию, у границ стрелки гаснут. Скроллится viewport, а не track
 function initTestimonials() {
-   const viewport = document.querySelector('.tmpl1-testi__viewport');
+   const viewport = document.querySelector('.tmpl1-testy__viewport');
    if (!viewport) return;
 
-   const track = viewport.querySelector('.tmpl1-testi__track');
+   const track = viewport.querySelector('.tmpl1-testy__track');
    const cards = [...track.children];
-   const dotsWrap = document.querySelector('[data-testi-dots]');
-   const prev = document.querySelector('[data-testi-prev]');
-   const next = document.querySelector('[data-testi-next]');
+   const dotsWrap = document.querySelector('[data-testy-dots]');
+   const prev = document.querySelector('[data-testy-prev]');
+   const next = document.querySelector('[data-testy-next]');
 
    let index = 0;
    let dots = [];
@@ -181,7 +210,7 @@ function initTestimonials() {
       for (let i = 0; i <= maxIndex(); i++) {
          const dot = document.createElement('button');
          dot.type = 'button';
-         dot.className = 'tmpl1-testi__dot';
+         dot.className = 'tmpl1-testy__dot';
          dot.setAttribute('aria-label', 'Слайд ' + (i + 1));
          dot.addEventListener('click', () => goTo(i));
          dotsWrap.appendChild(dot);
@@ -253,6 +282,7 @@ function initTestimonials() {
 select();
 maskPhone('.tmpl1 .phone');
 initHeader();
+initHeroParallax();
 initReserveForm();
 initTasting();
 initTestimonials();

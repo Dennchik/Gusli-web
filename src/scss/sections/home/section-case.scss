@@ -34,6 +34,16 @@
       font-weight: 600;
       color: $color-primary;
       text-decoration: none;
+
+      span {
+         transition: color 0.4s ease-in-out;
+      }
+
+      &:hover {
+         span {
+            color: $color-accent;
+         }
+      }
    }
 
    // .case__grid

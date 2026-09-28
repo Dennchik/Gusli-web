@@ -3,7 +3,8 @@ section.cases#cases
 		.cases__container.container
 			.cases__header
 				h2 Примеры решений
-				a.cases__link(href=linkTo('cases', filename)) Смотреть все кейсы →
+				a.cases__link.link-underline-center(href=linkTo('cases', filename))
+					span Смотреть все кейсы →
 			.cases__grid
 				article.case-card
 					a.case-card__link(href=linkTo('template-1', filename) target="_blank")

@@ -1,5 +1,6 @@
 @use 'variables' as *;
 @use 'mixins.scss' as *;
+
 .element {
    &.active {
       span {
@@ -8,7 +9,9 @@
             &:nth-child(#{$var}) {
                @if $var == 1 {
                   transition: transform 0.3s ease-in-out;
-               } @else {
+               }
+
+ @else {
                   transition: transform 0.3s ease-in-out #{$delay}s;
                }
             }
@@ -21,17 +24,20 @@
    @if $light-theme {
       color: $light-text;
       background-color: $light-background;
-   } @else {
+   }
+
+ @else {
       color: $dark-text;
       background-color: $dark-background;
    }
 }
-//* ------------------------------------------------------------
+
+// * ------------------------------------------------------------
 .anime-border {
    --t: transparent;
-   --c: rgb(75 128 16); //* 👈 цвет границы
-   --b: 2px; //* 👈 толщина границы
-   --g: 3px; //* 👈 промежуток при наведении курсора мыши или события
+   --c: rgb(75 128 16); // * 👈 цвет границы
+   --b: 2px; // * 👈 толщина границы
+   --g: 3px; // * 👈 промежуток при наведении курсора мыши или события
    --var: var(--t) 25%, var(--c) 0;
 
    position: relative;
@@ -62,6 +68,7 @@
    outline: 0;
 
    transition: color 0s 0.3s;
+
    &::before {
       clip-path: polygon(0 0, 100% 0%, 100% 30%, 0 65%);
    }
@@ -85,6 +92,7 @@
          opacity 0.3s,
          transform 0.5s;
    }
+
    &:hover {
       color: transparent;
       text-shadow: none;
@@ -122,7 +130,7 @@
       height: 1px;
 
       opacity: 0.6;
-      background-color: $color-primary-hover;
+      background-color: $color-accent;
 
       transition: transform 0.3s ease-in-out;
    }

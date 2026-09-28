@@ -236,7 +236,7 @@ html(lang="ru")
 					.tmpl1-tasting__progress(data-anim)
 						span#tmpl1Progress
 					p.tmpl1-tasting__hint(data-anim) Перетащите или прокручивайте, чтобы изучить меню
-				p.tmpl1-tasting__caption(data-anim) Семикурсовая дегустация
+				p.tmpl1-tasting__caption(data-anim) Семи курсовая дегустация
 
 			//- ───────────────────── Бронирование ─────────────────────
 			section.tmpl1__reserve#tmpl1-reserve
@@ -321,58 +321,60 @@ html(lang="ru")
 						p.tmpl1__form-ok(hidden) Столик забронирован — перезвоним для подтверждения.
 
 			//- ───────────────────── Отзывы ─────────────────────
-			section.tmpl1-testimonials#tmpl1-testimonials.container
+			section.tmpl1-testy.tmpl1-testimonials#tmpl1-testimonials.container
 				p.section-subtitle(data-anim) Отзывы гостей
-				h2.section-title.tmpl1-testi__title(data-anim) Что говорят наши гости
-				.tmpl1-testi__wrap
-					button.tmpl1-testi__arrow.tmpl1-testi__arrow--prev(type="button" data-testi-prev aria-label="Предыдущие отзывы") ‹
-					.tmpl1-testi__viewport
-						.tmpl1-testi__track
-							figure.tmpl1-testi__card
-								blockquote.tmpl1-testi__quote
+				h2.section-title.tmpl1-test__title(data-anim) Что говорят наши гости
+				.tmpl1-testy__wrap
+					button.tmpl1-testy__arrow.tmpl1-testy__arrow--prev(type="button" data-testy-prev
+					aria-label="Предыдущие отзывы") ‹
+					.tmpl1-testy__viewport
+						.tmpl1-testy__track
+							figure.tmpl1-testy__card
+								blockquote.tmpl1-testy__quote
 									| С первых шагов внутри понимаешь: тебя ждёт нечто необыкновенное.
 									|  Винное сопровождение безупречно, а атмосфера неповторима.
-								figcaption.tmpl1-testi__author
+								figcaption.tmpl1-testy__author
 									b Михаил Соколов
 									span Постоянный гость
-							figure.tmpl1-testi__card
-								blockquote.tmpl1-testi__quote
+							figure.tmpl1-testy__card
+								blockquote.tmpl1-testy__quote
 									| Я обедала в мишленовских ресторанах по всему миру — LUMIÈRE
 									|  достойно стоит в одном ряду с лучшими. Настоящая жемчужина кулинарии.
-								figcaption.tmpl1-testi__author
+								figcaption.tmpl1-testy__author
 									b Елена Романова
 									span Тревел- и лайфстайл-блогер
-							figure.tmpl1-testi__card
-								blockquote.tmpl1-testi__quote
+							figure.tmpl1-testy__card
+								blockquote.tmpl1-testy__quote
 									| Совершенно особенный гастрономический опыт. Внимание к деталям
 									|  в каждом блюде удивляет — шеф создал нечто по-настоящему особенное.
-								figcaption.tmpl1-testi__author
+								figcaption.tmpl1-testy__author
 									b Дмитрий Ким
 									span Фуд-критик, Gourmet Magazine
-							figure.tmpl1-testi__card
-								blockquote.tmpl1-testi__quote
+							figure.tmpl1-testy__card
+								blockquote.tmpl1-testy__quote
 									| Дегустационный сет — театр вкуса. Каждая подача — маленькое
 									|  представление, а вино подобрано безупречно.
-								figcaption.tmpl1-testi__author
+								figcaption.tmpl1-testy__author
 									b Анна Ветрова
 									span Сомелье
-							figure.tmpl1-testi__card
-								blockquote.tmpl1-testi__quote
+							figure.tmpl1-testy__card
+								blockquote.tmpl1-testy__quote
 									| Приводил сюда партнёров — впечатление гарантировано. Сервис
 									|  безупречный, кухня на уровне лучших столиц.
-								figcaption.tmpl1-testi__author
+								figcaption.tmpl1-testy__author
 									b Игорь Ланской
 									span Владелец отеля
-							figure.tmpl1-testi__card
-								blockquote.tmpl1-testi__quote
+							figure.tmpl1-testy__card
+								blockquote.tmpl1-testy__quote
 									| Каждое блюдо — произведение искусства. Снимала весь вечер
 									|  и не устала удивляться деталям.
-								figcaption.tmpl1-testi__author
+								figcaption.tmpl1-testy__author
 									b Мария Орлова
 									span Фотограф
-					button.tmpl1-testi__arrow.tmpl1-testi__arrow--next(type="button" data-testi-next aria-label="Следующие отзывы") ›
+					button.tmpl1-testy__arrow.tmpl1-testy__arrow--next(type="button" data-testy-next aria-label="Следующие" +
+					" отзывы") ›
 				.container
-					.tmpl1-testi__dots(data-testi-dots)
+					.tmpl1-testy__dots(data-testy-dots)
 
 			//- ───────────────────── Галерея ─────────────────────
 			section.tmpl1-gallery#tmpl1-gallery

@@ -7,6 +7,18 @@ export default [
    },
    js.configs.recommended,
    {
+      files: ['**/*.cjs'],
+      languageOptions: {
+         globals: {
+            __dirname: 'readonly',
+            __filename: 'readonly',
+            require: 'readonly',
+            module: 'writable',
+            exports: 'writable',
+         },
+      },
+   },
+   {
       files: ['src/**/*.js', 'vite/**/*.js', 'eslint.config.js'],
       languageOptions: {
          ecmaVersion: 'latest',

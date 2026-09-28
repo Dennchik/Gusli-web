@@ -4,10 +4,10 @@
 @use '../assets/select';
 
 // * Автономная демо-страница ресторана: тёмный «люкс», золото, serif.
-// * Страница не подключает main.scss, поэтому несёт собственный мини-ресет,
-// * шапку, футер, кнопки и формы. Всё скоупится под .tmpl1
+// * Страница не подключает main.scss, поэтому несёт собственный мини-reset,
+// * шапку, футер, кнопки и формы. Всё под .tmpl1
 
-// * ─────────────────── Мини-ресет ───────────────────
+// * ─────────────────── Мини-reset ───────────────────
 html {
    counter-reset: heading;
    scroll-behavior: smooth;
@@ -246,6 +246,11 @@ body.tmpl1 {
          padding: 1rem 2rem;
          color: #000;
          background: var(--t1-gold);
+
+         &:hover {
+            color: var(--t1-gold);
+            background: transparent;
+         }
       }
    }
 
@@ -355,8 +360,13 @@ body.tmpl1 {
    }
 
    .tmpl1__hero-bg {
+      will-change: translate;
+
       position: absolute;
       inset: 0;
+
+      // * Медленный наезд камеры (Ken Burns) — центр кадра не уезжает
+      scale: 1.15;
 
       width: 100%;
       height: 100%;
@@ -364,6 +374,8 @@ body.tmpl1 {
       opacity: 0.4;
       object-fit: cover;
       filter: saturate(0.7) brightness(0.55);
+
+      animation: tmpl1-kb 22s ease-in-out infinite alternate;
    }
 
    .tmpl1__hero-inner {
@@ -714,8 +726,13 @@ body.tmpl1 {
 
    .tmpl1-course {
       user-select: none;
+
+      overflow: hidden;
       flex: 0 0 32rem;
+
       border: 1px solid var(--t1-line);
+      border-radius: 0.8rem;
+
       background: var(--t1-bg);
 
       @include screen-620 {
@@ -885,6 +902,7 @@ body.tmpl1 {
       position: relative;
       overflow: hidden;
       border: 1px solid var(--t1-line);
+      border-radius: 0.8rem;
 
       img {
          aspect-ratio: 1 / 1;
@@ -1118,122 +1136,126 @@ body.tmpl1 {
    .tmpl1-blog {
       padding-block: clamp(6rem, 10vw, 10rem);
       background: var(--t1-bg);
-   }
 
-   .tmpl1-blog .section-title {
-      margin-bottom: 1.2rem;
+      .section-title {
+         margin-bottom: 1.2rem;
 
-      &::after {
-         content: '';
+         &::after {
+            content: '';
 
-         display: block;
+            display: block;
 
-         width: 6rem;
-         height: 1px;
-         margin: 1.6rem auto 0;
+            width: 6rem;
+            height: 1px;
+            margin: 1.6rem auto 0;
 
-         background: var(--t1-gold);
+            background: var(--t1-gold);
+         }
       }
-   }
 
-   .tmpl1-blog__grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2.4rem;
+      &__grid {
+         display: grid;
+         grid-template-columns: repeat(3, 1fr);
+         gap: 2.4rem;
 
-      @include screen-992 {
-         grid-template-columns: 1fr;
+         @include screen-992 {
+            grid-template-columns: 1fr;
+         }
       }
    }
 
    .tmpl1-post {
+      overflow: hidden;
       display: flex;
       flex-direction: column;
+
       border: 1px solid var(--t1-line);
+      border-radius: 0.8rem;
+
       background: rgb(255 255 255 / 2%);
-   }
 
-   .tmpl1-post__media {
-      position: relative;
-      display: block;
+      &__media {
+         position: relative;
+         display: block;
 
-      img {
-         aspect-ratio: 16 / 10;
-         width: 100%;
-         object-fit: cover;
-         transition: transform $transition-in-out;
+         img {
+            aspect-ratio: 16 / 10;
+            width: 100%;
+            object-fit: cover;
+            transition: transform $transition-in-out;
+         }
+
+         &:hover img {
+            transform: scale(1.04);
+         }
       }
 
-      &:hover img {
-         transform: scale(1.04);
+      &__date {
+         position: absolute;
+         top: 1.2rem;
+         left: 1.2rem;
+
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+
+         padding: 0.8rem 1.2rem;
+
+         font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+         font-size: 1.1rem;
+         color: var(--t1-bg);
+         text-transform: uppercase;
+
+         background: var(--t1-gold);
+
+         b {
+            font-size: 1.8rem;
+         }
       }
-   }
 
-   .tmpl1-post__date {
-      position: absolute;
-      top: 1.2rem;
-      left: 1.2rem;
+      &__body {
+         display: flex;
+         flex: 1;
+         flex-direction: column;
+         gap: 1rem;
 
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
-      padding: 0.8rem 1.2rem;
-
-      font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
-      font-size: 1.1rem;
-      color: var(--t1-bg);
-      text-transform: uppercase;
-
-      background: var(--t1-gold);
-
-      b {
-         font-size: 1.8rem;
+         padding: 2.4rem;
       }
-   }
 
-   .tmpl1-post__body {
-      display: flex;
-      flex: 1;
-      flex-direction: column;
-      gap: 1rem;
+      &__label {
+         font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+         font-size: 1.2rem;
+         color: var(--t1-gold);
+         text-transform: uppercase;
+         letter-spacing: 0.14em;
+      }
 
-      padding: 2.4rem;
-   }
-
-   .tmpl1-post__label {
-      font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
-      font-size: 1.2rem;
-      color: var(--t1-gold);
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-   }
-
-   .tmpl1-post__name {
-      font-size: 2.1rem;
-      color: var(--t1-text);
-   }
-
-   .tmpl1-post__desc {
-      margin-bottom: 1.2rem;
-      font-size: 1.4rem;
-      line-height: 1.6;
-      color: var(--t1-muted);
-   }
-
-   .tmpl1-post__more {
-      margin-top: auto;
-
-      font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
-      font-size: 1.2rem;
-      color: var(--t1-gold);
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-
-      transition: color $transition-in-out;
-
-      &:hover {
+      &_name {
+         font-size: 2.1rem;
          color: var(--t1-text);
+      }
+
+      &__desc {
+         margin-bottom: 1.2rem;
+         font-size: 1.4rem;
+         line-height: 1.6;
+         color: var(--t1-muted);
+      }
+
+      &__more {
+         margin-top: auto;
+
+         font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+         font-size: 1.2rem;
+         color: var(--t1-gold);
+         text-transform: uppercase;
+         letter-spacing: 0.14em;
+
+         transition: color $transition-in-out;
+
+         &:hover {
+            color: var(--t1-text);
+         }
       }
    }
 
@@ -1291,10 +1313,14 @@ body.tmpl1 {
       &__link {
          font-size: 1.4rem;
          color: var(--t1-text);
-         transition: color $transition-in-out;
+         opacity: 0.7;
+         transition:
+            color $transition-in-out,
+            opacity $transition-in-out;
 
          &:hover {
             color: var(--t1-gold);
+            opacity: 1;
          }
       }
 
@@ -1320,192 +1346,198 @@ body.tmpl1 {
       background: var(--t1-bg);
    }
 
-   .tmpl1-testi__title {
-      margin-bottom: 1.2rem;
+   .tmpl1-testy {
+      &__title {
+         margin-bottom: 1.2rem;
 
-      &::after {
-         content: '';
+         &::after {
+            content: '';
 
-         display: block;
+            display: block;
 
-         width: 6rem;
-         height: 1px;
-         margin: 1.6rem auto 0;
+            width: 6rem;
+            height: 1px;
+            margin: 1.6rem auto 0;
 
-         background: var(--t1-gold);
-      }
-   }
-
-   .tmpl1-testi__wrap {
-      position: relative;
-      margin-top: 4.8rem;
-   }
-
-   .tmpl1-testi__viewport {
-      scrollbar-width: none;
-      overflow-x: auto;
-
-      &::-webkit-scrollbar {
-         display: none;
-      }
-   }
-
-   .tmpl1-testi__track {
-      cursor: grab;
-
-      display: grid;
-      grid-auto-columns: calc((100% - 4.8rem) / 3);
-      grid-auto-flow: column;
-      gap: 2.4rem;
-
-      &:active {
-         cursor: grabbing;
+            background: var(--t1-gold);
+         }
       }
 
-      @include screen-992 {
-         grid-auto-columns: calc((100% - 2.4rem) / 2);
+      &__wrap {
+         position: relative;
+         margin-top: 4.8rem;
       }
 
-      @include screen-620 {
-         grid-auto-columns: 100%;
+      // .tmpl1-testy__viewport
+      &__viewport {
+         scrollbar-width: none;
+         overflow-x: auto;
+         pointer-events: none;
+         &::-webkit-scrollbar {
+            display: none;
+         }
       }
-   }
 
-   .tmpl1-testi__card {
-      cursor: grab;
-      user-select: none;
-      scroll-snap-align: start;
+      //. tmpl1-testy__track
+      &__track {
+         cursor: grab;
 
-      display: flex;
-      flex-direction: column;
-      gap: 1.6rem;
+         display: grid;
+         grid-auto-columns: calc((100% - 4.8rem) / 3);
+         grid-auto-flow: column;
+         gap: 2.4rem;
 
-      padding: 3.2rem 2.8rem;
-      border: 1px solid var(--t1-line);
-      border-radius: 0.8rem;
+         padding: 2.6rem 0;
+         pointer-events: all;
+         &:active {
+            cursor: grabbing;
+         }
 
-      text-align: center;
+         @include screen-992 {
+            grid-auto-columns: calc((100% - 2.4rem) / 2);
+         }
 
-      background: rgb(255 255 255 / 2%);
-
-      &:active {
-         cursor: grabbing;
+         @include screen-620 {
+            grid-auto-columns: 100%;
+         }
       }
-   }
 
-   .tmpl1-testi__quote {
-      margin: 0;
+      &__card {
+         cursor: grab;
+         user-select: none;
+         scroll-snap-align: start;
 
-      font-size: 1.5rem;
-      font-style: italic;
-      line-height: 1.7;
-      color: var(--t1-text);
+         display: flex;
+         flex-direction: column;
+         gap: 1.6rem;
 
-      &::before {
-         content: '\201C';
+         padding: 3.2rem 2.8rem;
+         border: 1px solid var(--t1-line);
+         border-radius: 0.8rem;
 
-         display: block;
+         text-align: center;
 
-         font-family: Georgia, 'Times New Roman', serif;
-         font-size: 4.8rem;
-         line-height: 0.6;
+         background: rgb(255 255 255 / 2%);
+
+         &:active {
+            cursor: grabbing;
+         }
+      }
+
+      &__quote {
+         margin: 0;
+
+         font-size: 1.5rem;
+         font-style: italic;
+         line-height: 1.7;
+         color: var(--t1-text);
+
+         &::before {
+            content: '\201C';
+
+            display: block;
+
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 4.8rem;
+            line-height: 0.6;
+            color: var(--t1-gold);
+         }
+      }
+
+      &__author {
+         margin-top: auto;
+
+         b {
+            display: block;
+
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: var(--t1-gold);
+         }
+
+         span {
+            display: block;
+
+            margin-top: 0.4rem;
+
+            font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+            font-size: 1.2rem;
+            color: var(--t1-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+         }
+      }
+
+      &__arrow {
+         cursor: pointer;
+
+         position: absolute;
+         z-index: 2;
+         top: 50%;
+         transform: translateY(-50%);
+
+         display: grid;
+         place-items: center;
+
+         width: 4.4rem;
+         height: 4.4rem;
+         border: 1px solid var(--t1-gold);
+
+         font-size: 2rem;
          color: var(--t1-gold);
-      }
-   }
 
-   .tmpl1-testi__author {
-      margin-top: auto;
-
-      b {
-         display: block;
-
-         font-family: Georgia, 'Times New Roman', serif;
-         font-size: 1.8rem;
-         font-weight: 400;
-         color: var(--t1-gold);
-      }
-
-      span {
-         display: block;
-
-         margin-top: 0.4rem;
-
-         font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
-         font-size: 1.2rem;
-         color: var(--t1-muted);
-         text-transform: uppercase;
-         letter-spacing: 0.1em;
-      }
-   }
-
-   .tmpl1-testi__arrow {
-      cursor: pointer;
-
-      position: absolute;
-      z-index: 2;
-      top: 50%;
-      transform: translateY(-50%);
-
-      display: grid;
-      place-items: center;
-
-      width: 4.4rem;
-      height: 4.4rem;
-      border: 1px solid var(--t1-gold);
-
-      font-size: 2rem;
-      color: var(--t1-gold);
-
-      background: var(--t1-bg);
-
-      transition:
-         background-color $transition-in-out,
-         color $transition-in-out;
-
-      &:hover {
-         color: var(--t1-bg);
-         background: var(--t1-gold);
-      }
-
-      &--prev {
-         left: 0.5rem;
-      }
-
-      &--next {
-         right: 0.5rem;
-      }
-
-      // * На границах слайдера стрелка гаснет
-      &:disabled {
-         cursor: default;
-         color: var(--t1-gold);
-         opacity: 0.35;
          background: var(--t1-bg);
+
+         transition:
+            background-color $transition-in-out,
+            color $transition-in-out;
+
+         &:hover {
+            color: var(--t1-bg);
+            background: var(--t1-gold);
+         }
+
+         &--prev {
+            left: 0.5rem;
+         }
+
+         &--next {
+            right: 0.5rem;
+         }
+
+         // * На границах слайдера стрелка гаснет
+         &:disabled {
+            cursor: default;
+            color: var(--t1-gold);
+            opacity: 0.35;
+            background: var(--t1-bg);
+         }
       }
-   }
 
-   .tmpl1-testi__dots {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      margin-top: 2.4rem;
-   }
+      &__dots {
+         display: flex;
+         gap: 1rem;
+         justify-content: center;
+         margin-top: 2.4rem;
+      }
 
-   .tmpl1-testi__dot {
-      cursor: pointer;
+      &__dot {
+         cursor: pointer;
 
-      width: 1rem;
-      height: 1rem;
-      padding: 0;
-      border: 0;
-      border-radius: 50%;
+         width: 1rem;
+         height: 1rem;
+         padding: 0;
+         border: 0;
+         border-radius: 50%;
 
-      background: var(--t1-line);
+         background: var(--t1-line);
 
-      transition: background-color $transition-in-out;
+         transition: background-color $transition-in-out;
 
-      &._active {
-         background: var(--t1-gold);
+         &._active {
+            background: var(--t1-gold);
+         }
       }
    }
 
@@ -1514,10 +1546,11 @@ body.tmpl1 {
       transform: translateY(2.4rem);
       opacity: 0;
       transition:
-         opacity 0.6s ease-out,
-         transform 0.6s ease-out;
+         opacity 0.6s ease-out var(--anim-delay, 0s),
+         transform 0.6s ease-out var(--anim-delay, 0s),
+         border-color 0.3s ease;
 
-      // * Варианты направления: излево направо и справа налево
+      // * Варианты направления: с лево направо и справа налево
       &[data-anim='right'] {
          transform: translateX(-2.4rem);
       }
@@ -1530,6 +1563,182 @@ body.tmpl1 {
          transform: none;
          opacity: 1;
       }
+   }
+
+   // * Золотая линия «прорисовывается» при появлении секции
+   [data-anim] .tmpl1__heading::before,
+   [data-anim].section-title::after {
+      transform-origin: left center;
+      transform: scaleX(0);
+      transition: transform 0.9s ease-out 0.35s;
+   }
+
+   [data-anim].in .tmpl1__heading::before,
+   [data-anim].in.section-title::after {
+      transform: scaleX(1);
+   }
+
+   .tmpl1-testy__title::after,
+   .tmpl1-gallery__title::after,
+   .tmpl1-reserve-title::after {
+      transform-origin: center;
+   }
+
+   // * Каскадные задержки: элементы сеток появляются волной
+   .tmpl1-spec__grid > :nth-child(2) {
+      --anim-delay: 0.15s;
+   }
+
+   .tmpl1-spec__grid > :nth-child(3) {
+      --anim-delay: 0.3s;
+   }
+
+   .tmpl1-blog__grid > :nth-child(2) {
+      --anim-delay: 0.15s;
+   }
+
+   .tmpl1-blog__grid > :nth-child(3) {
+      --anim-delay: 0.3s;
+   }
+
+   .tmpl1-gallery__grid > :nth-child(2) {
+      --anim-delay: 0.12s;
+   }
+
+   .tmpl1-gallery__grid > :nth-child(3) {
+      --anim-delay: 0.24s;
+   }
+
+   .tmpl1-gallery__grid > :nth-child(5) {
+      --anim-delay: 0.12s;
+   }
+
+   .tmpl1-gallery__grid > :nth-child(6) {
+      --anim-delay: 0.24s;
+   }
+
+   // * ─────────────────── Кнопки: золотой блик ───────────────────
+   .tmpl1-btn,
+   .btn-outline {
+      position: relative;
+      overflow: hidden;
+
+      &::before {
+         content: '';
+
+         position: absolute;
+         top: 0;
+         left: -80%;
+         transform: skewX(-20deg);
+
+         width: 50%;
+         height: 100%;
+
+         background: linear-gradient(
+            105deg,
+            transparent,
+            rgb(255 244 214 / 45%),
+            transparent
+         );
+
+         transition: left 0.7s ease;
+      }
+
+      &:hover::before {
+         left: 130%;
+      }
+   }
+
+   // * Ховеры карточек и пунктов меню
+   .tmpl1-spec__card,
+   .tmpl1-post {
+      transition:
+         border-color $transition-in-out,
+         box-shadow $transition-in-out;
+
+      &:hover {
+         border-color: var(--t1-gold);
+         box-shadow: 0 18px 44px -18px rgb(201 164 95 / 35%);
+      }
+   }
+
+   .menu-item {
+      transition: padding-left 0.4s ease;
+
+      &:hover {
+         padding-left: 0.6rem;
+      }
+
+      &:hover h4 {
+         color: var(--t1-gold);
+      }
+   }
+
+   .tmpl1-testy__card {
+      transition:
+         border-color $transition-in-out,
+         translate $transition-in-out;
+
+      &:hover {
+         translate: 0 -0.4rem;
+         border-color: var(--t1-gold);
+      }
+   }
+
+   .tmpl1-header__link {
+      position: relative;
+
+      &::after {
+         content: '';
+
+         position: absolute;
+         bottom: -0.6rem;
+         left: 0;
+         transform-origin: right;
+         transform: scaleX(0);
+
+         width: 100%;
+         height: 1px;
+
+         background: var(--t1-gold);
+
+         transition: transform $transition-in-out;
+      }
+
+      &:hover::after {
+         transform-origin: left;
+         transform: scaleX(1);
+      }
+   }
+}
+
+// * Медленный наезд камеры на фоне hero (Ken Burns)
+@keyframes tmpl1-kb {
+   from {
+      scale: 1.08;
+   }
+
+   to {
+      scale: 1.18;
+   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+   .tmpl1__hero-bg {
+      scale: 1.05;
+      animation: none;
+   }
+
+   .tmpl1 [data-anim],
+   [data-anim] .tmpl1__heading::before,
+   [data-anim].section-title::after {
+      transition: none;
+      animation: none;
+   }
+
+   .tmpl1-btn::before,
+   .btn-outline::before {
+      display: none;
    }
 }
 

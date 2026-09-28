@@ -95,8 +95,11 @@
             grid-template-rows: 1fr;
          }
 
-         summary::after {
-            content: '–';
+         summary {
+            color: var(--color-accent);
+            &::after {
+               content: '–';
+            }
          }
       }
    }
@@ -113,6 +116,8 @@
       font-weight: 600;
       color: var(--color-text-light);
       list-style: none;
+
+      transition: color 0.4s ease-in-out;
 
       &::after {
          content: '+';
