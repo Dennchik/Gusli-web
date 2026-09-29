@@ -1,0 +1,1065 @@
+@use '../core/mixins' as *;
+
+// * Автономная демо-страница IT-студии: чёрный фон, синий акцент.
+// * Страница не подключает main.scss — собственный мини-reset и компоненты.
+// * Hero-слайдер: диагональная синяя панель, сменяющиеся слайды,
+// * нижняя полоса с соцсетями, навигацией и бегущей строкой логотипов
+.tmpl3 {
+   --font-family: archivo, 'Helvetica Neue', arial, sans-serif;
+   --t3-bg: #050507;
+   --t3-dark: #101216;
+   --blue-deep: #072066;
+   --t3-accent: #2f80ed;
+   --t3-accent-deep: #0a1733;
+   --t3-text: #f4f6fa;
+   --t3-muted: #98a0ad;
+   --t3-line: rgb(255 255 255 / 16%);
+}
+
+.hs {
+   --blue: #1e88e5;
+   --blue-deep: #072066;
+   --blue-light: #64b5f6;
+   --accent: #2196f3;
+   --white: #fff;
+   --off: #f4f6f9;
+   --gray: #9e9e9e;
+   --dark: #424242;
+   --dur: 900ms;
+   --ease: cubic-bezier(0.77, 0, 0.175, 1);
+}
+$font-weight-default: 400;
+$transition-in-out: 0.3s ease-in-out;
+
+// * ─────────────────── Мини-reset ───────────────────
+html {
+   counter-reset: heading;
+   scroll-behavior: smooth;
+   height: 100%;
+
+   font: {
+      size: 62.5%;
+
+      style: normal;
+   }
+
+   @include screen-1440 {
+      font-size: 50%;
+   }
+}
+
+body {
+   overscroll-behavior: none;
+
+   font: 1.6rem/1.6rem var(--font-family);
+   font-weight: $font-weight-default;
+   line-height: 1.3;
+   color: var(--t3-text);
+
+   background: var(--t3-bg);
+
+   -webkit-font-smoothing: antialiased;
+
+   &.no-scroll {
+      overflow: hidden;
+   }
+
+   img {
+      display: block;
+      max-width: 100%;
+   }
+
+   a {
+      color: inherit;
+      text-decoration: none;
+   }
+
+   button {
+      font: inherit;
+   }
+}
+
+* {
+   // scrollbar-width: none;
+
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+   border: none;
+
+   -webkit-tap-highlight-color: transparent;
+
+   &::before,
+   &::after {
+      box-sizing: border-box;
+   }
+}
+// * Изменить стиль полосы прокрутки (scrollbar)
+::-webkit-scrollbar {
+   position: fixed;
+   width: 0.4rem;
+   height: 0.4rem;
+   padding: 0.031em;
+}
+
+::-webkit-scrollbar-track {
+   background-color: var(--blue-deep);
+}
+
+::-webkit-scrollbar-thumb {
+   border: 0 solid transparent;
+   border-radius: 2px;
+   background-color: var(--t3-accent);
+}
+[class*='container'] {
+   box-sizing: border-box;
+   width: 100%;
+   max-width: 1440px;
+   margin: 0 auto;
+   padding: 0 2rem;
+
+   @include screen-490 {
+      padding: 0 10px;
+   }
+}
+
+// * ─────────────────── Шапка ───────────────────
+.tmpl3-header {
+   position: fixed;
+   z-index: 50;
+   top: 0;
+   right: 0;
+   left: 0;
+
+   transition: background-color $transition-in-out;
+
+   &.is-scrolled {
+      background: rgb(5 5 7 / 88%);
+      box-shadow: 0 1px 0 var(--t3-line);
+   }
+
+   &__inner {
+      display: flex;
+      gap: 2.4rem;
+      align-items: center;
+
+      width: 100%;
+      max-width: 1440px;
+      margin-inline: auto;
+      padding: 1.6rem clamp(1.6rem, 4vw, 4.8rem);
+   }
+
+   &__logo {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+
+      margin-right: auto;
+
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--t3-accent);
+      letter-spacing: 0.02em;
+
+      span {
+         color: var(--t3-text);
+      }
+   }
+
+   &__nav {
+      display: flex;
+      gap: 3.2rem;
+      align-items: center;
+   }
+
+   &__link {
+      position: relative;
+
+      font-size: 1.4rem;
+      color: var(--t3-text);
+      white-space: nowrap;
+
+      transition: color $transition-in-out;
+
+      // * Каретка-выпадайка у пунктов с подпунктом
+      &--drop {
+         padding-right: 1.4rem;
+
+         &::after {
+            content: '';
+
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-70%) rotate(45deg);
+
+            width: 0.7rem;
+            height: 0.7rem;
+            border-right: 1.5px solid currentcolor;
+            border-bottom: 1.5px solid currentcolor;
+         }
+      }
+
+      &:hover {
+         color: var(--t3-accent);
+      }
+   }
+
+   &__cta {
+      padding: 1.2rem 2.6rem;
+   }
+}
+
+.tmpl3-burger {
+   cursor: pointer;
+
+   display: none;
+
+   width: 4rem;
+   height: 4rem;
+   border: 0;
+
+   background: transparent;
+
+   span {
+      display: block;
+
+      height: 2px;
+      margin: 0.7rem 0.8rem;
+
+      background: var(--t3-text);
+
+      transition:
+         transform $transition-in-out,
+         opacity $transition-in-out;
+   }
+
+   @include screen-900 {
+      display: block;
+   }
+}
+
+.hs {
+   position: relative;
+
+   width: 100%;
+   min-width: 320px;
+   height: 92vh;
+}
+
+@include screen-900 {
+   .tmpl3-header__nav {
+      position: fixed;
+      inset: 0;
+
+      display: none;
+      flex-direction: column;
+      gap: 3.2rem;
+      align-items: center;
+      justify-content: center;
+
+      background: rgb(5 5 7 / 96%);
+
+      &._open {
+         display: flex;
+      }
+   }
+
+   .tmpl3-header.nav-open .tmpl3-burger {
+      span {
+         &:nth-child(1) {
+            transform: translateY(0.9rem) rotate(45deg);
+         }
+
+         &:nth-child(2) {
+            opacity: 0;
+         }
+
+         &:nth-child(3) {
+            transform: translateY(-0.9rem) rotate(-45deg);
+         }
+      }
+   }
+
+   .tmpl3-header__cta {
+      display: none;
+   }
+}
+
+.tmpl3-bg {
+   pointer-events: none;
+   position: fixed;
+   z-index: 0;
+   inset: 0;
+
+   &::before {
+      content: '';
+
+      position: absolute;
+      top: 30%;
+      left: -12%;
+
+      width: 56vw;
+      height: 56vw;
+      border-radius: 50%;
+
+      background: radial-gradient(
+         circle,
+         rgb(47 128 237 / 14%) 0%,
+         transparent 62%
+      );
+   }
+}
+
+// * ─────────────────── Hero-слайдер ───────────────────
+.tmpl3-top {
+   position: relative;
+   top: 80px;
+}
+
+.tmpl3-hs {
+   position: relative;
+   height: calc(100vh - 80px);
+   min-height: 72rem;
+}
+
+// * Диагональная синяя панель под фотографиями слайдов
+.tmpl3-hs__bg-panel {
+   position: absolute;
+   z-index: 0;
+   top: 0;
+   right: 0;
+
+   overflow: hidden;
+
+   width: 58%;
+
+   //   height: calc(100% - 80px);
+   height: 100%;
+
+   background: var(--blue-deep);
+   clip-path: polygon(8% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+.tmpl3-hs__track {
+   position: relative;
+   width: 100%;
+   height: 100%;
+}
+
+// * ─────────────────── Слайд ───────────────────
+.hs-slide {
+   position: absolute;
+   z-index: 1;
+   inset: 0;
+
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+
+   visibility: hidden;
+   opacity: 0;
+
+   transition:
+      opacity 0.7s ease,
+      visibility 0.7s ease;
+
+   &.is-active {
+      visibility: visible;
+      opacity: 1;
+   }
+
+   @include screen-820 {
+      gap: 6rem;
+      grid-template-columns: 1fr;
+      grid-template-rows: 500px 200px;
+   }
+}
+
+.hs-left {
+   position: relative;
+   z-index: 3;
+
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+
+   padding: 0 48px 80px 64px;
+}
+
+// * Призрачный номер слайда за контентом
+.hs-index {
+   pointer-events: none;
+
+   position: absolute;
+   top: -14rem;
+   left: -2rem;
+
+   font-size: clamp(16rem, 22vw, 26rem);
+   font-weight: 800;
+   line-height: 1;
+   color: rgb(255 255 255 / 6%);
+}
+
+.hs-label {
+   display: flex;
+   gap: 1.2rem;
+   align-items: center;
+   margin-bottom: 2rem;
+
+   &-dot {
+      width: 0.8rem;
+      height: 0.8rem;
+      border-radius: 50%;
+      background: var(--t3-accent);
+   }
+
+   &-text {
+      font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+      font-size: 1.3rem;
+      color: var(--t3-text);
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+   }
+}
+
+.hs-title {
+   margin-bottom: 2.4rem;
+
+   font-size: clamp(3.2rem, 5.6vw, 5.2rem);
+   font-weight: 800;
+   line-height: 1.08;
+   color: var(--t3-text);
+
+   span {
+      color: var(--t3-accent);
+   }
+}
+
+.hs-desc {
+   max-width: 42rem;
+   margin-bottom: 3.6rem;
+
+   font-size: 1.6rem;
+   line-height: 1.7;
+   color: var(--t3-muted);
+}
+
+.hs-btns {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 2.8rem;
+   align-items: center;
+}
+
+.hs-btn-a {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+
+   padding: 1.5rem 3rem;
+   border: 1px solid var(--t3-accent);
+   border-radius: 0.4rem;
+
+   font-size: 1.4rem;
+   font-weight: 600;
+   color: #fff;
+
+   background: var(--t3-accent);
+
+   transition: background-color $transition-in-out;
+
+   &:hover {
+      background: #1f6fe0;
+   }
+}
+
+.hs-btn-b {
+   display: inline-flex;
+   gap: 1rem;
+   align-items: center;
+
+   font-size: 1.4rem;
+   font-weight: 600;
+   color: var(--t3-text);
+
+   svg {
+      width: 1.8rem;
+      height: 1.8rem;
+
+      fill: none;
+      stroke: var(--t3-accent);
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 1.8;
+
+      transition: translate $transition-in-out;
+   }
+
+   &:hover svg {
+      translate: 0.5rem 0;
+   }
+}
+
+.hs-slide:not(.is-active) .hs-img {
+   //   transform: translateX(30px);
+   transform: scale(0.98);
+   opacity: 0;
+}
+
+.hs-slide.is-active .hs-img {
+   transform: scale(1);
+   opacity: 0.55;
+}
+
+.hs-slide .hs-img {
+   //   animation: hs-img-in var(--dur) var(--ease) both;
+}
+
+@keyframes hs-img-in {
+   from {
+      transform: scale(1.08);
+      opacity: 0;
+   }
+
+   to {
+      transform: scale(1);
+      opacity: 0.55;
+   }
+}
+
+.hs-right {
+   position: relative;
+   z-index: 3;
+   overflow: hidden;
+   height: 100%;
+
+   &::before {
+      pointer-events: none;
+      content: '';
+
+      position: absolute;
+      z-index: 4;
+      inset: 0;
+
+      background:
+         linear-gradient(to right, var(--blue-deep) 0%, transparent 30%),
+         linear-gradient(to top, var(--blue-deep) 0%, transparent 40%);
+   }
+
+   // * Фотография закрывает панель целиком, до самого правого края
+   .hs-img {
+      will-change: transform, opacity;
+
+      position: absolute;
+      inset: 0;
+
+      width: 100%;
+      height: 100%;
+
+      opacity: 0.55;
+      object-fit: cover;
+      object-position: center top;
+
+      transition:
+         opacity 0.8s var(--ease),
+         transform 0.8s var(--ease);
+   }
+
+   // * Синий duotone поверх фотографии
+   .hs-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgb(47 128 237 / 42%);
+      mix-blend-mode: multiply;
+   }
+
+   .hs-card {
+      position: absolute;
+      bottom: 12rem;
+      left: 6rem;
+   }
+}
+
+.hs-card-num {
+   font-size: 6.4rem;
+   font-weight: 800;
+   line-height: 1;
+   color: rgb(255 255 255 / 85%);
+}
+
+.hs-card-label {
+   margin-top: 0.6rem;
+
+   font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+   font-size: 1.3rem;
+   color: rgb(255 255 255 / 70%);
+   text-transform: uppercase;
+   letter-spacing: 0.14em;
+}
+
+// * Смена слайда: контент выезжает каскадом
+.hs-left > * {
+   transform: translateX(3.2rem);
+   opacity: 0;
+   transition:
+      opacity 0.6s ease,
+      transform 0.6s ease;
+}
+
+.hs-slide.is-active .hs-left > * {
+   transform: none;
+   opacity: 1;
+}
+
+.hs-slide.is-active .hs-left > :nth-child(2) {
+   transition-delay: 0.12s;
+}
+
+.hs-slide.is-active .hs-left > :nth-child(3) {
+   transition-delay: 0.24s;
+}
+
+.hs-slide.is-active .hs-left > :nth-child(4) {
+   transition-delay: 0.36s;
+}
+
+.hs-slide.is-active .hs-left > :nth-child(5) {
+   transition-delay: 0.48s;
+}
+
+.hs-img-wrap {
+   position: absolute;
+   inset: 0;
+}
+
+// .hs-slide.is-active .hs-img-wrap,
+// .hs-slide.is-active .hs-overlay {
+//   opacity: 1;
+// }
+
+// * ─────────────────── Нижняя полоса ───────────────────
+.tmpl3-hs__bar {
+   position: absolute;
+   z-index: 5;
+   right: 0;
+   bottom: 0;
+   left: 0;
+
+   display: flex;
+   align-items: stretch;
+   justify-content: space-between;
+}
+
+// * Белый блок соцсетей в углу
+.tmpl3-hs__soc-block {
+   display: flex;
+   gap: 2.4rem;
+   align-items: center;
+
+   padding: 2rem 3.2rem;
+   border-top-right-radius: 1.2rem;
+
+   background: #fff;
+}
+
+.tmpl3-hs__soc {
+   display: grid;
+   place-items: center;
+
+   svg {
+      width: 1.8rem;
+      height: 1.8rem;
+      fill: #101216;
+      transition: fill $transition-in-out;
+   }
+
+   &:hover svg {
+      fill: var(--t3-accent);
+   }
+}
+
+.tmpl3-hs__nav {
+   display: flex;
+   gap: 3.2rem;
+   align-items: center;
+   padding-inline: 4rem;
+}
+
+.tmpl3-hs__nav-arr {
+   display: flex;
+   gap: 1.6rem;
+   align-items: center;
+}
+
+.tmpl3-hs-arr {
+   cursor: pointer;
+
+   display: grid;
+   place-items: center;
+
+   width: 4.6rem;
+   height: 4.6rem;
+   border: 1px solid rgb(255 255 255 / 40%);
+   border-radius: 50%;
+
+   background: transparent;
+
+   transition:
+      border-color $transition-in-out,
+      background-color $transition-in-out;
+
+   svg {
+      width: 1.8rem;
+      height: 1.8rem;
+
+      fill: none;
+      stroke: #fff;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 1.8;
+   }
+
+   &:hover {
+      border-color: var(--t3-accent);
+      background: rgb(47 128 237 / 18%);
+   }
+}
+
+.tmpl3-hs__count {
+   font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+   font-size: 1.6rem;
+   color: #fff;
+}
+
+.tmpl3-hs__count-sep {
+   color: rgb(255 255 255 / 45%);
+}
+
+.tmpl3-hs__dots {
+   display: flex;
+   gap: 0.9rem;
+   align-items: center;
+}
+
+.tmpl3-hs__dot {
+   cursor: pointer;
+
+   width: 0.9rem;
+   height: 0.9rem;
+   padding: 0;
+   border: 0;
+   border-radius: 99px;
+
+   background: rgb(255 255 255 / 35%);
+
+   transition:
+      background-color $transition-in-out,
+      width $transition-in-out;
+
+   &.is-active {
+      width: 2.6rem;
+      background: var(--t3-accent);
+   }
+}
+
+// * Бегущая строка логотипов
+.tmpl3-hs__logos {
+   overflow: hidden;
+   flex: 1;
+
+   padding-block: 1.6rem;
+
+   background: var(--blue-deep);
+
+   mask-image: linear-gradient(
+      90deg,
+      transparent,
+      #000 10%,
+      #000 90%,
+      transparent
+   );
+}
+
+.tmpl3-hs__logos-track {
+   display: flex;
+   gap: 5.6rem;
+   align-items: center;
+
+   width: max-content;
+
+   animation: tmpl3-marquee 30s linear infinite;
+}
+
+.tmpl3-hs__logos:hover .tmpl3-hs__logos-track {
+   animation-play-state: paused;
+}
+
+.tmpl3-hs__logo {
+   font-size: 1.8rem;
+   font-weight: 700;
+   color: rgb(255 255 255 / 35%);
+   letter-spacing: 0.08em;
+   white-space: nowrap;
+}
+
+@keyframes tmpl3-marquee {
+   to {
+      translate: -50% 0;
+   }
+}
+
+// * ─────────────────── Адаптив ───────────────────
+@include screen-1100 {
+   .tmpl3-hs__logos {
+      display: none;
+   }
+}
+
+@include screen-900 {
+   .hs-left {
+      width: 100%;
+      padding-inline: 2rem;
+   }
+
+   .tmpl3-hs__soc-block {
+      padding: 1.6rem 2rem;
+   }
+
+   .tmpl3-hs__nav {
+      padding-inline: 1.6rem;
+   }
+}
+
+// * ─────────────────── Кнопки ───────────────────
+.tmpl3-btn {
+   cursor: pointer;
+
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+
+   padding: 1.3rem 2.6rem;
+   border: 1px solid transparent;
+   border-radius: 0.6rem;
+
+   font-size: 1.4rem;
+   font-weight: 600;
+   color: #fff;
+
+   transition: background-color $transition-in-out;
+
+   &--solid {
+      background: var(--t3-accent);
+
+      &:hover {
+         background: #1f6fe0;
+      }
+   }
+}
+
+// * ─────────────────── Услуги ───────────────────
+.tmpl3-services {
+   padding-block: clamp(6rem, 10vw, 10rem);
+   background: var(--t3-dark);
+}
+
+.tmpl3-services__inner {
+   max-width: 1500px;
+   margin-inline: auto;
+   padding-inline: clamp(1.6rem, 4vw, 4.8rem);
+}
+
+.tmpl3-services__head {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 2rem 3.2rem;
+   align-items: center;
+   justify-content: space-between;
+
+   margin-bottom: 4.8rem;
+}
+
+.tmpl3-services__title {
+   font-size: clamp(2.8rem, 3.4vw, 3.8rem);
+   font-weight: 800;
+   color: var(--t3-text);
+}
+
+.tmpl3-services__grid {
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   gap: 2.4rem;
+
+   @include screen-1100 {
+      grid-template-columns: repeat(2, 1fr);
+   }
+
+   @include screen-680 {
+      grid-template-columns: 1fr;
+   }
+}
+
+.tmpl3-services__card {
+   display: flex;
+   flex-direction: column;
+   gap: 1.6rem;
+   align-items: center;
+
+   padding: 4.8rem 2.8rem 4rem;
+   border: 1px solid var(--t3-line);
+
+   text-align: center;
+
+   background: rgb(255 255 255 / 2%);
+
+   transition:
+      transform $transition-in-out,
+      border-color $transition-in-out,
+      box-shadow $transition-in-out;
+
+   &:hover {
+      transform: translateY(-0.6rem);
+      border-color: var(--t3-accent);
+      box-shadow: 0 20px 48px -20px rgb(47 128 237 / 35%);
+
+      .tmpl3-services__icon {
+         filter: drop-shadow(0 0 1.2rem rgb(47 128 237 / 60%));
+      }
+   }
+}
+
+.tmpl3-services__icon {
+   width: 7.2rem;
+   height: 7.2rem;
+   color: var(--t3-accent);
+   transition: filter $transition-in-out;
+}
+
+.tmpl3-services__name {
+   font-size: 2rem;
+   font-weight: 700;
+   color: var(--t3-text);
+}
+
+.tmpl3-services__desc {
+   font-size: 1.5rem;
+   line-height: 1.6;
+   color: var(--t3-muted);
+}
+
+// * Каскад появления карточек
+.tmpl3-services__grid > :nth-child(2) {
+   --anim-delay: 0.15s;
+}
+
+.tmpl3-services__grid > :nth-child(3) {
+   --anim-delay: 0.3s;
+}
+
+.tmpl3-services__grid > :nth-child(5) {
+   --anim-delay: 0.15s;
+}
+
+.tmpl3-services__grid > :nth-child(6) {
+   --anim-delay: 0.3s;
+}
+
+.tmpl3 [data-anim] {
+   transform: translateY(2.6rem);
+   opacity: 0;
+   transition:
+      opacity 0.7s ease-out var(--anim-delay, 0s),
+      transform 0.7s ease-out var(--anim-delay, 0s);
+
+   &.in {
+      transform: none;
+      opacity: 1;
+   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+   .tmpl3-hs__logos-track {
+      animation: none;
+   }
+
+   .hs-slide,
+   .hs-left > *,
+   .hs-right .hs-img-wrap,
+   .hs-right .hs-overlay,
+   .tmpl3-hs__dot {
+      transition: none;
+   }
+}
+
+// * ─────────────────── Мобильный адаптив слайдера ───────────────────
+@include screen-820 {
+   // * Текст: компактные отступы, центрирование в своей строке
+   .hs-left {
+      justify-content: center;
+      padding: 0 2rem;
+   }
+
+   .hs-index {
+      top: -7rem;
+      left: -1rem;
+      font-size: 10rem;
+   }
+
+   .hs-title {
+      font-size: clamp(3.2rem, 9vw, 4rem);
+   }
+
+   .hs-desc {
+      max-width: none;
+   }
+
+   // * Карточка статистики — в границах фото-строки
+   .hs-right .hs-card {
+      bottom: 2rem;
+      left: 2rem;
+   }
+
+   .hs-card-num {
+      font-size: 4.4rem;
+   }
+
+   // * Нижняя полоса: компактно, чтобы всё влезло в 390px
+   .tmpl3-hs__soc-block {
+      gap: 1.6rem;
+      padding: 1.4rem 1.8rem;
+   }
+
+   .tmpl3-hs__nav {
+      gap: 1.6rem;
+      padding-inline: 1.2rem;
+   }
+
+   .tmpl3-hs-arr {
+      width: 3.8rem;
+      height: 3.8rem;
+   }
+
+   .tmpl3-hs__count {
+      font-size: 1.3rem;
+   }
+}
+
+@include screen-620 {
+   .hs-title {
+      font-size: 3.2rem;
+   }
+
+   .hs-index {
+      top: -5rem;
+      font-size: 8rem;
+   }
+
+   .tmpl3-hs__soc-block {
+      padding: 1.2rem 1.4rem;
+   }
+
+   .tmpl3-hs__soc svg {
+      width: 1.5rem;
+      height: 1.5rem;
+   }
+}

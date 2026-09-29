@@ -94,7 +94,7 @@ export default defineConfig(({ command }) => {
          rollupOptions: {
             input: {
                main: resolve(__dirname, 'src/js/main.js'),
-               // app: resolve(__dirname, 'src/js/app.js'),
+               app: resolve(__dirname, 'src/js/app.js'),
             },
             output: {
                entryFileNames: 'assets/[name].js',

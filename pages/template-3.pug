@@ -1,0 +1,234 @@
+//- Автономная демо-страница: собственные шапка, футер, кнопки и формы
+//- (не использует глобальные компоненты проекта)
+doctype html
+html(lang="ru")
+	head
+		meta(charset="UTF-8")
+		meta(name="viewport" content="width=device-width, initial-scale=1.0")
+		title ITAgency — масштабируемые AI-решения
+		link(rel="preconnect" href="https://fonts.googleapis.com")
+		link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin="")
+		link(href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap"
+			rel="stylesheet")
+		script(defer type="module" src="/src/js/templates/template-3.js")
+	body.tmpl3
+		canvas#particleCanvas
+		#page-loader.page-loader
+			.loader-container
+				.loader-content
+					.loader-spinner
+						.spinner-ring
+							div
+					.loader-progress
+						.progress-bar
+
+			//img.tmpl2-bg__hand(src="/img/template/template-2/hand-ia-bgremove.webp" alt="" loading="eager")
+		header.tmpl3-header#tmpl3-header
+			.tmpl3-header__inner
+				a.tmpl3-header__logo(href="#tmpl3-top")
+					svg.tmpl3-header__mark(width="38" height="38" viewBox="0 0 40 40" aria-hidden="true")
+						circle(cx="20" cy="20" r="19" fill="#2f80ed")
+						path(d="M12 15l9-4M12 15l15 6M21 11l4 10" stroke="#fff" stroke-width="1.6" fill="none")
+						circle(cx="12" cy="15" r="2.4" fill="#fff")
+						circle(cx="21" cy="11" r="2" fill="#fff")
+						circle(cx="27" cy="21" r="2.2" fill="#fff")
+					| ITA<span>gency</span>
+				nav.tmpl3-header__nav
+					a.tmpl3-header__link.tmpl3-header__link--drop(href="#tmpl3-top") Главная
+					a.tmpl3-header__link(href="#tmpl3-hs") О нас
+					a.tmpl3-header__link(href="#tmpl3-hs") Услуги
+					a.tmpl3-header__link(href="#tmpl3-hs") Портфолио
+					a.tmpl3-header__link.tmpl3-header__link--drop(href="#tmpl3-hs") Блог
+					a.tmpl3-header__link(href="#tmpl3-contact") Контакты
+				a.tmpl3-btn.tmpl3-btn--solid.tmpl3-header__cta(href="#tmpl3-contact") Получить смету
+				button.tmpl3-burger(type="button" aria-label="Меню")
+					span
+					span
+					span
+		main.tmpl3-top#tmpl3-top
+			//- ─────────── Hero-слайдер: диагональная панель + лента ───────────
+			section.tmpl3-hs#tmpl3-hs.hs
+				.tmpl3-hs__bg-panel
+				.tmpl3-hs__track
+					//- Слайд 1
+					.hs-slide.is-active(data-index="0")
+						.hs-left
+							.hs-index 01
+							.hs-label
+								.hs-label-dot
+								span.hs-label-text Цифровое агентство
+							h2.hs-title
+								| Раскрываем бренды
+								br
+								| с помощью
+								span  цифровой силы
+							p.hs-desc
+								| Помогаем бизнесу адаптироваться и расти: кастомные
+								|  цифровые стратегии, инновационные инструменты и
+								|  масштабируемые решения.
+							.hs-btns
+								a.hs-btn-a(href="#tmpl3-contact") Начать проект
+								a.hs-btn-b(href="#tmpl3-works")
+									| Наши услуги
+									svg(viewBox="0 0 24 24")
+										line(x1="5" y1="12" x2="19" y2="12")
+										polyline(points="12 5 19 12 12 19")
+						.hs-right
+							.hs-img-wrap
+								img.hs-img(src="/img/template/template-3/digital-agency.webp" alt="Цифровое агентство")
+							//.hs-overlay
+							.hs-card
+								.hs-card-num +320
+								.hs-card-label Проектов запущено
+					//- Слайд 2
+					.hs-slide(data-index="1")
+						.hs-left
+							.hs-index 02
+							.hs-label
+								.hs-label-dot
+								span.hs-label-text Цифровой маркетинг
+							h2.hs-title
+								| Маркетинг для вашего
+								br
+								span  растущего
+								|  бизнеса
+							p.hs-desc
+								| Ускоряем охват кампаниями на основе данных, креативным
+								|  контентом и стратегиями, построенными для измеримого роста.
+							.hs-btns
+								a.hs-btn-a(href="#tmpl3-contact") Начать сейчас
+								a.hs-btn-b(href="#tmpl3-works")
+									| Наше портфолио
+									svg(viewBox="0 0 24 24")
+										line(x1="5" y1="12" x2="19" y2="12")
+										polyline(points="12 5 19 12 12 19")
+						.hs-right
+							.hs-img-wrap
+								img.hs-img(src="/img/template/template-3/digital-marketing.webp" alt="Цифровой маркетинг")
+							//.hs-overlay
+							.hs-card
+								.hs-card-num 98%
+								.hs-card-label Довольных клиентов
+					//- Слайд 3
+					.hs-slide(data-index="2")
+						.hs-left
+							.hs-index 03
+							.hs-label
+								.hs-label-dot
+								span.hs-label-text Технологии и AI
+							h2.hs-title
+								| Масштабируемые
+								span  AI
+								| -решения
+								br
+								| для современных команд
+							p.hs-desc
+								| Внедряем искусственный интеллект, чтобы автоматизировать
+								|  процессы, открывать инсайты и создавать умные продукты.
+							.hs-btns
+								a.hs-btn-a(href="#tmpl3-contact") Подробнее
+								a.hs-btn-b(href="#tmpl3-works")
+									| Смотреть кейсы
+									svg(viewBox="0 0 24 24")
+										line(x1="5" y1="12" x2="19" y2="12")
+										polyline(points="12 5 19 12 12 19")
+						.hs-right
+							.hs-img-wrap
+								img.hs-img(src="/img/template/template-3/technology-ia.webp" alt="Технологии и AI")
+							//.hs-overlay
+							.hs-card
+								.hs-card-num 12x
+								.hs-card-label Быстрее автоматизация
+				//- ─────────── Нижняя полоса: соцсети, навигация, логотипы ───────────
+				.tmpl3-hs__bar
+					.tmpl3-hs__soc-block
+						a.tmpl3-hs__soc(href="#" aria-label="Facebook")
+							svg(viewBox="0 0 24 24")
+								path(d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z")
+						a.tmpl3-hs__soc(href="#" aria-label="Twitter")
+							svg(viewBox="0 0 24 24")
+								path(d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.29 4.87A12.81 12.81 0 0 1 1.64 3.16a4.52 4.52 0 0 0 1.4 6.04 4.47 4.47 0 0 1-2.04-.49v.06a4.52 4.52 0 0 0 3.62 4.43 4.51 4.51 0 0 1-2.04.08 4.53 4.53 0 0 0 4.22 3.14A9.06 9.06 0 0 1 1 19.54 12.77 12.77 0 0 0 7.9 21.5c8.26 0 12.78-6.84 12.78-12.77 0-.19-.01-.39-.01-.58A9.14 9.14 0 0 0 23 3z")
+						a.tmpl3-hs__soc(href="#" aria-label="LinkedIn")
+							svg(viewBox="0 0 24 24")
+								path(d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4V9h4v2a6 6 0 0 1 6-3zM2 9h4v12H2z")
+								circle(cx="4" cy="4" r="2")
+					.tmpl3-hs__nav
+						.tmpl3-hs__nav-arr
+							button#hsArr-prev.tmpl3-hs-arr(type="button" aria-label="Предыдущий слайд")
+								svg(viewBox="0 0 24 24")
+									polyline(points="15 18 9 12 15 6")
+							span.tmpl3-hs__count
+								span#hsNum 1
+								span.tmpl3-hs__count-sep /
+								| 3
+							button#hsArr-next.tmpl3-hs-arr(type="button" aria-label="Следующий слайд")
+								svg(viewBox="0 0 24 24")
+									polyline(points="9 18 15 12 9 6")
+						.tmpl3-hs__dots
+							button.tmpl3-hs__dot.is-active(type="button" aria-label="Слайд 1")
+							button.tmpl3-hs__dot(type="button" aria-label="Слайд 2")
+							button.tmpl3-hs__dot(type="button" aria-label="Слайд 3")
+					.tmpl3-hs__logos
+						.tmpl3-hs__logos-track
+							- for (let i = 0; i < 2; i++)
+							span.tmpl3-hs__logo LOREM IPSUM
+							span.tmpl3-hs__logo LOREM IPSUM
+							span.tmpl3-hs__logo LOREM IPSUM
+							span.tmpl3-hs__logo LOREM IPSUM
+							span.tmpl3-hs__logo LOREM IPSUM
+							span.tmpl3-hs__logo LOREM IPSUM
+							span.tmpl3-hs__logo LOREM IPSUM
+							span.tmpl3-hs__logo LOREM IPSUM
+							span.tmpl3-hs__logo LOREM IPSUM
+							span.tmpl3-hs__logo LOREM IPSUM
+							span.tmpl3-hs__logo LOREM IPSUM
+							span.tmpl3-hs__logo LOREM IPSUM
+
+			//- ───────────────────── Услуги ─────────────────────
+			section.tmpl3-services.tmpl3-dark
+				.container.tmpl3-services__inner
+					.tmpl3-services__head
+						h2.tmpl3-services__title(data-anim) Наши услуги
+						a.tmpl3-btn.tmpl3-btn--solid.tmpl3-services__cta(href="#") Все услуги
+					.tmpl3-services__grid
+						article.tmpl3-services__card(data-anim)
+							svg.tmpl3-services__icon(viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round")
+								rect(x="2" y="4" width="20" height="13" rx="1.5")
+								path(d="M8 21h8M12 17v4")
+								path(d="M10.5 8.5 8 10.5l2.5 2M13.5 8.5l2.5 2-2.5 2")
+							h3.tmpl3-services__name Веб-разработка
+							p.tmpl3-services__desc Профессиональные веб-решения на современных технологиях с адаптивным дизайном.
+						article.tmpl3-services__card(data-anim)
+							svg.tmpl3-services__icon(viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round")
+								rect(x="6" y="2" width="12" height="20" rx="2.5")
+								path(d="M10.5 19h3")
+							h3.tmpl3-services__name Разработка мобильных приложений
+							p.tmpl3-services__desc Нативные и кроссплатформенные приложения для iOS и Android.
+						article.tmpl3-services__card(data-anim)
+							svg.tmpl3-services__icon(viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round")
+								path(d="M17.5 18a4.5 4.5 0 0 0 0-9 6 6 0 0 0-11.4 1.6A4 4 0 0 0 6 18.5")
+								path(d="M9 18v-2.4a1.5 1.5 0 0 1 1.5-1.5h3a1.5 1.5 0 0 1 1.5 1.5V18")
+							h3.tmpl3-services__name Облачные решения
+							p.tmpl3-services__desc Масштабируемая облачная инфраструктура и деплой для вашего бизнеса.
+						article.tmpl3-services__card(data-anim)
+							svg.tmpl3-services__icon(viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round")
+								rect(x="2" y="5" width="20" height="12" rx="1.5")
+								path(d="M8 21h8M12 17v4")
+								text(x="12" y="13.5" text-anchor="middle" fill="currentColor" stroke="none" style="font: 700 5px var(--font-family)") SEO
+							h3.tmpl3-services__name Цифровой маркетинг
+							p.tmpl3-services__desc Стратегические кампании для усиления онлайн-присутствия.
+						article.tmpl3-services__card(data-anim)
+							svg.tmpl3-services__icon(viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round")
+								path(d="M5 5h5M14 5h5M7.5 5v4.5M16.5 5v4.5")
+								circle(cx="7.5" cy="13" r="3.5")
+								circle(cx="16.5" cy="13" r="3.5")
+								path(d="M11 13h2M7.5 16.5V19M16.5 16.5V19M7.5 19h3M13.5 19h3")
+							h3.tmpl3-services__name UX/UI дизайн
+							p.tmpl3-services__desc Интерфейсы, ориентированные на пользователя, которые вовлекают и конвертируют.
+						article.tmpl3-services__card(data-anim)
+							svg.tmpl3-services__icon(viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round")
+								ellipse(cx="12" cy="5.5" rx="8" ry="3")
+								path(d="M4 5.5V12c0 1.66 3.58 3 8 3s8-1.34 8-3V5.5")
+								path(d="M4 12v6.5c0 1.66 3.58 3 8 3s8-1.34 8-3V12")
+							h3.tmpl3-services__name Аналитика данных
+							p.tmpl3-services__desc Превращаем данные в практические инсайты для бизнес-решений.

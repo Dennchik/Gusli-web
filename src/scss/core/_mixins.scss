@@ -66,6 +66,16 @@
    }
 }
 
+@mixin screen-1100 {
+   @media screen and (width < 1100px) {
+      :root {
+         --mq-header-size: big;
+      }
+
+      @content;
+   }
+}
+
 @mixin screen-1024 {
    @media screen and (width < 1024px) {
       :root {
@@ -106,6 +116,14 @@
    }
 }
 
+@mixin screen-900 {
+   @media screen and (width < 900px) {
+      :root {
+         --mq-header-size: big;
+      }
+      @content;
+   }
+}
 @mixin screen-840 {
    @media screen and (width < 840px) {
       :root {
@@ -144,6 +162,12 @@
 
 @mixin screen-690 {
    @media screen and (width < 690px) {
+      @content;
+   }
+}
+
+@mixin screen-680 {
+   @media screen and (width < 680px) {
       @content;
    }
 }

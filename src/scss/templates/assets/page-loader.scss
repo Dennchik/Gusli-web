@@ -1,0 +1,216 @@
+.page-loader {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100vh;
+   background: #072066;
+   z-index: 999;
+   opacity: 1;
+   visibility: visible;
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   align-items: center;
+   flex-wrap: nowrap;
+   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+
+   &.preloader-remove {
+      display: none;
+   }
+}
+.page-loader::before {
+   content: '';
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background-image:
+      linear-gradient(rgba(30, 136, 229, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(30, 136, 229, 0.1) 1px, transparent 1px);
+   background-size: 50px 50px;
+   animation: gridMove 20s linear infinite;
+   opacity: 0.3;
+}
+.loader-container {
+   text-align: center;
+   color: #ffffff;
+   animation: fadeInUp 0.8s ease-out;
+   position: relative;
+   z-index: 2;
+}
+.loader-content {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   flex-wrap: nowrap;
+   gap: 1.5rem;
+}
+.loader-spinner {
+   position: relative;
+   width: 120px;
+   height: 120px;
+}
+.spinner-ring {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+}
+.spinner-ring::before {
+   content: '';
+   position: absolute;
+   width: 120px;
+   height: 120px;
+   border: 2px solid transparent;
+   border-top: 2px solid #64b5f6;
+   border-right: 2px solid #64b5f6;
+   border-radius: 50%;
+   animation: spinnerRotate 2s linear infinite;
+   filter: drop-shadow(0 0 10px rgba(100, 181, 246, 0.6));
+}
+
+.spinner-ring::after {
+   content: '';
+   position: absolute;
+   top: 15px;
+   left: 15px;
+   width: 90px;
+   height: 90px;
+   border: 2px solid transparent;
+   border-bottom: 2px solid #1e88e5;
+   border-left: 2px solid #1e88e5;
+   border-radius: 50%;
+   animation: spinnerRotate 1.5s linear infinite reverse;
+   filter: drop-shadow(0 0 8px rgba(30, 136, 229, 0.8));
+}
+
+.spinner-ring div {
+   position: absolute;
+   top: 30px;
+   left: 30px;
+   width: 60px;
+   height: 60px;
+   border: 1px solid transparent;
+   border-top: 1px solid #ffffff;
+   border-radius: 50%;
+   animation: spinnerRotate 1s linear infinite;
+   filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.9));
+}
+
+.spinner-ring div::before {
+   content: '';
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   width: 8px;
+   height: 8px;
+   background: #64b5f6;
+   border-radius: 50%;
+   transform: translate(-50%, -50%);
+   animation: centerPulse 1.5s ease-in-out infinite;
+   box-shadow: 0 0 15px rgba(100, 181, 246, 0.8);
+}
+@keyframes progressGlow {
+   0%,
+   100% {
+      opacity: 0.5;
+   }
+   50% {
+      opacity: 1;
+   }
+}
+
+.loader-progress {
+   width: 300px;
+   height: 4px;
+   background: rgba(255, 255, 255, 0.1);
+   border-radius: 10px;
+   overflow: hidden;
+   position: relative;
+   border: 1px solid rgba(30, 136, 229, 0.3);
+}
+.loader-progress::before {
+   content: '';
+   position: absolute;
+   top: -1px;
+   left: -1px;
+   right: -1px;
+   bottom: -1px;
+   background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(100, 181, 246, 0.5),
+      transparent
+   );
+   animation: progressScan 2s linear infinite;
+}
+
+.progress-bar {
+   height: 100%;
+   background: linear-gradient(90deg, #1e88e5, #64b5f6, #ffffff);
+   border-radius: 10px;
+   width: 0;
+   transition: width 0.3s ease;
+   position: relative;
+   box-shadow: 0 0 20px rgba(100, 181, 246, 0.6);
+}
+
+.progress-bar::after {
+   content: '';
+   position: absolute;
+   top: 0;
+   right: 0;
+   width: 20px;
+   height: 100%;
+   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8));
+   animation: progressGlow 1s ease-in-out infinite;
+}
+
+@keyframes gridMove {
+   0% {
+      transform: translate(0, 0);
+   }
+   100% {
+      transform: translate(50px, 50px);
+   }
+}
+@keyframes fadeInUp {
+   from {
+      opacity: 0;
+      transform: translateY(50px) scale(0.8);
+   }
+   to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+   }
+}
+@keyframes spinnerRotate {
+   0% {
+      transform: translate(-50%, -50%) rotate(0deg);
+   }
+   100% {
+      transform: translate(-50%, -50%) rotate(360deg);
+   }
+}
+@keyframes centerPulse {
+   0%,
+   100% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+   }
+   50% {
+      transform: translate(-50%, -50%) scale(1.8);
+      opacity: 0.6;
+   }
+}
+@keyframes progressScan {
+   0% {
+      transform: translateX(-100%);
+   }
+   100% {
+      transform: translateX(300px);
+   }
+}
