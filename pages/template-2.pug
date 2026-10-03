@@ -10,7 +10,8 @@ html(lang="ru")
 		link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin="")
 		link(href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet")
 		script(defer type="module" src="/src/js/templates/template-2.js")
-	body.tmpl2
+		script(defer type="module" src="/src/js/templates/template-3.js")
+	body.tmpl3
 		//- Статичный фон всей страницы: плексус-сетка + рука, не скроллится
 		.tmpl2-bg(aria-hidden="true")
 			svg.tmpl2-bg__plexus(viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" fill="none")
@@ -88,19 +89,590 @@ html(lang="ru")
 					.tmpl2-hero__actions(data-anim)
 						a.tmpl2-btn.tmpl2-btn--solid(href="#tmpl2-contact") Получить смету
 						a.tmpl2-btn.tmpl2-btn--navy(href="#tmpl2-works") Начать работу
-		//- ───────────────────── Footer ─────────────────────
-		footer.tmpl2-footer#tmpl2-contact
-			.tmpl2-footer__inner
-				.tmpl2-footer__brand
-					p.tmpl2-footer__logo ITA<span>gency</span>
-					p.tmpl2-footer__desc
-						| Студия дизайна и разработки. Страница собирается блоками —
-						|  новые секции добавляются перед футером.
-				.tmpl2-footer__col
-					p.tmpl2-footer__title Навигация
-					a.tmpl2-footer__link(href="#tmpl2-top") Главная
-					a.tmpl2-footer__link(href="#tmpl2-works") Работы
-					a.tmpl2-footer__link(href="#tmpl2-process") Процесс
-					a.tmpl2-footer__link(href="#tmpl2-top") Наверх
-			.tmpl2-footer__bottom
-				p.tmpl2-footer__copy © 2026 ITAgency
+			//- ───────────────────── Услуги ─────────────────────
+			section.tmpl3-services.tmpl3-dark
+				.container.tmpl3-services__inner
+					.tmpl3-services__head
+						h2.tmpl3-services__title(data-anim) Наши услуги
+						a.tmpl3-btn.tmpl3-btn--solid.tmpl3-services__cta(href="#") Все услуги
+					.tmpl3-services__grid
+						article.tmpl3-services__card(data-anim)
+							svg.tmpl3-services__icon(viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round")
+								rect(x="2" y="4" width="20" height="13" rx="1.5")
+								path(d="M8 21h8M12 17v4")
+								path(d="M10.5 8.5 8 10.5l2.5 2M13.5 8.5l2.5 2-2.5 2")
+							h3.tmpl3-services__name Веб-разработка
+							p.tmpl3-services__desc Профессиональные веб-решения на современных технологиях с адаптивным дизайном.
+						article.tmpl3-services__card(data-anim)
+							svg.tmpl3-services__icon(viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round")
+								rect(x="6" y="2" width="12" height="20" rx="2.5")
+								path(d="M10.5 19h3")
+							h3.tmpl3-services__name Разработка мобильных приложений
+							p.tmpl3-services__desc Нативные и кроссплатформенные приложения для iOS и Android.
+						article.tmpl3-services__card(data-anim)
+							svg.tmpl3-services__icon(viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round")
+								path(d="M17.5 18a4.5 4.5 0 0 0 0-9 6 6 0 0 0-11.4 1.6A4 4 0 0 0 6 18.5")
+								path(d="M9 18v-2.4a1.5 1.5 0 0 1 1.5-1.5h3a1.5 1.5 0 0 1 1.5 1.5V18")
+							h3.tmpl3-services__name Облачные решения
+							p.tmpl3-services__desc Масштабируемая облачная инфраструктура и деплой для вашего бизнеса.
+						article.tmpl3-services__card(data-anim)
+							svg.tmpl3-services__icon(viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round")
+								rect(x="2" y="5" width="20" height="12" rx="1.5")
+								path(d="M8 21h8M12 17v4")
+								text(x="12" y="13.5" text-anchor="middle" fill="currentColor" stroke="none" style="font: 700 5px var(--font-family)") SEO
+							h3.tmpl3-services__name Цифровой маркетинг
+							p.tmpl3-services__desc Стратегические кампании для усиления онлайн-присутствия.
+						article.tmpl3-services__card(data-anim)
+							svg.tmpl3-services__icon(viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round")
+								path(d="M5 5h5M14 5h5M7.5 5v4.5M16.5 5v4.5")
+								circle(cx="7.5" cy="13" r="3.5")
+								circle(cx="16.5" cy="13" r="3.5")
+								path(d="M11 13h2M7.5 16.5V19M16.5 16.5V19M7.5 19h3M13.5 19h3")
+							h3.tmpl3-services__name UX/UI дизайн
+							p.tmpl3-services__desc Интерфейсы, ориентированные на пользователя, которые вовлекают и конвертируют.
+						article.tmpl3-services__card(data-anim)
+							svg.tmpl3-services__icon(viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round")
+								ellipse(cx="12" cy="5.5" rx="8" ry="3")
+								path(d="M4 5.5V12c0 1.66 3.58 3 8 3s8-1.34 8-3V5.5")
+								path(d="M4 12v6.5c0 1.66 3.58 3 8 3s8-1.34 8-3V12")
+							h3.tmpl3-services__name Аналитика данных
+							p.tmpl3-services__desc Превращаем данные в практические инсайты для бизнес-решений.
+
+			//- ─────────── О компании: прогресс-бары + изображение ───────────
+			section.tmpl3-about#tmpl3-about
+				.tmpl3-about__inner
+					.tmpl3-about__content
+						p.section-subtitle.tmpl3-about__subtitle(data-anim) О нашей компании
+						h2.section-title.tmpl3-about__title(data-anim)
+							| Мы увлечены качеством,
+							br
+							| которое выводит
+							span  ваш бизнес
+							|  на новый уровень.
+						p.tmpl3-about__desc(data-anim)
+							| Мы соединяем стратегию, дизайн и технологии: каждый проект
+							|  начинаем с исследования, а сдаём только то, что измеримо
+							|  усиливает ваш бизнес.
+						.tmpl3-about__skills(data-anim)
+							.tmpl3-skill
+								.tmpl3-skill__head
+									span.tmpl3-skill__name IT-консалтинг
+									b.tmpl3-skill__value 90%
+								.tmpl3-skill__bar
+									span.tmpl3-skill__fill(style="--w: 90%")
+							.tmpl3-skill
+								.tmpl3-skill__head
+									span.tmpl3-skill__name Веб-разработка
+									b.tmpl3-skill__value 75%
+								.tmpl3-skill__bar
+									span.tmpl3-skill__fill(style="--w: 75%")
+							.tmpl3-skill
+								.tmpl3-skill__head
+									span.tmpl3-skill__name UX/UI дизайн
+									b.tmpl3-skill__value 70%
+								.tmpl3-skill__bar
+									span.tmpl3-skill__fill(style="--w: 70%")
+					.tmpl3-about__media(data-anim)
+						img(src="/img/template/template-3/computer-code.webp" alt="Работа над проектом")
+
+			//- ─────────── Процесс: 4 шага вокруг круглого фото ───────────
+			section.tmpl3-process#tmpl3-process
+				.tmpl3-process__inner
+					.tmpl3-step.tmpl3-step--1(data-anim)
+						.tmpl3-step__icon
+							svg(viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round")
+								polyline(points="8 6 3 12 8 18")
+								polyline(points="16 6 21 12 16 18")
+								line(x1="13.5" y1="5" x2="10.5" y2="19")
+						.tmpl3-step__body
+							h3.tmpl3-step__title 1. Мы исследуем и планируем
+							p.tmpl3-step__desc
+								| Анализируем требования и создаём комплексную стратегию,
+								|  tailored под цели вашего бизнеса.
+					figure.tmpl3-process__media(data-anim)
+						img(src="/img/template/template-3/process.webp" alt="Процесс работы")
+					.tmpl3-step.tmpl3-step--2(data-anim)
+						.tmpl3-step__icon
+							svg(viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round")
+								rect(x="2" y="4" width="20" height="13" rx="1.5")
+								path(d="M8 21h8M12 17v4")
+								polyline(points="10.5 8.5 8 10.5 10.5 12.5")
+								polyline(points="13.5 8.5 16 10.5 13.5 12.5")
+						.tmpl3-step__body
+							h3.tmpl3-step__title 2. Совместно создаём и разрабатываем
+							p.tmpl3-step__desc
+								| Работая вместе, мы строим инновационные решения на
+								|  передовых технологиях и лучших практиках.
+					.tmpl3-step.tmpl3-step--3(data-anim)
+						.tmpl3-step__icon
+							svg(viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round")
+								path(d="M12 22s8-3.5 8-10V5l-8-3-8 3v7c0 6.5 8 10 8 10z")
+								polyline(points="9 11.5 11.2 13.7 15.5 9.5")
+						.tmpl3-step__body
+							h3.tmpl3-step__title 3. Сопровождаем и гарантируем
+							p.tmpl3-step__desc
+								| Обеспечиваем поддержку и обслуживание, чтобы ваше
+								|  решение работало оптимально со временем.
+					.tmpl3-step.tmpl3-step--4(data-anim)
+						.tmpl3-step__icon
+							svg(viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round")
+								path(d="M21 8l-9-6-9 6v8l9 6 9-6V8z")
+								path(d="M3 8l9 6 9-6M12 22v-8")
+						.tmpl3-step__body
+							h3.tmpl3-step__title 4. Запускаем и передаём
+							p.tmpl3-step__desc
+								| Внедряем решение с тщательным тестированием и
+								|  бесшовной реализацией.
+
+			//- ─────────── Портфолио: фильтр + сетка проектов ───────────
+			section.tmpl3-portfolio.tmpl3-dark#tmpl3-portfolio
+				.container.tmpl3-portfolio__inner
+					h2.tmpl3-portfolio__title(data-anim) Наше портфолио
+					.tmpl3-portfolio__tabs(data-anim)
+						button.tmpl3-portfolio__tab.is-active(type="button" data-filter="all") Все проекты
+						button.tmpl3-portfolio__tab(type="button" data-filter="web") Веб-разработка
+						button.tmpl3-portfolio__tab(type="button" data-filter="mobile") Мобильные приложения
+						button.tmpl3-portfolio__tab(type="button" data-filter="uiux") UI/UX дизайн
+						button.tmpl3-portfolio__tab(type="button" data-filter="branding") Брендинг
+					.tmpl3-portfolio__grid
+						article.tmpl3-portfolio__card(data-category="web" data-anim)
+							.tmpl3-portfolio__media
+								img(src="/img/template/template-3/project-1.webp" alt="Платформа e-commerce")
+							.tmpl3-portfolio__body
+								h3.tmpl3-portfolio__name Платформа e-commerce
+								p.tmpl3-portfolio__cat Веб-разработка
+						article.tmpl3-portfolio__card(data-category="mobile" data-anim)
+							.tmpl3-portfolio__media
+								img(src="/img/template/template-3/project-2.webp" alt="Приложение фитнес-трекер")
+							.tmpl3-portfolio__body
+								h3.tmpl3-portfolio__name Приложение фитнес-трекер
+								p.tmpl3-portfolio__cat Мобильные приложения
+						article.tmpl3-portfolio__card(data-category="uiux" data-anim)
+							.tmpl3-portfolio__media
+								img(src="/img/template/template-3/project-3.webp" alt="Банковский дашборд")
+							.tmpl3-portfolio__body
+								h3.tmpl3-portfolio__name Банковский дашборд
+								p.tmpl3-portfolio__cat UI/UX дизайн
+						article.tmpl3-portfolio__card(data-category="mobile" data-anim)
+							.tmpl3-portfolio__media
+								img(src="/img/template/template-3/project-4.webp" alt="Приложение для путешествий")
+							.tmpl3-portfolio__body
+								h3.tmpl3-portfolio__name Приложение для путешествий
+								p.tmpl3-portfolio__cat Мобильные приложения
+						article.tmpl3-portfolio__card(data-category="branding" data-anim)
+							.tmpl3-portfolio__media
+								img(src="/img/template/template-3/project-5.webp" alt="Бренд IT-стартапа")
+							.tmpl3-portfolio__body
+								h3.tmpl3-portfolio__name Бренд IT-стартапа
+								p.tmpl3-portfolio__cat Брендинг
+						article.tmpl3-portfolio__card(data-category="web" data-anim)
+							.tmpl3-portfolio__media
+								img(src="/img/template/template-3/project-6.webp" alt="Сайт ресторана")
+							.tmpl3-portfolio__body
+								h3.tmpl3-portfolio__name Сайт ресторана
+								p.tmpl3-portfolio__cat Веб-разработка
+
+			//- ─────────── Логотипы компаний: слайдер на 12 карточек ───────────
+			section.tmpl3-companies#tmpl3-companies
+				.tmpl3-companies__container
+					h2.tmpl3-companies__title(data-anim) Строим успех вместе с великими компаниями
+					.tmpl3-companies__viewport
+						.tmpl3-companies__track
+							- for (let i = 0; i < 2; i++)
+							img.tmpl3-companies__card(src="/img/template/template-3/company-01.webp" alt="Компания 1" loading="lazy")
+							img.tmpl3-companies__card(src="/img/template/template-3/company-02.webp" alt="Компания 2" loading="lazy")
+							img.tmpl3-companies__card(src="/img/template/template-3/company-03.webp" alt="Компания 3" loading="lazy")
+							img.tmpl3-companies__card(src="/img/template/template-3/company-04.webp" alt="Компания 4" loading="lazy")
+							img.tmpl3-companies__card(src="/img/template/template-3/company-05.webp" alt="Компания 5" loading="lazy")
+							img.tmpl3-companies__card(src="/img/template/template-3/company-06.webp" alt="Компания 6" loading="lazy")
+
+			//- ───────────────────── Тарифные планы ─────────────────────
+			section.tmpl3-pricing.tmpl3-dark#tmpl3-pricing
+				.container.tmpl3-pricing__inner
+					h2.tmpl3-pricing__title(data-anim) Тарифные планы
+					p.tmpl3-pricing__subtitle(data-anim) Прозрачные, простые и гибкие планы для вашего бизнеса.
+					.tmpl3-pricing__grid
+						article.tmpl3-plan(data-anim)
+							h3.tmpl3-plan__name Базовый
+							p.tmpl3-plan__tagline Идеально для малого бизнеса и стартапов
+							p.tmpl3-plan__price
+								b 3 700 ₽
+								s 5 000 ₽
+							a.tmpl3-btn.tmpl3-btn--solid.tmpl3-plan__btn(href="#tmpl3-contact") Купить Базовый
+							ul.tmpl3-plan__list
+								li.is-on Сайт до 5 страниц
+								li.is-on Адаптивный мобильный дизайн
+								li.is-on Базовая SEO-оптимизация
+								li.is-on Интеграция формы обратной связи
+								li.is-on Бесплатная поддержка 1 месяц
+								li.is-on SSL-сертификат
+								li Функционал e-commerce
+								li Расширенная аналитика
+								li Приоритетная поддержка
+						article.tmpl3-plan.tmpl3-plan--pro(data-anim)
+							span.tmpl3-plan__badge Популярный
+							h3.tmpl3-plan__name Pro
+							p.tmpl3-plan__tagline Идеально для растущего бизнеса
+							p.tmpl3-plan__price
+								b 5 700 ₽
+								s 7 000 ₽
+							a.tmpl3-btn.tmpl3-btn--solid.tmpl3-plan__btn(href="#tmpl3-contact") Купить Pro
+							ul.tmpl3-plan__list
+								li.is-on Сайт до 5 страниц
+								li.is-on Адаптивный мобильный дизайн
+								li.is-on Базовая SEO-оптимизация
+								li.is-on Интеграция формы обратной связи
+								li.is-on Бесплатная поддержка 1 месяц
+								li.is-on SSL-сертификат
+								li.is-on Функционал e-commerce
+								li.is-on Расширенная аналитика
+								li.is-on Приоритетная поддержка
+						article.tmpl3-plan(data-anim)
+							h3.tmpl3-plan__name Корпоративный
+							p.tmpl3-plan__tagline Для крупного бизнеса
+							p.tmpl3-plan__price
+								b 7 700 ₽
+								s 10 000 ₽
+							a.tmpl3-btn.tmpl3-btn--solid.tmpl3-plan__btn(href="#tmpl3-contact") Купить Корпоративный
+							ul.tmpl3-plan__list
+								li.is-on Сайт до 5 страниц
+								li.is-on Адаптивный мобильный дизайн
+								li.is-on Базовая SEO-оптимизация
+								li.is-on Интеграция формы обратной связи
+								li.is-on Бесплатная поддержка 1 месяц
+								li.is-on SSL-сертификат
+								li.is-on Функционал e-commerce
+								li.is-on Расширенная аналитика
+								li.is-on Приоритетная поддержка
+
+			//- ─────────── Отзывы: зацикленный слайдер с автоплеем ───────────
+			section.tmpl3-testimonials.tmpl3-dark#tmpl3-testimonials
+				.container.tmpl3-testimonials__inner
+					h2.tmpl3-testimonials__title(data-anim) Отзывы
+					p.tmpl3-testimonials__subtitle(data-anim) Доверие компаний и партнёров, которые верят в наше качество.
+				.tmpl3-testi-slider
+					.tmpl3-testi-track
+						- for (let i = 0; i < 2; i++)
+						figure.tmpl3-testi-card
+							span.tmpl3-testi-card__quote “
+							p.tmpl3-testi-card__text
+								| С первых шагов внутри понимаешь: тебя ждёт нечто
+								|  необыкновенное. Винное сопровождение безупречно,
+								|  а атмосфера неповторима.
+							.tmpl3-testi-card__author
+								span.tmpl3-testi-card__avatar МС
+								.tmpl3-testi-card__who
+									b Михаил Соколов
+									span Постоянный гость
+							.tmpl3-testi-card__stars ★★★★★
+						figure.tmpl3-testi-card
+							span.tmpl3-testi-card__quote “
+							p.tmpl3-testi-card__text
+								| Обедала в мишленовских ресторанах по всему миру —
+								|  LUMIÈRE достойно стоит в одном ряду с лучшими.
+							.tmpl3-testi-card__author
+								span.tmpl3-testi-card__avatar ЕР
+								.tmpl3-testi-card__who
+									b Елена Романова
+									span Тревел-блогер
+							.tmpl3-testi-card__stars ★★★★★
+						figure.tmpl3-testi-card
+							span.tmpl3-testi-card__quote “
+							p.tmpl3-testi-card__text
+								| Совершенно особенный гастрономический опыт. Внимание
+								|  к деталям в каждом блюде удивляет — шеф создал нечто
+								|  по-настоящему особенное.
+							.tmpl3-testi-card__author
+								span.tmpl3-testi-card__avatar ДК
+								.tmpl3-testi-card__who
+									b Дмитрий Ким
+									span Фуд-критик
+							.tmpl3-testi-card__stars ★★★★★
+						figure.tmpl3-testi-card
+							span.tmpl3-testi-card__quote “
+							p.tmpl3-testi-card__text
+								| Дегустационный сет — театр вкуса. Каждая подача —
+								|  маленькое представление, а вино подобрано безупречно.
+							.tmpl3-testi-card__author
+								span.tmpl3-testi-card__avatar АВ
+								.tmpl3-testi-card__who
+									b Анна Ветрова
+									span Арт-директор
+							.tmpl3-testi-card__stars ★★★★★
+						figure.tmpl3-testi-card
+							span.tmpl3-testi-card__quote “
+							p.tmpl3-testi-card__text
+								| Приводил сюда партнёров — впечатление гарантировано.
+								|  Сервис безупречный, кухня на уровне лучших столиц.
+							.tmpl3-testi-card__author
+								span.tmpl3-testi-card__avatar ИЛ
+								.tmpl3-testi-card__who
+									b Игорь Ланской
+									span Владелец отеля
+							.tmpl3-testi-card__stars ★★★★★
+						figure.tmpl3-testi-card
+							span.tmpl3-testi-card__quote “
+							p.tmpl3-testi-card__text
+								| Каждое блюдо — произведение искусства. Снимала весь
+								|  вечер и не устала удивляться деталям.
+							.tmpl3-testi-card__author
+								span.tmpl3-testi-card__avatar МО
+								.tmpl3-testi-card__who
+									b Мария Орлова
+									span Ресторатор
+							.tmpl3-testi-card__stars ★★★★★
+
+			//- ─────────── Блог: последние публикации ───────────
+			section.tmpl3-posts.tmpl3-dark#tmpl3-posts
+				.container.tmpl3-posts__inner
+					.tmpl3-posts__head
+						h2.tmpl3-posts__title(data-anim) Последние публикации
+						a.tmpl3-btn.tmpl3-btn--solid.tmpl3-posts__cta(href="#") Все посты
+					.tmpl3-posts__grid
+						article.tmpl3-posts__card(data-anim)
+							a.tmpl3-posts__media(href="#")
+								img(src="/img/template/template-3/post-1.webp" alt="Будущее веб-разработки")
+								span.tmpl3-posts__badge Технологии
+							.tmpl3-posts__body
+								.tmpl3-posts__meta
+									span 15 июля 2026
+									span Михаил Соколов
+								h3.tmpl3-posts__name Будущее веб-разработки: тренды 2026 года
+								p.tmpl3-posts__desc
+									| Обзор главных трендов индустрии — от AI-инструментов
+									|  до прогрессивных веб-приложений и дальше.
+								.tmpl3-posts__foot
+									a.tmpl3-posts__more(href="#")
+										| Читать далее
+										svg(viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round")
+											line(x1="5" y1="12" x2="19" y2="12")
+											polyline(points="12 5 19 12 12 19")
+									span.tmpl3-posts__time 4 мин чтения
+						article.tmpl3-posts__card(data-anim)
+							a.tmpl3-posts__media(href="#")
+								img(src="/img/template/template-3/post-2.webp" alt="Безопасность мобильных приложений")
+								span.tmpl3-posts__badge Безопасность
+							.tmpl3-posts__body
+								.tmpl3-posts__meta
+									span 10 июля 2026
+									span Елена Романова
+								h3.tmpl3-posts__name Безопасность мобильных приложений
+								p.tmpl3-posts__desc
+									| Ключевые меры защиты данных пользователя, которые
+									|  должен внедрить каждый разработчик.
+								.tmpl3-posts__foot
+									a.tmpl3-posts__more(href="#")
+										| Читать далее
+										svg(viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round")
+											line(x1="5" y1="12" x2="19" y2="12")
+											polyline(points="12 5 19 12 12 19")
+									span.tmpl3-posts__time 7 мин чтения
+						article.tmpl3-posts__card(data-anim)
+							a.tmpl3-posts__media(href="#")
+								img(src="/img/template/template-3/post-3.webp" alt="Миграция в облако")
+								span.tmpl3-posts__badge Облако
+							.tmpl3-posts__body
+								.tmpl3-posts__meta
+									span 5 июля 2026
+									span Дмитрий Ким
+								h3.tmpl3-posts__name Стратегии миграции в облако
+								p.tmpl3-posts__desc
+									| Практическое руководство по переносу инфраструктуры
+									|  в облако с минимальными простоями.
+								.tmpl3-posts__foot
+									a.tmpl3-posts__more(href="#")
+										| Читать далее
+										svg(viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round")
+											line(x1="5" y1="12" x2="19" y2="12")
+											polyline(points="12 5 19 12 12 19")
+									span.tmpl3-posts__time 6 мин чтения
+
+			//- ─────────── Контакты: карточка + форма ───────────
+			section.tmpl3-contact#tmpl3-contact
+				.container.tmpl3-contact__inner
+					.tmpl3-contact__card(data-anim)
+						h3.tmpl3-contact__heading Начнём разговор
+						p.tmpl3-contact__lead
+							| Построим будущее вашего бизнеса вместе. Свяжитесь
+							|  с нашими экспертами и начните цифровое путешествие уже сегодня.
+						ul.tmpl3-contact__list
+							li
+								svg(viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round")
+									path(d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z")
+								span.tmpl3-contact__label Телефон
+								a.tmpl3-contact__value(href="tel:+79009876543") +7 (900) 987-65-43
+							li
+								svg(viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round")
+									path(d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z")
+									polyline(points="22,6 12,13 2,6")
+								span.tmpl3-contact__label Почта
+								a.tmpl3-contact__value(href="mailto:hello@itagency.com") hello@itagency.com
+							li
+								svg(viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round")
+									path(d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z")
+									circle(cx="12" cy="10" r="3")
+								span.tmpl3-contact__label Адрес
+								span.tmpl3-contact__value 789 Инновационный проспект, г. Обнинск
+							li
+								svg(viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round")
+									circle(cx="12" cy="12" r="10")
+									polyline(points="12 6 12 12 16 14")
+								span.tmpl3-contact__label Часы работы
+								span.tmpl3-contact__value Пн — Пт: 9:00 — 18:00
+						p.tmpl3-contact__follow МЫ В СОЦСЕТЯХ
+						.tmpl3-contact__socials
+							a.tmpl3-contact__soc(href="#" aria-label="X")
+								svg(viewBox="0 0 24 24" fill="currentColor")
+									path(d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z")
+							a.tmpl3-contact__soc(href="#" aria-label="Facebook")
+								svg(viewBox="0 0 24 24" fill="currentColor")
+									path(d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z")
+							a.tmpl3-contact__soc(href="#" aria-label="LinkedIn")
+								svg(viewBox="0 0 24 24" fill="currentColor")
+									path(d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4V9h4v2a6 6 0 0 1 6-3zM2 9h4v12H2z")
+									circle(cx="4" cy="4" r="2")
+							a.tmpl3-contact__soc(href="#" aria-label="Instagram")
+								svg(viewBox="0 0 24 24" fill="currentColor")
+									path(d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z")
+					form.tmpl3-contact__panel#tmpl3-contact-form(data-anim novalidate autocomplete="off")
+						.tmpl3-contact__grid
+							label.tmpl3-cfield
+								span.tmpl3-cfield__label Полное имя <i>*</i>
+								input.tmpl3-cfield__input(type="text" name="name" autocomplete="off")
+							label.tmpl3-cfield
+								span.tmpl3-cfield__label Email <i>*</i>
+								input.tmpl3-cfield__input(type="email" name="email" autocomplete="off")
+							label.tmpl3-cfield
+								span.tmpl3-cfield__label Телефон
+								input.tmpl3-cfield__input.phone(type="tel" name="phone" autocomplete="off")
+							label.tmpl3-cfield
+								span.tmpl3-cfield__label Компания
+								input.tmpl3-cfield__input(type="text" name="company" autocomplete="off")
+							.tmpl3-cfield.tmpl3-cfield--select(data-select="service")
+								span.tmpl3-cfield__label Интересующая услуга
+								input(type="hidden" name="service")
+								.select
+									button.tmpl3-cfield__select.select__button(type="button") Выбрать услугу
+									ul.select__list._collapse
+										li.select__list-item(tabindex="0") Разработка сайтов
+										li.select__list-item(tabindex="0") Мобильные приложения
+										li.select__list-item(tabindex="0") Облачные решения
+										li.select__list-item(tabindex="0") Цифровой маркетинг
+										li.select__list-item(tabindex="0") UX/UI дизайн
+										li.select__list-item(tabindex="0") Аналитика данных
+							.tmpl3-cfield.tmpl3-cfield--select(data-select="budget")
+								span.tmpl3-cfield__label Бюджет проекта
+								input(type="hidden" name="budget")
+								.select
+									button.tmpl3-cfield__select.select__button(type="button") Выбрать диапазон
+									ul.select__list._collapse
+										li.select__list-item(tabindex="0") до 100 000 ₽
+										li.select__list-item(tabindex="0") 100 000 — 300 000 ₽
+										li.select__list-item(tabindex="0") 300 000 — 700 000 ₽
+										li.select__list-item(tabindex="0") от 700 000 ₽
+							label.tmpl3-cfield.tmpl3-cfield--wide
+								span.tmpl3-cfield__label Детали проекта <i>*</i>
+								textarea.tmpl3-cfield__input.tmpl3-cfield__textarea(name="details" maxlength="2000" placeholder="Расскажите о требованиях, целях и любых особенностях проекта…")
+								span.tmpl3-contact__counter(data-counter) 0 / 2000
+							label.tmpl3-ccheck
+								input(type="checkbox" name="newsletter")
+								span Подписаться на рассылку обновлений и технических новостей
+							label.tmpl3-ccheck
+								input(type="checkbox" name="agree")
+								span Я согласен с <a class="tmpl3-clink" href="#">Политикой конфиденциальности</a> и <a class="tmpl3-clink" href="#">Условиями обслуживания</a> <i>*</i>
+							button.tmpl3-btn.tmpl3-btn--solid.tmpl3-csubmit(type="submit") Отправить сообщение
+							p.tmpl3-contact__ok(hidden) Сообщение отправлено — ответим в течение рабочего дня.
+
+			//- ─────────── Footer: 5 колонок ───────────
+			footer.tmpl3-footer#tmpl3-footer
+				.container.tmpl3-footer__inner
+					.tmpl3-footer__brand
+						a.tmpl3-footer__logo(href="#tmpl3-top")
+							svg.tmpl3-header__mark(width="38" height="38" viewBox="0 0 40 40" aria-hidden="true")
+								circle(cx="20" cy="20" r="19" fill="#2f80ed")
+								path(d="M12 15l9-4M12 15l15 6M21 11l4 10" stroke="#fff" stroke-width="1.6" fill="none")
+								circle(cx="12" cy="15" r="2.4" fill="#fff")
+								circle(cx="21" cy="11" r="2" fill="#fff")
+								circle(cx="27" cy="21" r="2.2" fill="#fff")
+							| ITA<span>gency</span>
+						p.tmpl3-footer__desc
+							| Помогаем бизнесу расти через умные, инновационные
+							|  технологические решения: веб-разработка, мобильные
+							|  приложения и цифровые услуги.
+						p.tmpl3-footer__follow Мы в соцсетях
+						.tmpl3-footer__socials
+							a.tmpl3-footer__soc(href="#" aria-label="X")
+								svg(viewBox="0 0 24 24" fill="currentColor")
+									path(d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z")
+							a.tmpl3-footer__soc(href="#" aria-label="Facebook")
+								svg(viewBox="0 0 24 24" fill="currentColor")
+									path(d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z")
+							a.tmpl3-footer__soc(href="#" aria-label="LinkedIn")
+								svg(viewBox="0 0 24 24" fill="currentColor")
+									path(d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4V9h4v2a6 6 0 0 1 6-3zM2 9h4v12H2z")
+									circle(cx="4" cy="4" r="2")
+							a.tmpl3-footer__soc(href="#" aria-label="Instagram")
+								svg(viewBox="0 0 24 24" fill="currentColor")
+									path(d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z")
+					nav.tmpl3-footer__col
+						p.tmpl3-footer__title Навигация
+						a.tmpl3-footer__link(href="#tmpl3-top") Главная
+						a.tmpl3-footer__link(href="#tmpl3-about") О нас
+						a.tmpl3-footer__link(href="#tmpl3-works") Услуги
+						a.tmpl3-footer__link(href="#tmpl3-portfolio") Портфолио
+						a.tmpl3-footer__link(href="#") Команда
+						a.tmpl3-footer__link(href="#tmpl3-pricing") Цены
+						a.tmpl3-footer__link(href="#tmpl3-blog") Блог
+						a.tmpl3-footer__link(href="#") Политика конфиденциальности
+						a.tmpl3-footer__link(href="#") Условия обслуживания
+					.tmpl3-footer__col
+						p.tmpl3-footer__title Наши услуги
+						a.tmpl3-footer__link(href="#tmpl3-works") Веб-разработка
+						a.tmpl3-footer__link(href="#tmpl3-works") Мобильные приложения
+						a.tmpl3-footer__link(href="#tmpl3-works") Облачные решения
+						a.tmpl3-footer__link(href="#tmpl3-works") Цифровой маркетинг
+						a.tmpl3-footer__link(href="#tmpl3-works") UX/UI дизайн
+						a.tmpl3-footer__link(href="#tmpl3-works") Аналитика данных
+						a.tmpl3-footer__link(href="#tmpl3-works") Кибербезопасность
+						a.tmpl3-footer__link(href="#tmpl3-works") IT-консалтинг
+					.tmpl3-footer__col
+						p.tmpl3-footer__title Контактная информация
+						.tmpl3-footer__crow
+							svg.tmpl3-footer__cicon(viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round")
+								path(d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z")
+								circle(cx="12" cy="10" r="3")
+							span
+								b.tmpl3-footer__clabel Адрес
+								span.tmpl3-footer__cvalue 789 Инновационный проспект, г. Обнинск
+						.tmpl3-footer__crow
+							svg.tmpl3-footer__cicon(viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round")
+								path(d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z")
+							span
+								b.tmpl3-footer__clabel Телефон
+								a.tmpl3-footer__cvalue(href="tel:+79009876543") +7 (900) 987-65-43
+						.tmpl3-footer__crow
+							svg.tmpl3-footer__cicon(viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round")
+								path(d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z")
+								polyline(points="22,6 12,13 2,6")
+							span
+								b.tmpl3-footer__clabel Почта
+								a.tmpl3-footer__cvalue(href="mailto:hello@itagency.com") hello@itagency.com
+						.tmpl3-footer__crow
+							svg.tmpl3-footer__cicon(viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round")
+								circle(cx="12" cy="12" r="10")
+								polyline(points="12 6 12 12 16 14")
+							span
+								b.tmpl3-footer__clabel Часы работы
+								span.tmpl3-footer__cvalue Пн — Пт: 9:00 — 18:00
+					.tmpl3-footer__col.tmpl3-footer__col--news
+						p.tmpl3-footer__title Рассылка
+						p.tmpl3-footer__desc Подпишитесь на рассылку, чтобы получать последние технические новости и обновления.
+						form.tmpl3-footer__form(action="#" method="post" novalidate)
+							input.tmpl3-footer__input(type="email" name="newsletter-email" placeholder="Введите ваш email" autocomplete="off")
+							button.tmpl3-footer__send(type="submit" aria-label="Подписаться")
+								svg(viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round")
+									line(x1="5" y1="12" x2="19" y2="12")
+									polyline(points="12 5 19 12 12 19")
+						p.tmpl3-footer__note(hidden) Готово — вы подписаны!
+				.tmpl3-footer__bottom
+					p.tmpl3-footer__copy © 2026 ITAgency

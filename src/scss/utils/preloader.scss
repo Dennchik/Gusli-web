@@ -16,8 +16,14 @@
       radial-gradient(at 8% 15%, hsl(358deg 100% 67% / 7%) 0, transparent 50%);
 
    &.preloader-remove {
-      display: none;
+      opacity: 0;
+      visibility: hidden;
    }
+   opacity: 1;
+   visibility: visible;
+   transition:
+      opacity 0.5s ease,
+      visibility 0.5s ease;
 }
 
 .preloader-5 {
@@ -46,32 +52,32 @@
 
       animation: preloader-5-spin 4s linear infinite;
    }
-}
 
-.preloader-5::before {
-   content: '';
+   &::before {
+      content: '';
 
-   position: absolute;
-   inset: 5px;
+      position: absolute;
+      inset: 5px;
 
-   border: 3px solid transparent;
-   border-top-color: rgb(255 30 30);
-   border-radius: 50%;
+      border: 3px solid transparent;
+      border-top-color: rgb(255 30 30);
+      border-radius: 50%;
 
-   animation: preloader-5-spin 3s linear infinite;
-}
+      animation: preloader-5-spin 3s linear infinite;
+   }
 
-.preloader-5::after {
-   content: '';
+   ::after {
+      content: '';
 
-   position: absolute;
-   inset: 15px;
+      position: absolute;
+      inset: 15px;
 
-   border: 3px solid transparent;
-   border-top-color: rgb(253 50 50);
-   border-radius: 50%;
+      border: 3px solid transparent;
+      border-top-color: rgb(253 50 50);
+      border-radius: 50%;
 
-   animation: preloader-5-spin 1.5s linear infinite;
+      animation: preloader-5-spin 1.5s linear infinite;
+   }
 }
 
 @keyframes preloader-5-spin {

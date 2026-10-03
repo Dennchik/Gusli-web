@@ -1315,6 +1315,7 @@ body.tmpl1 {
       }
 
       &__link {
+         position: relative;
          font-size: 1.4rem;
          color: var(--t1-text);
          opacity: 0.7;
@@ -1322,9 +1323,27 @@ body.tmpl1 {
             color $transition-in-out,
             opacity $transition-in-out;
 
+         &:after {
+            content: '';
+            position: absolute;
+            bottom: -0.6rem;
+            left: 0;
+            transform-origin: right;
+            transform: scaleX(0);
+            width: 100%;
+            height: 1px;
+            background: var(--t1-gold);
+            transition: transform 0.3s ease-in-out;
+         }
+
          &:hover {
             color: var(--t1-gold);
             opacity: 1;
+
+            &::after {
+               transform-origin: left;
+               transform: scaleX(1);
+            }
          }
       }
 

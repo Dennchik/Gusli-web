@@ -7,7 +7,7 @@ html(lang="ru").scroll-smooth
 		meta(name="viewport" content="width=device-width, initial-scale=1.0")
 
 		block link
-			link(rel="icon" type="image/icon" href="/img/icons/logo.png")
+			//link(rel="icon" type="image/icon" href="/img/icons/logo.png")
 		block script
 			script(defer type="module" src="/src/js/app.js")
 			script(defer type="module" src="/src/js/main.js")
@@ -17,8 +17,8 @@ html(lang="ru").scroll-smooth
 
 	block page
 		body
-			include @/pug/utils/preloader
-			include @/pug/includes/mixins
+			include ../utils/preloader
+			include ../includes/mixins
 			.wrapper
 				.page#top
 					.bg(aria-hidden="true")
@@ -38,7 +38,7 @@ html(lang="ru").scroll-smooth
 									block footer
 										include footer
 					block modal
-						include @/pug/assets/modal
+						include ../assets/modal
 					block cookies
 						//include @/pug/modules/cookies-accept
 					block aside-button

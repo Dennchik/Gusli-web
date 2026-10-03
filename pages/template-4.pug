@@ -1,0 +1,428 @@
+//- Автономная демо-страница HAZEL: минималистичная тёмная тема
+//- (не использует глобальные компоненты проекта)
+doctype html
+html(lang="ru")
+	head
+		meta(charset="UTF-8")
+		meta(name="viewport" content="width=device-width, initial-scale=1.0")
+		title HAZEL — минималистичная тема
+		link(rel="preconnect" href="https://fonts.googleapis.com")
+		link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin="")
+		link(href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&display=swap" rel="stylesheet")
+		script(defer type="module" src="/src/js/templates/template-4.js")
+	body.tmpl4
+		header.tmpl4-header#tmpl4-header
+			.tmpl4-header__container
+				a.tmpl4-header__logo(href="#tmpl4-top") HAZEL
+				nav.tmpl4-header__nav
+					a.tmpl4-header__link.is-active(href="#tmpl4-top") Home
+					a.tmpl4-header__link(href="#tmpl4-top") Pages
+					a.tmpl4-header__link(href="#tmpl4-top") Portfolios
+					a.tmpl4-header__link(href="#tmpl4-top") Blogs
+				.tmpl4-header__tools
+					button.tmpl4-header__search(type="button" aria-label="Поиск")
+						svg(viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round")
+							circle(cx="11" cy="11" r="7")
+							line(x1="21" y1="21" x2="16.5" y2="16.5")
+					button.tmpl4-header__burger#tmpl4-burger(type="button" aria-label="Меню" aria-expanded="false" aria-controls="tmpl4-panel")
+						span
+						span
+						span
+		main#tmpl4-top
+			//- ─────────── Hero: тёмное фото + центрированный заголовок ───────────
+			//- Фоновое фото: положите файл в public/img/template/template-4/hero.webp
+			//-  и раскомментируйте строку ниже
+			//img.tmpl4-hero__bg(src="/img/template/template-4/hero.webp" alt="" loading="eager")
+			section.tmpl4-hero
+				.tmpl4-hero__inner
+					p.tmpl4-hero__tagline A minimalist wordpress theme
+					h1.tmpl4-hero__title Welcome to Hazel
+					.tmpl4-hero__actions
+						a.tmpl4-btn(href="#tmpl4-top") About us
+						span.tmpl4-hero__or or
+						a.tmpl4-btn(href="#tmpl4-top") Contact
+
+			//- ─────────── Преимущества: 3 колонки с иконками ───────────
+			section.tmpl4-features
+				.tmpl4-features__inner
+					article.tmpl4-feature
+						svg.tmpl4-feature__icon(viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true")
+							path(d="M8 40 40 8M8 40l6-1 25-25-5-5L9 34z")
+							path(d="M30 13l5 5")
+							path(d="M8 40l16-4-12-12z")
+						h3.tmpl4-feature__title Clean design
+						p.tmpl4-feature__text Professionally repurpose premium rather than magnetic bandwidth.
+					article.tmpl4-feature
+						svg.tmpl4-feature__icon(viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true")
+							rect(x="8" y="18" width="32" height="8")
+							rect(x="11" y="26" width="26" height="16")
+							line(x1="24" y1="18" x2="24" y2="42")
+							path(d="M24 18c-6 0-10-2.5-10-6a4 4 0 0 1 7-2.6c2 2.2 3 5.6 3 8.6z")
+							path(d="M24 18c6 0 10-2.5 10-6a4 4 0 0 0-7-2.6c-2 2.2-3 5.6-3 8.6z")
+						h3.tmpl4-feature__title Premium resources
+						p.tmpl4-feature__text Professionally repurpose premium rather than magnetic bandwidth.
+					article.tmpl4-feature
+						svg.tmpl4-feature__icon(viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true")
+							rect(x="6" y="12" width="26" height="18" rx="1.5")
+							line(x1="2" y1="35" x2="34" y2="35")
+							rect(x="34" y="20" width="10" height="15" rx="1.5")
+							line(x1="38" y1="38" x2="40" y2="38")
+						h3.tmpl4-feature__title Responsive layout
+						p.tmpl4-feature__text Professionally repurpose premium rather than magnetic bandwidth.
+
+			//- ─────────── We work hard: текст + CSS-макеты устройств ───────────
+			section.tmpl4-work
+				.tmpl4-work__inner.container
+					.tmpl4-work__content
+						h2.tmpl4-work__title We work hard
+						p.tmpl4-work__text
+							| Intrinsically engineer one-to-one partnerships with error-free
+							|  customer service. Competently optimize goal-oriented technology
+							|  via low-risk high-yield materials engage.
+						p.tmpl4-work__text
+							| Energetically develop client-centered web services without
+							|  focused data. Conveniently syndicate leveraged scenarios.
+						a.tmpl4-btn.tmpl4-work__btn(href="#tmpl4-top") Outstanding features
+					.tmpl4-work__devices(aria-hidden="true")
+						img.tmpl4-work__mockup(src="/img/template/template-4/mockup2.webp" alt="" width="833" height="556" loading="lazy")
+
+			//- ─────────── Цитата + ценности / миссия / навыки ───────────
+			section.tmpl4-quote
+				.tmpl4-quote__inner.container
+					blockquote.tmpl4-quote__cite
+						p.tmpl4-quote__text
+							| “ What separates design from art is that design is meant
+							|  to be... functional”
+						footer.tmpl4-quote__author – Cameron Moll
+					.tmpl4-quote__cols
+						.tmpl4-quote__col
+							h3.tmpl4-quote__label Our values
+							p.tmpl4-quote__desc
+								| Uniquely create competitive e-markets for backward-compatible
+								|  technologies. Authoritatively morph efficient networks via
+								|  bleeding-edge results. Completely drive 24/365 e-markets via
+								|  quality e-business. Progressively plagiarize enterprise
+								|  strategic theme areas with ubiquitous sources. Enthusiastically
+								|  drive team driven processes rather than e-tailers.
+						.tmpl4-quote__col
+							h3.tmpl4-quote__label Our mission
+							p.tmpl4-quote__desc
+								| Conveniently maximize standardized web-readiness without
+								|  integrated products. Competently productivate fully researched
+								|  results via empowered e-commerce. Quickly repurpose cross-unit
+								|  methodologies for leading-edge materials. Monotonectally
+								|  enhance team driven human capital whereas worldwide.
+						.tmpl4-quote__col
+							h3.tmpl4-quote__label Our skills
+							.tmpl4-quote__skills
+								.tmpl4-skillbar
+									.tmpl4-skillbar__head
+										span Development
+										b 95%
+									span.tmpl4-skillbar__bar
+										i.tmpl4-skillbar__fill(style="--w: 95%")
+								.tmpl4-skillbar
+									.tmpl4-skillbar__head
+										span Design
+										b 85%
+									span.tmpl4-skillbar__bar
+										i.tmpl4-skillbar__fill(style="--w: 85%")
+								.tmpl4-skillbar
+									.tmpl4-skillbar__head
+										span Marketing
+										b 70%
+									span.tmpl4-skillbar__bar
+										i.tmpl4-skillbar__fill(style="--w: 70%")
+								.tmpl4-skillbar
+									.tmpl4-skillbar__head
+										span Consulting
+										b 65%
+									span.tmpl4-skillbar__bar
+										i.tmpl4-skillbar__fill(style="--w: 65%")
+
+			//- ─────────── Достижения: 4 счётчика с иконками ───────────
+			section.tmpl4-stats
+				.tmpl4-stats__inner
+					h2.tmpl4-stats__title Agency achievements
+					.tmpl4-stats__grid
+						.tmpl4-stat
+							svg.tmpl4-stat__icon(viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true")
+								path(d="M24 12a14 14 0 1 0 14 14")
+								path(d="M24 12c4-4 9-5 12-4-1 3-2 8-6 12")
+								polyline(points="24 20 28 24")
+							b.tmpl4-stat__num(data-count="1250") 0
+							span.tmpl4-stat__label Hours of work
+						.tmpl4-stat
+							svg.tmpl4-stat__icon(viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true")
+								path(d="M28 6c6 2 12 8 14 14-4 1-8 1-12-2S27 10 28 6z")
+								path(d="M28 20 18 30l-6 2 2-6 10-10z")
+								circle(cx="31" cy="15" r="2.6")
+								path(d="M14 34c-2 2-2 6-2 8 2 0 6 0 8-2")
+								path(d="M10 26c-2 1-4 4-4 8 3 0 6-1 7-3")
+							b.tmpl4-stat__num(data-count="340") 0
+							span.tmpl4-stat__label Finished works
+						.tmpl4-stat
+							svg.tmpl4-stat__icon(viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true")
+								circle(cx="30" cy="15" r="6")
+								path(d="M18 38c0-7 5-12 12-12s12 5 12 12")
+								path(d="M18 20a5 5 0 1 0-4-8")
+								path(d="M6 38c0-6 4-10 9-11")
+							b.tmpl4-stat__num(data-count="95") 0
+							span.tmpl4-stat__label Clients
+						.tmpl4-stat
+							svg.tmpl4-stat__icon(viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true")
+								circle(cx="12" cy="24" r="5")
+								circle(cx="35" cy="11" r="5")
+								circle(cx="35" cy="37" r="5")
+								line(x1="17" y1="21" x2="30" y2="13")
+								line(x1="17" y1="27" x2="30" y2="35")
+							b.tmpl4-stat__num(data-count="11250") 0
+							span.tmpl4-stat__label Social followers
+
+			//- ─────────── Услуги: сетка 3×2 с иконками ───────────
+			section.tmpl4-services
+				.tmpl4-services__inner
+					h2.tmpl4-services__title Our services
+					.tmpl4-services__grid
+						article.tmpl4-service
+							svg.tmpl4-service__icon(viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true")
+								path(d="M24 8c9.5 0 17 6.5 17 14.5 0 5-4 8.5-9 8.5h-3.5c-2 0-3.5 1.6-3.5 3.5 0 1 .4 1.8 1 2.6.6.8 1 1.6 1 2.4 0 1.9-1.6 3.5-3.5 3.5C14.6 43 7 34.5 7 24.5 7 15 14.6 8 24 8z")
+								circle(cx="17" cy="19" r="1.6" fill="currentColor" stroke="none")
+								circle(cx="25" cy="15" r="1.6" fill="currentColor" stroke="none")
+								circle(cx="32" cy="20" r="1.6" fill="currentColor" stroke="none")
+								circle(cx="15" cy="28" r="1.6" fill="currentColor" stroke="none")
+							h3.tmpl4-service__title Unique design
+							p.tmpl4-service__text Donec sollicitudin molestie malesuada. Lorem ipsum dolor sit amet consect.
+						article.tmpl4-service
+							svg.tmpl4-service__icon(viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true")
+								line(x1="14" y1="12" x2="10" y2="26")
+								line(x1="24" y1="10" x2="24" y2="26")
+								line(x1="34" y1="12" x2="38" y2="26")
+								path(d="M10 26h28l-3 12H13z")
+								line(x1="20" y1="12" x2="16" y2="22")
+								line(x1="28" y1="12" x2="32" y2="22")
+							h3.tmpl4-service__title Easy to work
+							p.tmpl4-service__text Donec sollicitudin molestie malesuada. Lorem ipsum dolor sit amet consect.
+						article.tmpl4-service
+							svg.tmpl4-service__icon(viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true")
+								rect(x="8" y="14" width="32" height="20" rx="1.5")
+								line(x1="14" y1="14" x2="14" y2="34")
+								line(x1="34" y1="14" x2="34" y2="34")
+								path(d="M21 20l8 4-8 4z" fill="currentColor" stroke="none")
+								line(x1="17" y1="18" x2="17" y2="20")
+								line(x1="17" y1="24" x2="17" y2="26")
+								line(x1="17" y1="29" x2="17" y2="31")
+							h3.tmpl4-service__title Unlimited portfolios
+							p.tmpl4-service__text Donec sollicitudin molestie malesuada. Lorem ipsum dolor sit amet consect.
+						article.tmpl4-service
+							svg.tmpl4-service__icon(viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true")
+								path(d="M24 40S6 29.5 6 17.5C6 12 10 8 15.5 8c3.6 0 6.9 1.9 8.5 5 1.6-3.1 4.9-5 8.5-5C38 8 42 12 42 17.5 42 29.5 24 40 24 40z")
+							h3.tmpl4-service__title Premium resources
+							p.tmpl4-service__text Donec sollicitudin molestie malesuada. Lorem ipsum dolor sit amet consect.
+						article.tmpl4-service
+							svg.tmpl4-service__icon(viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true")
+								path(d="M16 14V11a8 8 0 0 1 16 0v3")
+								path(d="M12 14h24l2 26H10z")
+								line(x1="19" y1="14" x2="19" y2="18")
+								line(x1="29" y1="14" x2="29" y2="18")
+							h3.tmpl4-service__title Woocommerce ready
+							p.tmpl4-service__text Donec sollicitudin molestie malesuada. Lorem ipsum dolor sit amet consect.
+						article.tmpl4-service
+							svg.tmpl4-service__icon(viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true")
+								path(d="M24 6l5.6 11.6L42 19.3l-9 8.7 2.1 12.2L24 34.4 12.9 40.2 15 28 6 19.3l12.4-1.7z")
+							h3.tmpl4-service__title Free support
+							p.tmpl4-service__text Donec sollicitudin molestie malesuada. Lorem ipsum dolor sit amet consect.
+
+
+			//- ─────────── CTA: призыв к покупке перед портфолио ───────────
+			section.tmpl4-cta
+				.tmpl4-cta__inner
+					h2.tmpl4-cta__title Interested on our services?
+					a.tmpl4-btn.tmpl4-cta__btn(href="#tmpl4-top") Purchase Hazel
+
+			//- ─────────── Our latest work: сетка 4×2, при наведении — плашка ───────────
+			//- Фото-заглушки взяты из template-3; свои положите в
+			//- public/img/template/template-4/work-1..8.webp и замените src
+			section.tmpl4-works
+				h2.tmpl4-works__title Our latest work
+				.tmpl4-works__grid
+					a.tmpl4-work-card(href='#')
+						img.tmpl4-work-card__img(src='/img/template/template-4/SingleProjectLink1-1.webp' alt='Clean Watch'
+							loading='lazy')
+						span.tmpl4-work-card__overlay
+							b.tmpl4-work-card__name Clean Watch
+							i.tmpl4-work-card__client Client TreeThemes
+					a.tmpl4-work-card(href='#')
+						img.tmpl4-work-card__img(src='/img/template/template-4/SingleProjectAjax23.webp' alt='Minimal Clock' loading='lazy')
+						span.tmpl4-work-card__overlay
+							b.tmpl4-work-card__name Minimal Clock
+							i.tmpl4-work-card__client Studio White
+					a.tmpl4-work-card(href='#')
+						img.tmpl4-work-card__img(src='/img/template/template-4/SingleProjectLink132.webp' alt='Activity Tracker'
+							loading='lazy')
+						span.tmpl4-work-card__overlay
+							b.tmpl4-work-card__name Activity Tracker
+							i.tmpl4-work-card__client FitLab
+					a.tmpl4-work-card(href='#')
+						img.tmpl4-work-card__img(src='/img/template/template-4/SingleProjectLink6.webp' alt='Photo Journal' loading='lazy')
+						span.tmpl4-work-card__overlay
+							b.tmpl4-work-card__name Photo Journal
+							i.tmpl4-work-card__client Magazine One
+					a.tmpl4-work-card(href='#')
+						img.tmpl4-work-card__img(src='/img/template/template-4/SingleProjectLink1224.webp' alt='Brand Identity'
+							loading='lazy')
+						span.tmpl4-work-card__overlay
+							b.tmpl4-work-card__name Brand Identity
+							i.tmpl4-work-card__client Startup Lab
+					a.tmpl4-work-card(href='#')
+						img.tmpl4-work-card__img(src='/img/template/template-4/SingleProjectAjax103.webp' alt='Coffee Cup'
+							loading='lazy')
+						span.tmpl4-work-card__overlay
+							b.tmpl4-work-card__name Coffee Cup
+							i.tmpl4-work-card__client Free Photoshoot
+					a.tmpl4-work-card(href='#')
+						img.tmpl4-work-card__img(src='/img/template/template-4/SingleProjectAjax6.webp' alt='Hazel Phone'
+							loading='lazy')
+						span.tmpl4-work-card__overlay
+							b.tmpl4-work-card__name Hazel Phone
+							i.tmpl4-work-card__client Hazel Team
+					a.tmpl4-work-card(href='#')
+						img.tmpl4-work-card__img(src='/img/template/template-4/pt1.webp' alt='Accessorize' loading='lazy')
+						span.tmpl4-work-card__overlay
+							b.tmpl4-work-card__name Accessorize
+							i.tmpl4-work-card__client Urban Store
+
+
+			//- ─────────── Отзывы: аватары + сменяемая цитата ───────────
+			section.tmpl4-testi
+				h2.tmpl4-testi__title Our clients love us
+				.tmpl4-testi__inner
+					.tmpl4-testi__avatars(role="tablist" aria-label="Отзывы клиентов")
+						button.tmpl4-testi__avatar.is-active(type="button" data-testi="0" aria-label="Отзыв: Antoine Gusman")
+							img.tmpl4-testi__photo(src="/img/template/template-4/t1.webp" alt="Antoine Gusman" width="56" height="56" loading="lazy")
+						button.tmpl4-testi__avatar(type="button" data-testi="1" aria-label="Отзыв: Elena Romanova")
+							img.tmpl4-testi__photo(src="/img/template/template-4/t4.webp" alt="Elena Romanova" width="56" height="56" loading="lazy")
+						button.tmpl4-testi__avatar(type="button" data-testi="2" aria-label="Отзыв: Dmitry Kim")
+							img.tmpl4-testi__photo(src="/img/template/template-4/t2.webp" alt="Dmitry Kim" width="56" height="56" loading="lazy")
+						button.tmpl4-testi__avatar(type="button" data-testi="3" aria-label="Отзыв: Anna Vetrova")
+							img.tmpl4-testi__photo(src="/img/template/template-4/t6.webp" alt="Anna Vetrova" width="56" height="56" loading="lazy")
+						button.tmpl4-testi__avatar(type="button" data-testi="4" aria-label="Отзыв: Igor Lanskoy")
+							img.tmpl4-testi__photo(src="/img/template/template-4/t5.webp" alt="Igor Lanskoy" width="56" height="56" loading="lazy")
+					.tmpl4-testi__slides
+						blockquote.tmpl4-testi__slide.is-active
+							p.tmpl4-testi__text Dynamically whiteboard timely models through bricks-and-clicks e-services. Holistically predominate resource maximizing users through backend leadership skills. Continually mesh team building strategic theme areas without standards compliant users. Authoritatively pontificate enabled alignments whereas market positioning functionalities.
+							footer.tmpl4-testi__who
+								b.tmpl4-testi__name Antoine Gusman
+								span.tmpl4-testi__company The Author Co
+						blockquote.tmpl4-testi__slide
+							p.tmpl4-testi__text Objectively pursue diverse catalysts for change after interoperable leadership skills. Synergistically matrix high-quality e-commerce for inexpensive portals. Assertively myocardinate robust architectures through open-source catalysts for change.
+							footer.tmpl4-testi__who
+								b.tmpl4-testi__name Elena Romanova
+								span.tmpl4-testi__company Travel Blog
+						blockquote.tmpl4-testi__slide
+							p.tmpl4-testi__text Proactively engage market-driven growth strategies via team driven value. Completely synthesize principle-centered technologies before backward-compatible sources. Dramatically network long-term high-impact synergy without vertical catalysts for change.
+							footer.tmpl4-testi__who
+								b.tmpl4-testi__name Dmitry Kim
+								span.tmpl4-testi__company Food Critic
+						blockquote.tmpl4-testi__slide
+							p.tmpl4-testi__text Rapidiously pontificate front-end experiences vis-a-vis leading-edge portals. Enthusiastically architect bricks-and-clicks e-tailers and stand-alone alignments. Authoritatively coordinate state of the art action items with cost effective quality vectors.
+							footer.tmpl4-testi__who
+								b.tmpl4-testi__name Anna Vetrova
+								span.tmpl4-testi__company Art Director
+						blockquote.tmpl4-testi__slide
+							p.tmpl4-testi__text Interactively coordinate turnkey channels through ubiquitous materials. Holistically target client-centered partnerships with 24/365 deliverables. Conveniently revolutionize viral users whereas team building e-markets for technically sound processes.
+							footer.tmpl4-testi__who
+								b.tmpl4-testi__name Igor Lanskoy
+								span.tmpl4-testi__company Hotel Owner
+
+		footer.tmpl4-footer
+			.tmpl4-footer__inner
+				a.tmpl4-footer__logo(href="#tmpl4-top") HAZEL
+				ul.tmpl4-footer__socials
+					li.tmpl4-footer__item
+						a.tmpl4-footer__social(href="https://www.houzz.com/" aria-label="Houzz" rel="noopener" target="_blank")
+							svg(viewBox="0 0 24 24" fill="currentColor" aria-hidden="true")
+								path(d="M4 2h3.6v5.4L20 12.1V22h-4.4v-4.6h-3.2V22H4z")
+					li.tmpl4-footer__item
+						a.tmpl4-footer__social(href="https://www.linkedin.com/" aria-label="LinkedIn" rel="noopener" target="_blank")
+							svg(viewBox="0 0 24 24" fill="currentColor" aria-hidden="true")
+								path(d="M5 3.1a2.1 2.1 0 1 1 0 4.2 2.1 2.1 0 0 1 0-4.2z")
+								rect(x="3.1" y="9" width="3.8" height="12")
+								path(d="M9 9h3.6v1.7h.1c.5-1 1.8-2 3.7-2 3.9 0 4.6 2.4 4.6 5.5V21h-3.8v-5.5c0-1.3 0-3-1.9-3s-2.2 1.4-2.2 2.9V21H9z")
+					li.tmpl4-footer__item
+						a.tmpl4-footer__social(href="https://www.tripadvisor.com/" aria-label="TripAdvisor" rel="noopener" target="_blank")
+							svg(viewBox="0 0 24 24" fill="currentColor" aria-hidden="true")
+								path(d="M12 6.4c-2.3 0-4.4.5-6 1.4H2.4l1.5 1.7a4.6 4.6 0 0 0 3.2 7.9c1.3 0 2.5-.6 3.3-1.4l1.6 1.7 1.6-1.7a4.6 4.6 0 0 0 7.9-3.3c0-1.3-.5-2.4-1.4-3.2L21.6 7.8H18c-1.6-.9-3.7-1.4-6-1.4z")
+								circle(cx="7.1" cy="13.4" r="2.4" fill="#000")
+								circle(cx="16.9" cy="13.4" r="2.4" fill="#000")
+								circle(cx="7.1" cy="13.4" r="0.9")
+								circle(cx="16.9" cy="13.4" r="0.9")
+					li.tmpl4-footer__item
+						a.tmpl4-footer__social(href="mailto:hello@hazel.com" aria-label="Почта" rel="noopener" target="_blank")
+							svg(viewBox="0 0 24 24" fill="currentColor" aria-hidden="true")
+								path(d="M3 5.5h18c.3 0 .5.2.5.5v12c0 .3-.2.5-.5.5H3a.5.5 0 0 1-.5-.5V6c0-.3.2-.5.5-.5zm.9 1.6L12 13l8.1-5.9v-.2H3.9z")
+					li.tmpl4-footer__item
+						a.tmpl4-footer__social(href="https://www.facebook.com/" aria-label="Facebook" rel="noopener" target="_blank")
+							svg(viewBox="0 0 24 24" fill="currentColor" aria-hidden="true")
+								path(d="M15.6 8.4h-1.9c-.4 0-.7.3-.7.8v1.7h2.6l-.4 2.9h-2.2V21H10v-7.2H7.8v-2.9H10V8.7C10 6.4 11.4 5 13.5 5h2.1z")
+					li.tmpl4-footer__item
+						a.tmpl4-footer__social(href="https://x.com/" aria-label="X" rel="noopener" target="_blank")
+							svg(viewBox="0 0 24 24" fill="currentColor" aria-hidden="true")
+								path(d="M18.4 3H21l-6.2 7.1L22 21h-5.6l-4.4-5.8L6.9 21H4.3l6.6-7.6L3.6 3h5.8l4 5.3z")
+				p.tmpl4-footer__copy Hazel © Treethemes 2026
+
+		//- Боковая панель: открывается бургером в шапке
+		.tmpl4-overlay#tmpl4-overlay
+		aside.tmpl4-panel#tmpl4-panel(aria-hidden="true" aria-label="О теме и контакты")
+			button.tmpl4-panel__close#tmpl4-panel-close(type="button" aria-label="Закрыть")
+				svg(viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true")
+					line(x1="5" y1="5" x2="19" y2="19")
+					line(x1="19" y1="5" x2="5" y2="19")
+			.tmpl4-panel__body
+				p.tmpl4-panel__logo HAZEL
+				p.tmpl4-panel__text
+					| Clean &amp; Modern Layout, Hazel is packaged with awesome features,
+					|  unlimited customizability, built-in mega menu, full WooCommerce
+					|  design integration, and a super clean design, for minimal lovers.
+				.tmpl4-panel__socials
+					a.tmpl4-panel__social(href="https://www.facebook.com/" aria-label="Facebook" rel="noopener" target="_blank")
+						svg(viewBox="0 0 24 24" fill="currentColor" aria-hidden="true")
+							path(d="M15.6 8.4h-1.9c-.4 0-.7.3-.7.8v1.7h2.6l-.4 2.9h-2.2V21H10v-7.2H7.8v-2.9H10V8.7C10 6.4 11.4 5 13.5 5h2.1z")
+					a.tmpl4-panel__social(href="https://twitter.com/" aria-label="Twitter" rel="noopener" target="_blank")
+						svg(viewBox="0 0 24 24" fill="currentColor" aria-hidden="true")
+							path(d="M21 6.1c-.7.3-1.4.5-2.2.6.8-.5 1.4-1.2 1.7-2.1-.7.4-1.6.8-2.4.9A3.8 3.8 0 0 0 11.6 9 10.8 10.8 0 0 1 3.8 5a3.8 3.8 0 0 0 1.2 5.1c-.6 0-1.2-.2-1.7-.5a3.8 3.8 0 0 0 3 3.7c-.5.2-1.1.2-1.7.1a3.8 3.8 0 0 0 3.5 2.6A7.7 7.7 0 0 1 3 17.6a10.8 10.8 0 0 0 5.9 1.7c7 0 10.9-5.9 10.9-11v-.5c.7-.5 1.4-1.2 1.9-2z")
+					a.tmpl4-panel__social(href="https://www.pinterest.com/" aria-label="Pinterest" rel="noopener" target="_blank")
+						svg(viewBox="0 0 24 24" fill="currentColor" aria-hidden="true")
+							path(d="M12 3a9 9 0 0 0-3.3 17.4c-.1-.7-.1-1.8.1-2.6l1-4.4s-.3-.5-.3-1.3c0-1.2.7-2.1 1.6-2.1.7 0 1.1.5 1.1 1.2 0 .8-.5 1.9-.7 3-.2.9.4 1.6 1.3 1.6 1.6 0 2.8-1.7 2.8-4.1 0-2.1-1.5-3.6-3.7-3.6a3.9 3.9 0 0 0-4 3.9c0 .8.3 1.6.7 2 .1.1.1.2.1.3l-.2.8c0 .2-.1.3-.3.2-1.1-.5-1.8-2.1-1.8-3.4 0-2.8 2-5.3 5.8-5.3 3.1 0 5.4 2.2 5.4 5.1 0 3-1.9 5.5-4.6 5.5-.9 0-1.7-.5-2-1l-.5 2c-.2.7-.7 1.7-1.1 2.2A9 9 0 1 0 12 3z")
+					a.tmpl4-panel__social(href="https://www.linkedin.com/" aria-label="LinkedIn" rel="noopener" target="_blank")
+						svg(viewBox="0 0 24 24" fill="currentColor" aria-hidden="true")
+							path(d="M5 3.1a2.1 2.1 0 1 1 0 4.2 2.1 2.1 0 0 1 0-4.2z")
+							rect(x="3.1" y="9" width="3.8" height="12")
+							path(d="M9 9h3.6v1.7h.1c.5-1 1.8-2 3.7-2 3.9 0 4.6 2.4 4.6 5.5V21h-3.8v-5.5c0-1.3 0-3-1.9-3s-2.2 1.4-2.2 2.9V21H9z")
+				//- Навигация дублируется в панели: в шапке она скрыта на узких экранах
+				nav.tmpl4-panel__nav
+					a.tmpl4-panel__link(href="#tmpl4-top") Home
+					a.tmpl4-panel__link(href="#tmpl4-top") Pages
+					a.tmpl4-panel__link(href="#tmpl4-top") Portfolios
+					a.tmpl4-panel__link(href="#tmpl4-top") Blogs
+				h2.tmpl4-panel__title Our contacts
+				ul.tmpl4-panel__contacts
+					li.tmpl4-panel__contact
+						svg.tmpl4-panel__contact-icon(viewBox="0 0 24 24" fill="currentColor" role="img" aria-label="Адрес")
+							path(d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7z")
+							circle(cx="12" cy="9" r="2.6" fill="#1c1c1e")
+						p.tmpl4-panel__contact-text PO Box 16122 Collins Street West Victoria 8007 Australia
+					li.tmpl4-panel__contact
+						svg.tmpl4-panel__contact-icon(viewBox="0 0 24 24" fill="currentColor" role="img" aria-label="Почта")
+							path(d="M3 5.5h18c.3 0 .5.2.5.5v12c0 .3-.2.5-.5.5H3a.5.5 0 0 1-.5-.5V6c0-.3.2-.5.5-.5zm.9 1.6L12 13l8.1-5.9v-.2H3.9z")
+						a.tmpl4-panel__contact-text(href="mailto:geral@example.com") geral@example.com
+					li.tmpl4-panel__contact
+						svg.tmpl4-panel__contact-icon(viewBox="0 0 24 24" fill="currentColor" role="img" aria-label="Телефон")
+							path(d="M7.5 3.5 10 8l-2 2a12 12 0 0 0 6 6l2-2 4.5 2.5-1 3c-.3.8-1.1 1.2-1.9 1A18.5 18.5 0 0 1 3.5 6.4c-.2-.8.2-1.6 1-1.9z")
+						a.tmpl4-panel__contact-text(href="tel:+23345322233") (+23) 345 322 233
+		//- Кнопка «наверх»: появляется после прокрутки
+		button.tmpl4-totop#tmpl4-totop(type="button" aria-label="Наверх")
+			svg(viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true")
+				line(x1="12" y1="19" x2="12" y2="6")
+				polyline(points="6 12 12 6 18 12")
+

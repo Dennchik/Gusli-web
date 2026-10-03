@@ -41,12 +41,28 @@ export function select() {
                      start.focus();
                      selectButton.value = listItem.textContent;
                      selectButton.textContent = listItem.textContent;
+
+                     //* Переносим _selected: снимаем со старого пункта,
+                     //* ставим на кликнутый (если он ещё не был выбран)
                      const el_selected = itsSelect.querySelector('._selected');
-                     _listItem(listItem);
-                     if (el_selected && el_selected !== listItem) {
-                        _listItem(el_selected);
+                     const isSame = el_selected === listItem;
+                     if (el_selected) {
+                        el_selected.classList.remove('_selected');
                      }
-                     //* -------------------------------------------------
+                     if (!isSame) {
+                        listItem.classList.add('_selected');
+                     }
+
+                     //* Всегда закрываем дропдаун после выбора: раньше список
+                     //* закрывался только «переключателем» _listItem — если в
+                     //* списке не было пункта с _selected, первый клик только
+                     //* выбирал, и требовался второй клик для закрытия
+                     if (
+                        itsSelect.classList.contains('_active-collapse')
+                     ) {
+                        _toggleOpen(itsSelect);
+                     }
+
                      selectValue();
                   });
                });
@@ -136,18 +152,6 @@ export function select() {
                   selectButton.blur();
                }
             }
-
-            //todo Переключатель классов
-            const _listItem = (el) => {
-               const collapse = new ItcCollapse(el.closest('._collapse'));
-               if (el.classList.contains('_selected')) {
-                  el.classList.remove('_selected');
-                  collapse.toggle();
-                  el.closest('.select').classList.remove('_active-collapse');
-               } else {
-                  el.classList.add('_selected');
-               }
-            };
          });
       }
    });

@@ -97,7 +97,7 @@ body {
 .tmpl2-bg {
    pointer-events: none;
    position: fixed;
-   z-index: 0;
+   z-index: -1;
    inset: 0;
 
    // * Синее свечение вокруг руки

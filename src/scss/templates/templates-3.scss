@@ -1,33 +1,122 @@
 @use '../core/mixins' as *;
+@use '../assets/select';
+.tmpl3-theme-toggle {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   width: 40px;
+   height: 40px;
+   border-radius: 50%;
+   border: 1px solid rgba(255, 255, 255, 0.2); // граница круга
+   background: transparent;
+   color: #2f80ed; // синий цвет иконки (как на вашем снимке)
+   cursor: pointer;
+   transition:
+      border-color 0.3s,
+      background-color 0.3s,
+      color 0.3s;
+
+   &:hover {
+      border-color: #2f80ed;
+      background-color: rgba(47, 128, 237, 0.1);
+   }
+
+   .tmpl3-theme-toggle__icon {
+      width: 20px;
+      height: 20px;
+      display: none; // скрываем по умолчанию
+   }
+}
+
+// Отображение иконок в зависимости от текущей темы
+body.dark-theme {
+   .tmpl3-theme-toggle__icon--sun {
+      display: block; // Показываем солнце в темной теме для переключения на светлую
+   }
+}
+
+body:not(.dark-theme) {
+   .tmpl3-theme-toggle {
+      border-color: rgba(0, 0, 0, 0.15);
+   }
+   .tmpl3-theme-toggle__icon--moon {
+      display: block; // Показываем луну в светлой теме для переключения на темную
+   }
+}
+
+:root {
+}
+
+:root {
+   --font-family: archivo, 'Helvetica Neue', arial, sans-serif;
+   --dur: 900ms;
+   --ease: cubic-bezier(0.77, 0, 0.175, 1);
+   --t3-border-radius: 1rem;
+
+   //* color
+   --t3-bg: rgb(197 210 237);
+   --t3-dark: rgb(16 18 22);
+   --t3-card: rgba(255, 255, 255, 0.02);
+   --t3-muted: #98a0ad;
+   --t3-text: rgb(244 246 250);
+   --t3-line: rgb(255 255 255 / 16%);
+   --blue-deep: #072066;
+   --t3-accent: #2f80ed;
+   //   --bg-nav: linear-gradient(90deg, #000 10%, #000 90%);
+   --bg-nav: #050507;
+   --mask-image-nav: linear-gradient(
+      90deg,
+      #0000007a,
+      #000 10%,
+      #000 90%,
+      transparent
+   );
+
+   --mask-image: linear-gradient(
+      90deg,
+      transparent,
+      #000 10%,
+      #000 90%,
+      transparent
+   );
+
+   .dark-theme {
+      --t3-bg: #050507;
+      --t3-dark: rgb(16 18 22);
+      --blue-deep: rgb(7 32 102);
+      --t3-accent: #2f80ed;
+      --t3-accent-deep: #0a1733;
+      --t3-text: rgb(244 246 250);
+      --t3-muted: #98a0ad;
+      --t3-line: rgb(255 255 255 / 16%);
+      --t3-card: rgba(255, 255, 255, 0.02);
+      --bg-nav: transparent;
+      --mask-image: linear-gradient(
+         90deg,
+         transparent,
+         #000 10%,
+         #000 90%,
+         transparent
+      );
+
+      .hs {
+         --blue: #1e88e5;
+         --blue-deep: #072066;
+         --blue-light: #64b5f6;
+         --accent: #2196f3;
+         --white: #fff;
+         --off: #f4f6f9;
+         --gray: #9e9e9e;
+         --dark: #424242;
+      }
+   }
+}
 
 // * Автономная демо-страница IT-студии: чёрный фон, синий акцент.
 // * Страница не подключает main.scss — собственный мини-reset и компоненты.
 // * Hero-слайдер: диагональная синяя панель, сменяющиеся слайды,
 // * нижняя полоса с соцсетями, навигацией и бегущей строкой логотипов
-.tmpl3 {
-   --font-family: archivo, 'Helvetica Neue', arial, sans-serif;
-   --t3-bg: #050507;
-   --t3-dark: #101216;
-   --blue-deep: #072066;
-   --t3-accent: #2f80ed;
-   --t3-accent-deep: #0a1733;
-   --t3-text: #f4f6fa;
-   --t3-muted: #98a0ad;
-   --t3-line: rgb(255 255 255 / 16%);
-}
 
-.hs {
-   --blue: #1e88e5;
-   --blue-deep: #072066;
-   --blue-light: #64b5f6;
-   --accent: #2196f3;
-   --white: #fff;
-   --off: #f4f6f9;
-   --gray: #9e9e9e;
-   --dark: #424242;
-   --dur: 900ms;
-   --ease: cubic-bezier(0.77, 0, 0.175, 1);
-}
 $font-weight-default: 400;
 $transition-in-out: 0.3s ease-in-out;
 
@@ -94,6 +183,18 @@ body {
       box-sizing: border-box;
    }
 }
+
+.tmpl3-services,
+.tmpl3-pricing,
+.tmpl3-testimonials,
+.tmpl3-companies,
+.tmpl3-portfolio,
+.tmpl3-process,
+.tmpl3-posts,
+.tmpl3-about {
+   padding-block: clamp(4rem, 10vw, 8rem);
+}
+
 // * Изменить стиль полосы прокрутки (scrollbar)
 ::-webkit-scrollbar {
    position: fixed;
@@ -111,6 +212,7 @@ body {
    border-radius: 2px;
    background-color: var(--t3-accent);
 }
+
 [class*='container'] {
    box-sizing: border-box;
    width: 100%;
@@ -241,7 +343,6 @@ body {
 
 .hs {
    position: relative;
-
    width: 100%;
    min-width: 320px;
    height: 92vh;
@@ -339,6 +440,10 @@ body {
 
    background: var(--blue-deep);
    clip-path: polygon(8% 0%, 100% 0%, 100% 100%, 0% 100%);
+
+   @include screen-820 {
+      display: none;
+   }
 }
 
 .tmpl3-hs__track {
@@ -369,9 +474,8 @@ body {
    }
 
    @include screen-820 {
-      gap: 6rem;
       grid-template-columns: 1fr;
-      grid-template-rows: 500px 200px;
+      grid-template-rows: 1.5fr 1fr;
    }
 }
 
@@ -384,6 +488,63 @@ body {
    justify-content: center;
 
    padding: 0 48px 80px 64px;
+}
+
+.hs-right {
+   position: relative;
+   z-index: 3;
+   overflow: hidden;
+   height: 100%;
+
+   @include screen-820 {
+      height: 100%;
+   }
+
+   &::before {
+      pointer-events: none;
+      content: '';
+
+      position: absolute;
+      z-index: 4;
+      inset: 0;
+
+      background:
+         linear-gradient(to right, var(--blue-deep) 0%, transparent 30%),
+         linear-gradient(to top, var(--blue-deep) 0%, transparent 40%);
+   }
+
+   // * Фотография закрывает панель целиком, до самого правого края
+   .hs-img {
+      will-change: transform, opacity;
+
+      position: absolute;
+      inset: 0;
+
+      width: 100%;
+      height: 100%;
+
+      opacity: 0.55;
+      object-fit: cover;
+      object-position: center top;
+
+      transition:
+         opacity 0.8s var(--ease),
+         transform 0.8s var(--ease);
+   }
+
+   // * Синий duotone поверх фотографии
+   .hs-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgb(47 128 237 / 42%);
+      mix-blend-mode: multiply;
+   }
+
+   .hs-card {
+      position: absolute;
+      bottom: 12rem;
+      left: 6rem;
+   }
 }
 
 // * Призрачный номер слайда за контентом
@@ -527,59 +688,6 @@ body {
    }
 }
 
-.hs-right {
-   position: relative;
-   z-index: 3;
-   overflow: hidden;
-   height: 100%;
-
-   &::before {
-      pointer-events: none;
-      content: '';
-
-      position: absolute;
-      z-index: 4;
-      inset: 0;
-
-      background:
-         linear-gradient(to right, var(--blue-deep) 0%, transparent 30%),
-         linear-gradient(to top, var(--blue-deep) 0%, transparent 40%);
-   }
-
-   // * Фотография закрывает панель целиком, до самого правого края
-   .hs-img {
-      will-change: transform, opacity;
-
-      position: absolute;
-      inset: 0;
-
-      width: 100%;
-      height: 100%;
-
-      opacity: 0.55;
-      object-fit: cover;
-      object-position: center top;
-
-      transition:
-         opacity 0.8s var(--ease),
-         transform 0.8s var(--ease);
-   }
-
-   // * Синий duotone поверх фотографии
-   .hs-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgb(47 128 237 / 42%);
-      mix-blend-mode: multiply;
-   }
-
-   .hs-card {
-      position: absolute;
-      bottom: 12rem;
-      left: 6rem;
-   }
-}
-
 .hs-card-num {
    font-size: 6.4rem;
    font-weight: 800;
@@ -630,20 +738,17 @@ body {
 .hs-img-wrap {
    position: absolute;
    inset: 0;
+   background: var(--blue-deep);
 }
-
-// .hs-slide.is-active .hs-img-wrap,
-// .hs-slide.is-active .hs-overlay {
-//   opacity: 1;
-// }
 
 // * ─────────────────── Нижняя полоса ───────────────────
 .tmpl3-hs__bar {
-   position: absolute;
+   position: relative;
    z-index: 5;
    right: 0;
    bottom: 0;
    left: 0;
+   transform: translateY(-100%);
 
    display: flex;
    align-items: stretch;
@@ -683,12 +788,15 @@ body {
    gap: 3.2rem;
    align-items: center;
    padding-inline: 4rem;
+   background-color: var(--bg-nav);
+   mask-image: var(--mask-image-nav);
 }
 
 .tmpl3-hs__nav-arr {
    display: flex;
    gap: 1.6rem;
    align-items: center;
+   padding: 0.4rem 0;
 }
 
 .tmpl3-hs-arr {
@@ -771,13 +879,7 @@ body {
 
    background: var(--blue-deep);
 
-   mask-image: linear-gradient(
-      90deg,
-      transparent,
-      #000 10%,
-      #000 90%,
-      transparent
-   );
+   mask-image: var(--mask-image);
 }
 
 .tmpl3-hs__logos-track {
@@ -858,8 +960,8 @@ body {
 }
 
 // * ─────────────────── Услуги ───────────────────
-.tmpl3-services {
-   padding-block: clamp(6rem, 10vw, 10rem);
+.tmpl3-services,
+.tmpl3-about {
    background: var(--t3-dark);
 }
 
@@ -880,8 +982,8 @@ body {
 }
 
 .tmpl3-services__title {
-   font-size: clamp(2.8rem, 3.4vw, 3.8rem);
-   font-weight: 800;
+   font-size: clamp(2.8rem, 3.4vw, 4.8rem);
+   font-weight: 600;
    color: var(--t3-text);
 }
 
@@ -904,13 +1006,14 @@ body {
    flex-direction: column;
    gap: 1.6rem;
    align-items: center;
+   border-radius: var(--t3-border-radius);
 
    padding: 4.8rem 2.8rem 4rem;
    border: 1px solid var(--t3-line);
 
    text-align: center;
 
-   background: rgb(255 255 255 / 2%);
+   background: var(--t3-card);
 
    transition:
       transform $transition-in-out,
@@ -967,9 +1070,11 @@ body {
 .tmpl3 [data-anim] {
    transform: translateY(2.6rem);
    opacity: 0;
-   transition:
-      opacity 0.7s ease-out var(--anim-delay, 0s),
-      transform 0.7s ease-out var(--anim-delay, 0s);
+
+   //   transition:
+   //      opacity 0.7s ease-out,
+   //      transform 0.7s ease-out;
+   transition: all 0.4s ease-in-out;
 
    &.in {
       transform: none;
@@ -1061,5 +1166,1512 @@ body {
    .tmpl3-hs__soc svg {
       width: 1.5rem;
       height: 1.5rem;
+   }
+}
+
+// * ─────────────────── О компании ───────────────────
+.tmpl3-about {
+   background: var(--t3-bg);
+}
+
+.tmpl3-about__inner {
+   display: grid;
+   grid-template-columns: 1.1fr 1fr;
+   gap: clamp(2.4rem, 5vw, 6rem);
+   align-items: center;
+
+   width: 100%;
+   max-width: 1440px;
+   margin-inline: auto;
+   padding-inline: clamp(1.6rem, 4vw, 4.8rem);
+
+   @include screen-992 {
+      grid-template-columns: 1fr;
+   }
+}
+
+.tmpl3-about__subtitle {
+   margin-bottom: 1.6rem;
+   text-align: left;
+}
+
+.tmpl3-about__title {
+   margin-bottom: 2.4rem;
+
+   font-size: clamp(2.8rem, 3.6vw, 4rem);
+   font-weight: 800;
+   line-height: 1.15;
+   color: var(--t3-text);
+   text-align: left;
+
+   span {
+      color: var(--t3-accent);
+   }
+}
+
+.tmpl3-about__desc {
+   margin-bottom: 3.2rem;
+   font-size: 1.5rem;
+   line-height: 1.7;
+   color: var(--t3-muted);
+}
+
+.tmpl3-skill {
+   & + .tmpl3-skill {
+      margin-top: 2rem;
+   }
+
+   &__head {
+      display: flex;
+      gap: 1rem;
+      align-items: baseline;
+      justify-content: space-between;
+
+      margin-bottom: 1rem;
+   }
+
+   &__name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--t3-text);
+   }
+
+   &__value {
+      font-size: 1.4rem;
+      color: var(--t3-text);
+   }
+
+   // * Дорожка прогресса: тонкая синяя заливка — как в референсе
+   &__bar {
+      overflow: hidden;
+
+      height: 0.6rem;
+      border: 1px solid var(--t3-line);
+      border-radius: 99px;
+
+      background: var(--t3-bg);
+   }
+
+   // * Заливка анимируется от 0 до --w, когда секция раскрылась:
+   // * .in вешается на обёртку [data-anim], а не на сами скиллы
+   .tmpl3-skill__fill {
+      display: block;
+
+      width: 0;
+      height: 100%;
+
+      background: var(--t3-accent);
+
+      transition: width 1.2s ease-out 0.3s;
+   }
+}
+
+.tmpl3-about__skills.in .tmpl3-skill__fill {
+   width: var(--w);
+}
+
+.tmpl3-about__media {
+   overflow: hidden;
+   border: 1px solid var(--t3-line);
+   border-radius: var(--t3-border-radius);
+
+   img {
+      width: 100%;
+      height: 100%;
+      min-height: 36rem;
+
+      object-fit: cover;
+      filter: saturate(0.9);
+   }
+
+   @include screen-992 {
+      min-height: 30rem;
+   }
+}
+
+// * ─────────────────── Процесс: шаги вокруг круга ───────────────────
+.tmpl3-process__inner {
+   display: grid;
+   grid-template-columns: 1fr minmax(280px, 380px) 1fr;
+   grid-template-rows: auto auto auto;
+   gap: 3.2rem 2rem;
+   align-items: center;
+
+   width: 100%;
+   max-width: 1360px;
+   margin-inline: auto;
+   padding-inline: clamp(1.6rem, 4vw, 4.8rem);
+}
+
+// * Позиции «крестом»: 1 сверху, фото в центре, 2 справа, 3 снизу, 4 слева
+.tmpl3-step--1 {
+   grid-area: 1 / 2;
+}
+
+.tmpl3-process__media {
+   grid-area: 2 / 2;
+}
+
+.tmpl3-step--2 {
+   grid-area: 2 / 3;
+}
+
+.tmpl3-step--3 {
+   grid-area: 3 / 2;
+}
+
+.tmpl3-step--4 {
+   grid-area: 2 / 1;
+}
+
+.tmpl3-process__media img {
+   aspect-ratio: 1;
+   width: 100%;
+   border: 1px solid var(--t3-line);
+   border-radius: 50%;
+
+   object-fit: cover;
+   filter: saturate(0.9);
+}
+
+.tmpl3-step {
+   display: flex;
+   gap: 2rem;
+   align-items: flex-start;
+}
+
+.tmpl3-step__icon {
+   flex-shrink: 0;
+   width: 6.4rem;
+   height: 6.4rem;
+   color: var(--t3-text);
+
+   svg {
+      width: 100%;
+      height: 100%;
+   }
+}
+
+.tmpl3-step__title {
+   margin-bottom: 1rem;
+
+   font-size: clamp(1.8rem, 2vw, 2.2rem);
+   font-weight: 800;
+   line-height: 1.25;
+   color: var(--t3-text);
+   text-transform: uppercase;
+}
+
+.tmpl3-step__desc {
+   font-size: 1.45rem;
+   line-height: 1.6;
+   color: var(--t3-muted);
+}
+
+// * Каскад появления шагов
+.tmpl3-step--2 {
+   --anim-delay: 0.2s;
+}
+
+.tmpl3-process__media {
+   --anim-delay: 0.1s;
+}
+
+.tmpl3-step--3 {
+   --anim-delay: 0.4s;
+}
+
+.tmpl3-step--4 {
+   --anim-delay: 0.6s;
+}
+
+// * Мобильный адаптив: одна колонка, фото между шагами
+@include screen-1100 {
+   .tmpl3-process__inner {
+      grid-template-columns: 1fr;
+      gap: 2.8rem;
+   }
+
+   .tmpl3-step--1,
+   .tmpl3-step--2,
+   .tmpl3-step--3,
+   .tmpl3-step--4,
+   .tmpl3-process__media {
+      grid-area: auto;
+   }
+
+   .tmpl3-process__media {
+      justify-self: center;
+      max-width: 32rem;
+      margin-inline: auto;
+   }
+
+   .tmpl3-step__icon {
+      width: 5.6rem;
+      height: 5.6rem;
+   }
+}
+
+// * ─────────────────── Портфолио ───────────────────
+.tmpl3-portfolio {
+   background: var(--t3-dark);
+}
+
+.tmpl3-portfolio__inner {
+   max-width: 1500px;
+   margin-inline: auto;
+   padding-inline: clamp(1.6rem, 4vw, 4.8rem);
+}
+
+.tmpl3-portfolio__title {
+   margin-bottom: 4rem;
+
+   font-size: clamp(2.8rem, 3.4vw, 3.8rem);
+   font-weight: 800;
+   color: var(--t3-text);
+   text-align: center;
+}
+
+.tmpl3-portfolio__tabs {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 1rem;
+   justify-content: center;
+
+   margin-bottom: 4.8rem;
+}
+
+.tmpl3-portfolio__tab {
+   cursor: pointer;
+
+   padding: 1rem 2rem;
+   border: 1px solid var(--t3-line);
+   border-radius: 0.6rem;
+
+   font-size: 1.35rem;
+   color: var(--t3-muted);
+
+   background: transparent;
+
+   transition:
+      background-color $transition-in-out,
+      border-color $transition-in-out,
+      color $transition-in-out;
+
+   &:hover {
+      border-color: var(--t3-accent);
+      color: var(--t3-text);
+   }
+
+   &.is-active {
+      border-color: var(--t3-accent);
+      color: #fff;
+      background: var(--t3-accent);
+   }
+}
+
+.tmpl3-portfolio__grid {
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   gap: 2.4rem;
+
+   @include screen-1100 {
+      grid-template-columns: repeat(2, 1fr);
+   }
+
+   @include screen-680 {
+      grid-template-columns: 1fr;
+   }
+}
+
+.tmpl3-portfolio__card {
+   overflow: hidden;
+
+   border: 1px solid var(--t3-line);
+
+   //   transition:
+   //      border-color $transition-in-out,
+   //      translate $transition-in-out;
+   border-top-left-radius: 1rem;
+   border-top-right-radius: 1rem;
+
+   background: var(--t3-bg);
+
+   transition: all 0.4s ease-in-out;
+
+   &:hover {
+      transform: translate(0, 1rem);
+      translate: 0 -0.5rem;
+      border-color: var(--t3-accent);
+
+      .tmpl3-portfolio__media img {
+         transform: scale(1.05);
+      }
+   }
+
+   &.is-hidden {
+      display: none;
+   }
+}
+
+.tmpl3-portfolio__media {
+   overflow: hidden;
+
+   img {
+      aspect-ratio: 16 / 10;
+      width: 100%;
+      height: 200px;
+
+      object-fit: cover;
+
+      transition: transform 0.5s ease;
+   }
+}
+
+.tmpl3-portfolio__body {
+   padding: 2.2rem 2.4rem;
+}
+
+.tmpl3-portfolio__name {
+   margin-bottom: 0.8rem;
+   font-size: 2rem;
+   font-weight: 700;
+   color: var(--t3-text);
+}
+
+.tmpl3-portfolio__cat {
+   font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+   font-size: 1.2rem;
+   color: var(--t3-accent);
+   text-transform: uppercase;
+   letter-spacing: 0.14em;
+}
+
+// * Каскад появления карточек
+.tmpl3-portfolio__grid > :nth-child(2) {
+   --anim-delay: 0.12s;
+}
+
+.tmpl3-portfolio__grid > :nth-child(3) {
+   --anim-delay: 0.24s;
+}
+
+.tmpl3-portfolio__grid > :nth-child(4) {
+   --anim-delay: 0.36s;
+}
+
+.tmpl3-portfolio__grid > :nth-child(5) {
+   --anim-delay: 0.48s;
+}
+
+.tmpl3-portfolio__grid > :nth-child(6) {
+   --anim-delay: 0.6s;
+}
+
+// * ─────────────────── Плавная фильтрация портфолио ───────────────────
+// * Переопределяем скорость переходов: фильтр должен отзываться быстро,
+// * а не с каскадными задержками reveal-а
+.tmpl3-portfolio__card {
+   transition:
+      opacity 0.3s ease,
+      transform 0.35s ease,
+      border-color $transition-in-out,
+      translate $transition-in-out;
+}
+
+// * Гаснущая карточка: перекрывает [data-anim].in по специфичности
+.tmpl3-portfolio__card[data-anim].in.is-fading {
+   pointer-events: none;
+   transform: scale(0.94);
+   opacity: 0;
+}
+
+// * ─────────────────── Логотипы компаний: слайдер ───────────────────
+.tmpl3-companies {
+   overflow: hidden;
+   background: var(--t3-dark);
+}
+
+.tmpl3-companies__title {
+   margin-bottom: 4.8rem;
+
+   font-size: clamp(2.6rem, 3.2vw, 3.6rem);
+   font-weight: 800;
+   color: var(--t3-text);
+   text-align: center;
+}
+
+.tmpl3-companies__viewport {
+   cursor: grab;
+   scrollbar-width: none;
+   overflow-x: auto;
+
+   &::-webkit-scrollbar {
+      display: none;
+   }
+
+   &.is-dragging {
+      cursor: grabbing;
+   }
+
+   // * Мгновенный откат ленты без плавности
+   &.no-smooth {
+      scroll-behavior: auto;
+   }
+}
+
+.tmpl3-companies__track {
+   display: flex;
+   gap: 2.4rem;
+
+   // * Лента шире контейнера, но её начало выровнено по контентной колонке
+   width: max-content;
+   padding-inline: max(2rem, calc((100% - 1360px) / 2 + 3.2rem));
+}
+
+.tmpl3-companies__card {
+   // * Картинка не перехватывает pointer-события драга: нативный
+   // * dragstart картинки обрывает свайп
+   pointer-events: none;
+
+   flex: 0 0 clamp(180px, 15.5vw, 246px);
+
+   aspect-ratio: 2.1 / 1;
+
+   // * min-width: auto у flex-элементов не даёт ужаться до basis —
+   // * внутренняя картинка распирала карточку до своей ширины
+   min-width: 0;
+   border-radius: 1.2rem;
+
+   object-fit: cover;
+}
+
+// * ─────────────────── Тарифные планы ───────────────────
+.tmpl3-pricing {
+   background: var(--t3-bg);
+}
+
+.tmpl3-pricing__inner {
+   max-width: 1500px;
+   margin-inline: auto;
+   padding-inline: clamp(1.6rem, 4vw, 4.8rem);
+}
+
+.tmpl3-pricing__title {
+   margin-bottom: 1.2rem;
+
+   font-size: clamp(2.8rem, 3.4vw, 3.8rem);
+   font-weight: 800;
+   color: var(--t3-text);
+   text-align: center;
+}
+
+.tmpl3-pricing__subtitle {
+   margin-bottom: 4.8rem;
+   font-size: 1.5rem;
+   color: var(--t3-muted);
+   text-align: center;
+}
+
+.tmpl3-pricing__grid {
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   gap: 2.4rem;
+   align-items: stretch;
+
+   @include screen-1100 {
+      grid-template-columns: 1fr;
+      max-width: 560px;
+      margin-inline: auto;
+   }
+}
+
+.tmpl3-plan {
+   position: relative;
+
+   display: flex;
+   flex-direction: column;
+
+   padding: 3.2rem 2.8rem;
+   border: 1px solid var(--t3-accent);
+   border-radius: 1.2rem;
+
+   background: var(--t3-bg);
+
+   // * Синяя карточка Pro приподнята и залита градиентом
+   &--pro {
+      border-color: var(--t3-accent);
+      background: linear-gradient(200deg, #1d3fae 0%, #0a1733 90%);
+   }
+
+   &__name {
+      margin-bottom: 0.8rem;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--t3-text);
+   }
+
+   &__tagline {
+      margin-bottom: 2.4rem;
+      font-size: 1.4rem;
+      color: var(--t3-muted);
+   }
+
+   &__price {
+      margin-bottom: 2.4rem;
+      text-align: center;
+
+      b {
+         font-size: 3.6rem;
+         font-weight: 800;
+         color: var(--t3-text);
+      }
+
+      s {
+         margin-left: 1.2rem;
+         font-size: 1.8rem;
+         color: var(--t3-muted);
+      }
+   }
+
+   &__btn {
+      width: 100%;
+      margin-bottom: 2.4rem;
+   }
+
+   &__list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+
+      padding-top: 2.4rem;
+      border-top: 1px solid var(--t3-line);
+
+      li {
+         display: flex;
+         gap: 1rem;
+         align-items: center;
+
+         font-size: 1.4rem;
+         color: var(--t3-muted);
+
+         &::before {
+            content: '';
+
+            flex-shrink: 0;
+
+            width: 1.6rem;
+            height: 1.6rem;
+
+            background: var(--t3-accent);
+
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm4.2 7.2-5.4 5.4-2.8-2.8-1.4 1.4 4.2 4.2 6.8-6.8-1.4-1.4z'/%3E%3C/svg%3E")
+               center / contain no-repeat;
+         }
+
+         // * Пункты, которых нет в тарифе: крестик вместо галочки
+         &:not(.is-on)::before {
+            background-color: var(--t3-muted);
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm4.2 12.8-1.4 1.4-2.8-2.8-2.8 2.8-1.4-1.4 2.8-2.8-2.8-2.8 1.4-1.4 2.8 2.8 2.8-2.8 1.4 1.4-2.8 2.8 2.8 2.8z'/%3E%3C/svg%3E")
+               center / contain no-repeat;
+         }
+
+         &.is-on {
+            color: var(--t3-text);
+         }
+      }
+   }
+
+   &__badge {
+      position: absolute;
+      top: 1.6rem;
+      right: 1.6rem;
+
+      padding: 0.6rem 1.4rem;
+      border-radius: 0.6rem;
+
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--t3-bg);
+
+      background: #fff;
+   }
+}
+
+// * Pro-карточка: чуть выше соседей и с усиленным синим
+.tmpl3-pricing__grid .tmpl3-plan--pro {
+   transform: translateY(-1.6rem);
+
+   @include screen-1100 {
+      transform: none;
+   }
+}
+
+// * ─────────────────── Отзывы: зацикленный автоплэй-слайдер ───────────────────
+.tmpl3-testimonials {
+   background: var(--t3-dark);
+}
+
+.tmpl3-testimonials__inner {
+   margin-bottom: 4.8rem;
+}
+
+.tmpl3-testimonials__title {
+   margin-bottom: 1.2rem;
+
+   font-size: clamp(2.8rem, 3.4vw, 3.8rem);
+   font-weight: 800;
+   color: var(--t3-text);
+   text-align: center;
+}
+
+.tmpl3-testimonials__subtitle {
+   font-size: 1.5rem;
+   color: var(--t3-muted);
+   text-align: center;
+}
+
+.tmpl3-testi-slider {
+   overflow: hidden;
+
+   // * Мягкое затухание по краям ленты
+   mask-image: linear-gradient(
+      90deg,
+      transparent,
+      #000 6%,
+      #000 94%,
+      transparent
+   );
+}
+
+.tmpl3-testi-track {
+   display: flex;
+   gap: 2.4rem;
+   width: max-content;
+
+   // * Бесконечный автоплэй: лента едет влево, набор продублирован,
+   // * поэтому сдвиг на 50% даёт бесшовный цикл
+   animation: tmpl3-testi-loop 55s linear infinite;
+}
+
+// * Пауза при наведении — можно спокойно дочитать отзыв
+.tmpl3-testi-slider:hover .tmpl3-testi-track {
+   animation-play-state: paused;
+}
+
+.tmpl3-testi-card {
+   display: flex;
+   flex-direction: column;
+   gap: 1.6rem;
+
+   width: clamp(300px, 30vw, 440px);
+   padding: 3.2rem 2.8rem;
+   border: 1px solid var(--t3-accent);
+   border-radius: 1.2rem;
+
+   background: var(--t3-bg);
+}
+
+.tmpl3-testi-card__quote {
+   font-family: Georgia, 'Times New Roman', serif;
+   font-size: 5.6rem;
+   line-height: 0.6;
+   color: var(--t3-accent);
+}
+
+.tmpl3-testi-card__text {
+   flex: 1;
+   font-size: 1.45rem;
+   line-height: 1.7;
+   color: var(--t3-muted);
+}
+
+.tmpl3-testi-card__author {
+   display: flex;
+   gap: 1.4rem;
+   align-items: center;
+}
+
+.tmpl3-testi-card__avatar {
+   display: grid;
+   place-items: center;
+
+   width: 5.2rem;
+   height: 5.2rem;
+   border-radius: 50%;
+
+   font-size: 1.5rem;
+   font-weight: 700;
+   color: #fff;
+
+   background: var(--t3-accent);
+}
+
+.tmpl3-testi-card__who {
+   display: flex;
+   flex-direction: column;
+   gap: 0.2rem;
+
+   b {
+      font-size: 1.5rem;
+      color: var(--t3-text);
+   }
+
+   span {
+      font-size: 1.2rem;
+      color: var(--t3-muted);
+   }
+}
+
+.tmpl3-testi-card__stars {
+   font-size: 1.5rem;
+   color: #f5c518;
+   letter-spacing: 0.3em;
+}
+
+@keyframes tmpl3-testi-loop {
+   to {
+      translate: -50% 0;
+   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+   .tmpl3-testi-track {
+      animation: none;
+   }
+}
+
+// * ─────────────────── Контакты ───────────────────
+.tmpl3-contact {
+   padding-block: clamp(6rem, 10vw, 10rem);
+   background: var(--t3-bg);
+}
+
+.tmpl3-contact__inner {
+   display: grid;
+   grid-template-columns: 1fr 1.2fr;
+   gap: clamp(2.4rem, 5vw, 6rem);
+   align-items: start;
+
+   width: 100%;
+   max-width: 1440px;
+   margin-inline: auto;
+   padding-inline: clamp(1.6rem, 4vw, 4.8rem);
+
+   @include screen-992 {
+      grid-template-columns: 1fr;
+   }
+}
+
+.tmpl3-contact__card {
+   position: relative;
+
+   overflow: hidden;
+
+   padding: clamp(2.4rem, 4vw, 3.6rem);
+   border-radius: 1.2rem;
+
+   color: #fff;
+
+   background: linear-gradient(135deg, #3b82f6 0%, #1d3fae 100%);
+
+   // * Декоративный светлый круг справа сверху
+   &::after {
+      content: '';
+
+      position: absolute;
+      top: -6rem;
+      right: -6rem;
+
+      width: 18rem;
+      height: 18rem;
+      border-radius: 50%;
+
+      background: rgb(255 255 255 / 10%);
+   }
+
+   > * {
+      position: relative;
+      z-index: 1;
+   }
+}
+
+.tmpl3-contact__heading {
+   margin-bottom: 1.6rem;
+   font-size: clamp(2.4rem, 3vw, 3.2rem);
+   font-weight: 800;
+   color: #fff;
+}
+
+.tmpl3-contact__lead {
+   margin-bottom: 3.2rem;
+   font-size: 1.5rem;
+   line-height: 1.65;
+   color: rgb(255 255 255 / 85%);
+}
+
+.tmpl3-contact__list {
+   display: flex;
+   flex-direction: column;
+   gap: 2rem;
+
+   li {
+      display: flex;
+      gap: 1.2rem;
+      align-items: center;
+
+      svg {
+         flex-shrink: 0;
+         width: 2rem;
+         height: 2rem;
+         color: #fff;
+      }
+   }
+}
+
+.tmpl3-contact__label {
+   display: block;
+
+   font-size: 1.2rem;
+   color: rgb(255 255 255 / 70%);
+   text-transform: uppercase;
+   letter-spacing: 0.16em;
+}
+
+.tmpl3-contact__value {
+   font-size: 1.5rem;
+   color: #fff;
+}
+
+.tmpl3-contact__follow {
+   margin-top: 3.2rem;
+   margin-bottom: 1.2rem;
+
+   font-size: 1.2rem;
+   color: rgb(255 255 255 / 70%);
+   text-transform: uppercase;
+   letter-spacing: 0.16em;
+}
+
+.tmpl3-contact__socials {
+   display: flex;
+   gap: 1rem;
+
+   a {
+      display: grid;
+      place-items: center;
+
+      width: 3.8rem;
+      height: 3.8rem;
+      border-radius: 50%;
+
+      color: #fff;
+
+      background: rgb(255 255 255 / 14%);
+
+      transition: background-color $transition-in-out;
+
+      svg {
+         width: 1.6rem;
+         height: 1.6rem;
+      }
+
+      &:hover {
+         background: rgb(255 255 255 / 30%);
+      }
+   }
+}
+
+.tmpl3-contact__panel {
+   padding: clamp(2.4rem, 4vw, 3.6rem);
+   border: 1px solid var(--t3-accent);
+   border-radius: 1.2rem;
+   background: rgb(255 255 255 / 2%);
+}
+
+.tmpl3-contact__grid {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: 2rem;
+
+   @include screen-620 {
+      grid-template-columns: 1fr;
+   }
+}
+
+.tmpl3-cfield {
+   display: flex;
+   flex-direction: column;
+   gap: 0.8rem;
+
+   &--wide,
+   .tmpl3-contact__counter {
+      grid-column: 1 / -1;
+   }
+
+   &__label {
+      font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+      font-size: 1.2rem;
+      color: var(--t3-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+
+      i {
+         font-style: normal;
+         color: var(--t3-accent);
+      }
+   }
+
+   &__input,
+   &__textarea,
+   .select__button {
+      width: 100%;
+      padding: 1.3rem 1.5rem;
+      border: 1px solid transparent;
+      border-radius: 0.6rem;
+
+      font-family: inherit;
+      font-size: 1.5rem;
+      color: var(--t3-text);
+
+      background: #fff;
+
+      transition: box-shadow $transition-in-out;
+
+      &::placeholder {
+         color: var(--t3-muted);
+      }
+
+      &:focus {
+         border-color: var(--t3-accent);
+         outline: none;
+         box-shadow: 0 0 0 0.3rem rgb(47 128 237 / 25%);
+      }
+   }
+
+   &__textarea {
+      resize: vertical;
+      min-height: 14rem;
+   }
+
+   .select__button {
+      cursor: pointer;
+      color: var(--t3-text);
+      text-align: left;
+   }
+
+   // * Красная рамка невалидного поля
+   .is-invalid {
+      border-color: #e5484d;
+      box-shadow: 0 0 0 0.3rem rgb(229 72 77 / 20%);
+   }
+}
+
+.tmpl3-contact__counter {
+   align-self: flex-end;
+   font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+   font-size: 1.2rem;
+   color: var(--t3-muted);
+}
+
+.tmpl3-ccheck {
+   cursor: pointer;
+
+   display: flex;
+   gap: 1rem;
+   align-items: flex-start;
+
+   font-size: 1.35rem;
+   line-height: 1.5;
+   color: var(--t3-muted);
+
+   input {
+      cursor: pointer;
+
+      flex-shrink: 0;
+
+      width: 1.7rem;
+      height: 1.7rem;
+      margin-top: 0.2rem;
+
+      accent-color: var(--t3-accent);
+   }
+
+   .tmpl3-clink {
+      color: var(--t3-accent);
+
+      &:hover {
+         text-decoration: underline;
+      }
+   }
+
+   &.is-invalid span:last-child {
+      color: #e5484d;
+   }
+}
+
+.tmpl3-csubmit {
+   justify-self: start;
+   padding-inline: 4rem;
+   border-radius: 0.6rem;
+}
+
+.tmpl3-contact__ok {
+   font-size: 1.4rem;
+   color: #4cc38a;
+
+   &[hidden] {
+      display: none;
+   }
+}
+
+// * Селекты в тёмной панели: те же инпуты, но с синей рамкой
+.tmpl3-contact .select__button {
+   border: 1px solid var(--t3-line);
+   background: var(--t3-bg);
+}
+
+.tmpl3-contact .select__list {
+   z-index: 30;
+   border-color: var(--t3-line);
+   background: var(--t3-dark);
+}
+
+// * ─────────────────── Блог: последние публикации ───────────────────
+.tmpl3-posts__inner {
+   max-width: 1500px;
+   margin-inline: auto;
+   padding-inline: clamp(1.6rem, 4vw, 4.8rem);
+}
+
+.tmpl3-posts__head {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 2rem 3.2rem;
+   align-items: center;
+   justify-content: space-between;
+
+   margin-bottom: 4.8rem;
+}
+
+.tmpl3-posts__title {
+   font-size: clamp(2.8rem, 3.4vw, 3.8rem);
+   font-weight: 800;
+   color: var(--t3-text);
+}
+
+.tmpl3-posts__grid {
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   gap: 2.4rem;
+
+   @include screen-1100 {
+      grid-template-columns: 1fr;
+      max-width: 560px;
+      margin-inline: auto;
+   }
+}
+
+.tmpl3-posts__card {
+   overflow: hidden;
+
+   border: 1px solid var(--t3-line);
+   border-radius: 1.2rem;
+
+   background: var(--t3-bg);
+
+   transition:
+      border-color $transition-in-out,
+      translate $transition-in-out;
+
+   &:hover {
+      translate: 0 -0.5rem;
+      border-color: var(--t3-accent);
+
+      .tmpl3-posts__media img {
+         transform: scale(1.05);
+      }
+   }
+}
+
+.tmpl3-posts__media {
+   position: relative;
+
+   img {
+      aspect-ratio: 16 / 10;
+      width: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+   }
+}
+
+.tmpl3-posts__badge {
+   position: absolute;
+   top: 1.6rem;
+   left: 1.6rem;
+
+   padding: 0.5rem 1.2rem;
+   border: 1px solid var(--t3-line);
+   border-radius: 0.4rem;
+
+   font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+   font-size: 1.1rem;
+   color: var(--t3-text);
+   text-transform: uppercase;
+   letter-spacing: 0.14em;
+
+   background: rgb(5 5 7 / 70%);
+}
+
+.tmpl3-posts__body {
+   display: flex;
+   flex-direction: column;
+   gap: 1.2rem;
+   padding: 2.4rem 2.8rem 2.8rem;
+}
+
+.tmpl3-posts__meta {
+   display: flex;
+   gap: 2rem;
+   justify-content: space-between;
+
+   font-size: 1.25rem;
+   color: var(--t3-muted);
+}
+
+.tmpl3-posts__name {
+   font-size: 2rem;
+   font-weight: 700;
+   line-height: 1.3;
+   color: var(--t3-text);
+}
+
+.tmpl3-posts__desc {
+   font-size: 1.45rem;
+   line-height: 1.6;
+   color: var(--t3-muted);
+}
+
+.tmpl3-posts__foot {
+   display: flex;
+   gap: 2rem;
+   align-items: center;
+   justify-content: space-between;
+
+   margin-top: auto;
+   padding-top: 1.6rem;
+   border-top: 1px solid var(--t3-line);
+}
+
+.tmpl3-posts__more {
+   display: inline-flex;
+   gap: 0.8rem;
+   align-items: center;
+
+   font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+   font-size: 1.2rem;
+   color: var(--t3-accent);
+   text-transform: uppercase;
+   letter-spacing: 0.14em;
+
+   svg {
+      width: 1.6rem;
+      height: 1.6rem;
+      stroke: currentcolor;
+      transition: translate $transition-in-out;
+   }
+
+   &:hover svg {
+      translate: 0.4rem 0;
+   }
+}
+
+.tmpl3-posts__time {
+   font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+   font-size: 1.2rem;
+   color: var(--t3-muted);
+}
+
+// * Каскад появления карточек
+.tmpl3-posts__grid > :nth-child(2) {
+   --anim-delay: 0.15s;
+}
+
+.tmpl3-posts__grid > :nth-child(3) {
+   --anim-delay: 0.3s;
+}
+
+// * ─────────────────── Footer: 5 колонок ───────────────────
+.tmpl3-footer {
+   border-top: 1px solid var(--t3-line);
+   background: var(--t3-bg);
+
+   &__inner {
+      display: grid;
+      grid-template-columns: 1.3fr 0.9fr 1fr 1.1fr 1.1fr;
+      gap: 3.2rem;
+
+      width: 100%;
+      max-width: 1440px;
+      margin-inline: auto;
+      padding: clamp(4rem, 7vw, 7rem) clamp(1.6rem, 4vw, 4.8rem) 3.2rem;
+
+      @include screen-1200 {
+         grid-template-columns: repeat(3, 1fr);
+      }
+
+      @include screen-680 {
+         grid-template-columns: 1fr;
+         gap: 2.8rem;
+      }
+   }
+
+   &__brand {
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+   }
+
+   &__logo {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--t3-accent);
+      letter-spacing: 0.02em;
+
+      span {
+         color: var(--t3-text);
+      }
+   }
+
+   &__desc {
+      font-size: 1.4rem;
+      line-height: 1.65;
+      color: var(--t3-muted);
+   }
+
+   &__follow {
+      margin-top: 0.8rem;
+      font-size: 1.3rem;
+      color: var(--t3-text);
+   }
+
+   &__socials {
+      display: flex;
+      gap: 1rem;
+
+      a {
+         display: grid;
+         place-items: center;
+
+         width: 3.8rem;
+         height: 3.8rem;
+         border-radius: 50%;
+
+         color: #fff;
+
+         background: rgb(255 255 255 / 8%);
+
+         transition: background-color $transition-in-out;
+
+         svg {
+            width: 1.7rem;
+            height: 1.7rem;
+         }
+
+         &:hover {
+            background: var(--t3-accent);
+         }
+      }
+   }
+
+   &__col {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      align-items: flex-start;
+   }
+
+   &__title {
+      position: relative;
+
+      margin-bottom: 0.8rem;
+
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--t3-text);
+
+      // * Синяя линия-акцент под заголовком колонки
+      &::after {
+         content: '';
+
+         display: block;
+
+         width: 3.2rem;
+         height: 2px;
+         margin-top: 0.8rem;
+
+         background: var(--t3-accent);
+      }
+   }
+
+   &__link {
+      font-size: 1.4rem;
+      color: var(--t3-muted);
+      transition: color $transition-in-out;
+
+      &:hover {
+         color: var(--t3-accent);
+      }
+   }
+
+   &__crow {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+
+      .tmpl3-footer__cicon {
+         flex-shrink: 0;
+
+         width: 1.9rem;
+         height: 1.9rem;
+         margin-top: 0.2rem;
+
+         color: var(--t3-accent);
+      }
+
+      span {
+         display: flex;
+         flex-direction: column;
+         gap: 0.2rem;
+
+         font-size: 1.4rem;
+         color: var(--t3-muted);
+      }
+
+      b {
+         font-weight: 600;
+         color: var(--t3-text);
+      }
+
+      a.tmpl3-footer__cvalue:hover {
+         color: var(--t3-accent);
+      }
+   }
+
+   &__clabel {
+      font-size: 1.2rem;
+      color: var(--t3-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+   }
+
+   &__cvalue {
+      font-size: 1.4rem;
+      color: var(--t3-text);
+   }
+
+   // * Рассылка: тёмный инпут с круглой синей кнопкой внутри
+   &__form {
+      position: relative;
+      margin-top: 0.8rem;
+   }
+
+   &__input {
+      width: 100%;
+      padding: 1.3rem 5.2rem 1.3rem 1.5rem;
+      border: 1px solid var(--t3-line);
+      border-radius: 0.8rem;
+
+      font-size: 1.4rem;
+      color: var(--t3-text);
+
+      background: rgb(255 255 255 / 6%);
+
+      transition: border-color $transition-in-out;
+
+      &::placeholder {
+         color: var(--t3-muted);
+      }
+
+      &:focus {
+         border-color: var(--t3-accent);
+         outline: none;
+      }
+   }
+
+   &__send {
+      cursor: pointer;
+
+      position: absolute;
+      top: 50%;
+      right: 0.5rem;
+
+      display: grid;
+      place-items: center;
+
+      width: 3.6rem;
+      height: 3.6rem;
+      border: 0;
+      border-radius: 50%;
+
+      background: var(--t3-accent);
+
+      transition: background-color $transition-in-out;
+
+      svg {
+         width: 1.7rem;
+         height: 1.7rem;
+         stroke: #fff;
+      }
+
+      &:hover {
+         background: #1f6fe0;
+      }
+   }
+
+   &__note {
+      font-size: 1.25rem;
+      color: #4cc38a;
+
+      &[hidden] {
+         display: none;
+      }
+   }
+
+   // * Нижняя строка с копирайтом
+   &__bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      max-width: 1440px;
+      margin-inline: auto;
+      padding: 2rem clamp(1.6rem, 4vw, 4.8rem) 2.4rem;
+      border-top: 1px solid var(--t3-line);
+   }
+
+   &__copy {
+      font-size: 1.3rem;
+      color: var(--t3-muted);
+   }
+}
+
+// * Подписка: ошибки и успех
+.tmpl3-footer__input.is-invalid {
+   border-color: #e5484d;
+}
+
+.tmpl3-footer__send {
+   transition:
+      background-color $transition-in-out,
+      translate $transition-in-out;
+
+   &.is-done {
+      translate: 0 -0.2rem;
+      background: #4cc38a;
    }
 }
